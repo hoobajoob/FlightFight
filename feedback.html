@@ -1,0 +1,126 @@
+{% extends "master.html" %}
+	{% block titleBlock %}Flight Fight - Feedback{% endblock %}
+	{% block languageBlock %}{{locale}}{% endblock %}
+	{% block headBlock %}
+			<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+			<link type="text/css" rel="stylesheet" href="stylesheets/ui-lightness/jquery-ui-1.8.20.custom.css" />
+			<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+			<script type="text/javascript" src="/scripts/jquery.js"></script>
+			<script type="text/javascript" src="/scripts/jquery-ui.js"></script>
+	  		<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+	{% endblock %}
+
+	{% block styleBlock %}
+		.submitButton {
+				-moz-box-shadow: 0px 1px 0px 0px #bbdaf7;
+				-webkit-box-shadow: 0px 1px 0px 0px #bbdaf7;
+				box-shadow: 0px 1px 0px 0px #bbdaf7;
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+				background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+				background-color:#1C94C4;
+				-moz-border-radius:4px;
+				-webkit-border-radius:4px;
+				border-radius:4px;
+				border:1px solid #84bbf3;
+				display:inline-block;
+				color:#ffffff;
+				font-family:arial;
+				font-size:13px;
+				font-weight:bold;
+				padding:3px 8px;
+				text-decoration:none;
+				text-shadow:1px 1px 0px #528ecc;
+			}
+			.submitButton:hover {
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+				background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+				background-color:#378de5;
+			}
+			.submitButton:active {
+				position:relative;
+				top:1px;
+			}
+	{% endblock %}
+	{% block contentBlock %}
+		<label id="localeLabel" style="display:none">{{locale}}</label>
+		<div style="width:100%">
+		<fieldset style="display: block;width:420px;margin:0 auto;">
+			<legend style="font-size:1.2em;font-weight:bold;color:#1C94C4;">{{welcomeLabel}}</legend>
+			<form id="feedbackForm" method="post">
+				<table style="width:100%">
+					<tr id="messageRow">
+						<td>
+							<label class="messageLabel">{{ message }}</label>
+						</td>
+					</tr>
+					<tr>					
+						<td align="right" style="font-size:.7em">
+							<a href="{{ url_login }}" align="right">{{ url_loginLinktext }}</a>
+						</td>
+					</tr>
+					<tr style="{{ display }}">
+						<td>
+							<label>{{ emailLabel }}</label>
+						</td>
+					</tr>
+					<tr style="{{ display }}">
+						<td>
+							<input class="required email" type="textbox" id="emailTextbox" name="emailTextbox"></input>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-top:.5em">
+							<label>{{ typeLabel }}</label>
+						</td>
+					</tr>
+					<tr>
+						<td>						
+							<select id="typeDropDown" name="typeDropDown" style="width:190px">
+								<option value="null">{{ typeDropDownLabel }}</option>
+								{% for type in types %}
+									<option id="{{ type.key }}" value="{{ type.key }}">{{ type.value }}</option>
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-top:.5em">
+							<label>{{ feedbackLabel }}</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea class="required" rows="10" style="width:94%; padding-left:2%" id="feedbackTextbox" name="feedbackTextbox"></textarea>
+						</td>
+					</tr>
+						<tr>
+							<td style="padding-top:14px" colspan="2" align="right">				
+								<input class="submitButton" type="submit" value="{{submitLabel}}" id="submitButton" name="submitButton">
+							</td>
+						</tr>
+				</table>
+			</form>
+		</fieldset>
+		</div>
+    {% endblock %}
+    {% block scriptBlock %}
+    	$(document).ready(function(){
+    		$.validator.addMethod('notNull', function(value, element) {
+	            return (value != 'null');
+	        	}, 'Please select an option.');
+		    $("#typeDropDown").rules("add", "notNull");
+			$("#feedbackForm").validate();
+		});
+			
+		$( "#typeDropDown" ).focus(function(){
+			$("#messageRow").css('display', 'none');
+		});
+		$( "#emailTextbox" ).focus(function(){
+			$("#messageRow").css('display', 'none');
+		});
+		$( "#feedbackTextbox" ).focus(function(){
+			$("#messageRow").css('display', 'none');
+		});
+	{% endblock %}

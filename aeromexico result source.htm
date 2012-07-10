@@ -1,0 +1,2109 @@
+SUCCESS!<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+
+<script type="text/javascript">
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);})();
+</script>
+
+<script type="text/javascript">
+try {
+var _gaqCOMBINED =  _gaq || [];
+_gaqCOMBINED.push(['_setAccount','UA-20844539-1']);
+_gaqCOMBINED.push(['_setDomainName', '.aeromexico.com']);
+_gaqCOMBINED.push(['_setAllowLinker', true]);
+_gaqCOMBINED.push(['_trackPageview', 'selectFlightOut.page/']);
+
+
+} catch(e) { /* do nothing */ }
+</script>
+
+<script type="text/javascript">
+try {
+var _gaqIPCC =  _gaq || [];
+_gaqIPCC.push(['_setAccount','UA-20844539-3']);
+_gaqIPCC.push(['_setDomainName', '.aeromexico.com']);
+_gaqIPCC.push(['_setAllowLinker', true]);
+_gaqIPCC.push(['_trackPageview', 'selectFlightOut.page/']);
+
+
+} catch(e) { /* do nothing */ }
+</script>
+
+<script type="text/javascript">
+try {
+var _gaqUSER =  _gaq || [];
+_gaqUSER.push(['_setAccount','UA-8747974-1']);
+_gaqUSER.push(['_setDomainName', '.aeromexico.com']);
+_gaqUSER.push(['_setAllowLinker', true]);
+_gaqUSER.push(['_trackPageview', 'selectFlightOut.page/']);
+
+
+} catch(e) { /* do nothing */ }
+</script>
+
+<script type="text/javascript">
+try {
+var _gaqALL =  _gaq || [];
+_gaqALL.push(['_setAccount','UA-3845598-3']);
+_gaqALL.push(['_trackPageview', '/prod/SABRESONIC/D5DE/selectFlightOut.page/semiFlexIntellisellOutbound/']);
+
+
+} catch(e) { /* do nothing */ }
+</script>
+
+
+
+<script type="text/javascript">
+function wsClickTrack(obj)
+                    {  }</script>
+
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		   <script type="text/javascript" src="application/javascript/yui/build/yahoo/yahoo-min.js"></script>
+   <script type="text/javascript" src="application/javascript/yui/build/event/event-min.js"></script>
+   <script type="text/javascript" src="application/javascript/yui/build/dom/dom-min.js"></script>
+   <script type="text/javascript" src="application/javascript/yui/build/connection/connection-min.js"></script>
+   <script type="text/javascript" src="application/javascript/yui/build/yuiloader/yuiloader-min.js"></script>
+   <script type="text/javascript" src="application/javascript/yui/build/selector/selector-beta-min.js"></script>
+   <script type="text/javascript" src="application/javascript/common_helpers.js"></script>
+   <script type="text/javascript" src="application/javascript/tooltip.js"></script>
+   <script type="text/javascript" src="application/javascript/jquery/jquery.min.js"></script>
+   <script type="text/javascript" src="application/javascript/jquery/jquery.fancybox.js"></script>
+	<script type="text/javascript" language="javascript" src="application/javascript/jquery/jquery.dataTables.min.js"></script>
+
+    <script src="application/javascript/jquery/jquery.ui.core.js"></script>
+    <script src="application/javascript/jquery/jquery.ui.widget.js"></script>
+    <script src="application/javascript/jquery/jquery.ui.tabs.js"></script>
+    <script src="application/javascript/jquery/jquery.tipTip.minified.js"></script>
+    <script type="text/javascript">
+        var sswJQuery = jQuery.noConflict(true);
+    </script>
+		<title>
+						Flights
+		</title>
+					
+
+		
+				<link href="application/presentation/default/global.css" type="text/css" rel="stylesheet"/>
+		<link href="application/presentation/default/print.css" type="text/css" rel="stylesheet" media="print"/>
+		
+					<link rel="stylesheet" href="application/presentation/D5DE/vm_custom.css" type="text/css">
+														<script type="text/javascript" language="JavaScript">
+		function SelectRtuenDetails(flag)
+        {
+            if(flag)
+            {
+               if(document.getElementById('returnDate') != null && document.getElementById('returnDate') != undefined)
+                    document.getElementById('returnDate').style.display = 'block';
+            }
+            else
+            {
+                if(document.getElementById('returnDate') != null && document.getElementById('returnDate') != undefined)
+                    document.getElementById('returnDate').style.display = 'none';
+            }
+        }
+		        //function to select-unselect direction intelligently for exchange search
+        function SelectDirection(CheckBoxCount,inboundStart)
+        {
+            start = parseInt(inboundStart);
+            outboundflag=false;
+            inboundflag=false;
+            for(i=1;i<start;i++)
+            {
+                if(document.getElementById('ExchangeLeg'+i)!=null && document.getElementById('ExchangeLeg'+i).checked)
+                {
+                    outboundflag=true;
+                    break;
+                }
+            }
+            for(i=start;i<=CheckBoxCount;i++)
+            {
+                if(document.getElementById('ExchangeLeg'+i)!=null && document.getElementById('ExchangeLeg'+i).checked)
+                {
+                    inboundflag=true;
+                    break;
+                }
+            }
+            if(inboundflag && outboundflag)
+            {
+                if(document.RequestAirForm.direction != null && document.RequestAirForm.direction != undefined)
+                    document.RequestAirForm.direction[0].checked = "true";
+					if(document.getElementById('returnDate') != null && document.getElementById('returnDate') != undefined)
+                    document.getElementById('returnDate').style.display = 'block';
+            }
+            else
+            {
+                if(document.RequestAirForm.direction != null && document.RequestAirForm.direction != undefined)
+                    document.RequestAirForm.direction[1].checked = "true";
+					 if(document.getElementById('returnDate') != null && document.getElementById('returnDate') != undefined)
+                    document.getElementById('returnDate').style.display = 'none';
+            }
+            if((inboundflag && !outboundflag) && document.getElementById("NON_MCOCityList"))
+            {
+                document.getElementById("NON_MCOCityList").style.display = 'inline';
+                document.getElementById("MCOCityList").style.display = 'none';
+            }
+            else
+            {   
+            	if(document.getElementById('NON_MCOCityList') != null && document.getElementById('NON_MCOCityList') != undefined)
+            	{         
+                document.getElementById("NON_MCOCityList").style.display = 'none';
+                document.getElementById("MCOCityList").style.display = 'inline';
+            }
+            }
+        }
+
+         function changeMCODepCity(value)
+        {
+            if(document.forms[0].departCity_MCO)
+            {
+                  var mcoObj = document.forms[0].departCity_MCO;
+                  var find = false;
+                  for(i=0;i<mcoObj.options.length;i++)
+                  {
+                    if(mcoObj.options[i].value == value)
+                    {
+                        mcoObj.selectedIndex = i;
+                        find = true;
+                    }
+                  }
+                  if(find == false)
+                  {
+                     mcoObj.selectedIndex = 0;
+                  }
+
+            }
+        }
+function exchangeReplace(baseurl)
+{
+ var url=baseurl ;
+ for (var j=0; j< document.forms[0].length; j++)
+ {
+     if(document.forms[0].elements[j].type=='checkbox')
+     {
+        if(document.forms[0].elements[j].checked)
+        {
+            url = url+document.forms[0].elements[j].name + '=on&';
+        }
+     }
+     else if(document.forms[0].elements[j].type=='radio')
+     {
+         if(document.forms[0].elements[j].checked)
+        {
+            url = url+document.forms[0].elements[j].name + '=' + document.forms[0].elements[j].value +'&';
+        }
+     }
+     else
+     {
+        url = url+document.forms[0].elements[j].name + '=' + document.forms[0].elements[j].value +'&';
+     }
+   }
+    window.location.replace(url);
+        }
+
+var shopSeatMap;
+function loadShopSeatMap(url) {
+shopSeatMap=window.open(url,"seatMap","toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=800,height=500,alwaysRaised=yes,dependent=yes,screenX=800,screenY=800");
+shopSeatMap.focus();
+}
+//This submit is for iMac
+   	function confirmUMNRTerms() {
+		if (document.forms[0].terms.checked) {
+			return true;
+		}
+		else {
+			document.forms[0].requestPage.value=document.forms[0].page.value;
+			document.forms[0].requestAction.value=document.forms[0].action.value;
+			//document.forms[0].terms.value='false';
+			document.forms[0].page.value='ssw_UnaccompaniedMinorMessage';
+			document.forms[0].action.value='SSWUnaccompaniedMinor';
+			//document.forms[0].terms.value='false';
+			return true;
+		}
+	}
+	var win;
+function openSearchPopup(openUrl, title, scrsize) {
+	win = window.open(openUrl , title, "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200"+scrsize);
+	win.focus();
+}
+function submit(){
+	alert("callling submit");
+	alert(document.forms[0]);
+   document.forms[0].submit();
+}
+
+function changeVisibility(divId,value) {
+  var div=document.getElementById(divId);
+  if(div!="undefined") {
+    div.style.display = value;
+  }
+}
+
+function showId(divId) {
+  changeVisibility(divId,"");
+}
+
+function hideId(divId) {
+  changeVisibility(divId,"none");
+}
+
+function SwapX(graphic) {
+if ((document[graphic] != null) && (browserVer >= "4") || ((browserName == "Netscape") && (browserVer == "3"))) {
+document[graphic].src=("asterisk.gif");
+}
+}
+function SwapY(graphic) {
+if ((document[graphic] != null) && (browserVer >= "4") || ((browserName == "Netscape") && (browserVer == "3"))) {
+document[graphic].src=("p.gif");
+}
+}
+var ageWin;
+function openAge (url) {
+ageWin=window.open(url,'age',"toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=670,height=350,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200");
+ageWin.focus();
+}
+
+var CityWin
+function openCity (posid,returnToForm,returnToTextBox,commercialFlag) {
+CityWin=window.open('/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&&page=findCityMessage_default&posid=' + posid + '&action=findCity&returnToForm=' + returnToForm + '&returnToTextBox=' + returnToTextBox + '&commercialFlag=' + commercialFlag,'CityWin',"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=435,height=380,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200");
+CityWin.focus();
+}
+
+function getChainCode()
+{
+document.forms[0].hotel1Value.value='SA';
+}
+
+function confirmRedirect(alertMsg) {
+	input_box=confirm(alertMsg);
+	if (input_box==true) {
+	// Output when OK is clicked
+		return true;
+	}
+	else {
+	// Output when Cancel is clicked
+		return false;
+	}
+}
+function doRefresh(actualUrl,toaction,pagenum,recordLocator,page){
+
+    var lang = document.forms[0].language.options[document.forms[0].language.selectedIndex].value;
+    var dt = new Date();
+    var x = dt.getTime();
+    var tempstr=actualUrl+"&language="+lang+"&action="+toaction+"&timestamp="+x+"&PageNumber="+pagenum+"&RecordLocator="+recordLocator+"&page="+page;
+				window.document.location.replace(tempstr);
+}
+
+var isLoaded = false;
+function loaded() {
+  isLoaded =true;
+}
+
+//changed the link in the window.open  for the SPR 22156
+function openVT(language,airlineCode){
+var lang=language;
+var airline=airlineCode;
+var  win = window.open('https://www.virtuallythere.com/new/homePage.html?pnr=&name=&language='+lang+'&host='+airline+'&pcc=&clocktype=12&error=&nosub=N','VTO',
+    'width=670,height=350,screenX=200,screenY=200,toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes');
+    win.focus();
+}
+//change ends for SPR 22156
+
+var windowParam="toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=670,height=300,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200";
+var cRateWin;
+function openCarRateWin (url) {
+cRateWin=window.open(url,'carPolicyWin',windowParam);
+cRateWin.focus();
+}
+
+var agencyInfoWin;
+function openAgencyRate (url) {
+	agencyInfoWin=window.open(url,'AgencyRateInformation',"toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=no,resizable=yes,width=670,height=	350,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200");
+	agencyInfoWin.focus();
+}
+
+var fareRulesWin;
+function openFareRules (url) {
+	fareRulesWin=window.open(url,'FareRules',"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=670,height=500,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200");
+	fareRulesWin.focus();
+}
+
+var faqWin;
+function openfaq (url) {
+faqWin=window.open('faq.html','faqWin',windowParam);
+faqWin.focus();
+}
+
+var openTaxesFees;
+function openTaxesFees(url){
+var dt = new Date();
+var x = dt.getTime();
+actualUrl=url+"page=requestTaxesFeesMessage_common&action=requestTaxesFees&timestamp="+x;
+myTaxesFeesWin=window.open(actualUrl,'taxesFees',"toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=670,height=500,alwaysRaised=yes,dependent=yes");
+myTaxesFeesWin.focus();
+}
+
+
+var securityWin;
+function openSecurity (url) {
+actualUrl=url+"&action=requestSecurity";
+securityWin=window.open(actualUrl,'securityWin',windowParam);
+securityWin.focus();
+}
+
+var privacyWin;
+function openPrivacy (url) {
+actualUrl=url+"&action=requestPrivacy";
+privacyWin=window.open(actualUrl,'privacyWin',windowParam);
+privacyWin.focus();
+}
+var legalWin;
+function openLegalNotice (url) {
+actualUrl=url+"&action=requestLegalNotice";
+legalWin=window.open(actualUrl,'legalWin',"toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=670,height=300,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200");
+legalWin.focus();
+}
+var customPrivacyWin;
+function openCustomprivacyPolicy(url) {
+actualUrl=url+"&action=requestCustomPrivacy";
+customPrivacyWin=window.open(actualUrl,'customPrivacyWin',windowParam);
+customPrivacyWin.focus();
+}
+
+var flexCalWin;
+function openFlexCal (url) {
+flexCalWin=window.open(url,'flexCalWin',windowParam);
+flexCalWin.focus();
+}
+
+var flightInfoWin;
+
+browserVer = parseInt(navigator.appVersion);
+browserName = navigator.appName;
+
+function opencurrency (amountFrom,currencyFrom) {
+//changed code for SPR 22680 starts
+//var url='/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&&page=requestConvertCurrencyMessage_common&action=requestCurrencyConv';
+//url=url + '&amountFrom='+amountFrom+'&currencyFrom='+currencyFrom;
+
+var url='/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&&page=requestConvertCurrencyMessage_common&action=requestCurrencyConv';
+url=url + '&amountFrom='+amountFrom+'&currencyFrom='+currencyFrom;
+//change for SPR 22680 ends here
+
+currencyWin=window.open(url,'currencyWin',"toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=480,height=200,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200");
+currencyWin.focus();
+}
+
+function opentoplink () {
+var url="";
+var url_default="";
+if (url == "link_ssw_SemiFlexOutboundMessage_air_t") {
+    if (url_default != "link_agency_air_tdef") {
+        url = url_default;
+    } else {
+        url = "";
+    }
+}
+if (url != "") {
+    bannerWin=window.open(url,'bannerWin',"toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=670,height=300");
+    bannerWin.focus();
+    }
+}
+function openbottomlink () {
+var url="";
+var url_default="";
+if (url == "link_ssw_SemiFlexOutboundMessage_air_b") {
+    if (url_default != "link_agency_air_bdef") {
+        url = url_default;
+    } else {
+        url = "";
+    }
+}
+if (url != "") {
+    bannerWin=window.open(url,'bannerWin',"toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes");
+    //bannerWin.resizeBy(-20,-20);
+    //bannerWin.moveBy(10,10);
+    bannerWin.focus();
+    }
+}
+function winCheck(){
+   var  startUrl="http://www.aeromexico.com/us";
+         if(this.opener!=null){
+         this.opener.document.open();
+         this.opener.document.write("<HTML><HEAD><TITLE>SESSION EXPIRATION</TITLE></HEAD><BODY><p><u>Your session has expired. Please restart:</u></p>");
+         this.opener.document.write("<p>goto <a href='"+startUrl+"' target='_top'>Home page</a></p></BODY></HTML>");
+         this.opener.document.close();
+         this.opener.focus();
+         self.close();
+    }
+}
+
+function collapseExpandDiv(imgId, divId){
+	var img = document.getElementById(imgId);
+	var div = document.getElementById(divId);
+	var imgSrc = img.src;
+	var re = /showData/;
+	if (re.test(imgSrc)) {
+		div.style.display='block';
+		img.src = 'application/images/default/hideData.gif';
+	} else {
+		div.style.display='none';
+		img.src = 'application/images/default/showData.gif';
+	}
+}
+
+var flifoWin
+function openflifo (url) {
+flifoWin=window.open(url,'flifoWin',"toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width=670,height=340,alwaysRaised=yes,dependent=yes,screenX=200,screenY=200");
+flifoWin.focus();
+}
+
+var flightlink
+ function flightnumlink(url,deptDate,depArr,deptTime)
+ {
+ var  windowWidth="";
+ var windowHeight="";
+ if(deptDate)
+  {
+      depDate =  '&depDate=' + formatDate(deptDate);
+
+  }
+  else
+  {
+    depDate = "";
+  }
+  deptTime = formatTime(deptTime);
+  url = url+depDate+ depArr+ deptTime;
+  flightlink=window.open(url,'FlightPerformance',"toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,width="+windowWidth +",height="+windowHeight +",alwaysRaised=yes,dependent=yes,screenX=200,screenY=200");
+  flightlink.focus();
+ }
+
+ function formatDate(deptDate){
+      if(deptDate.indexOf('-') != -1)
+      {
+         depDate= deptDate.split('-')
+         year=depDate[0]
+         month=depDate[1]
+         day=depDate[2]
+         monthNames =new Array("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC")
+         var finaldate=day+monthNames[parseInt(month)-1]+year
+         return(finaldate)
+      }
+      else
+      {
+         return(deptDate)
+      }
+ }
+ function formatTime(deptTime){
+          if(deptTime.indexOf(':') != -1)
+          {
+                depTime= deptTime.split(':')
+                finaltime=depTime[0]+depTime[1]
+                return(finaltime)
+          }
+          else
+          {
+              return(deptTime)
+          }
+  }
+
+
+
+</script>
+									<script type="text/javascript" language="Javascript">
+
+function makeArray(n) {
+this.length = n;
+return this;
+}
+//
+// global declarations and initialization
+//
+function init () {
+theDate         = new Date();
+today           = new Date();
+currMonth       = today.getMonth();
+msPerDay        = 24*60*60*1000;
+cookieString    = "dispMonth="+currMonth+";";
+document.cookie = cookieString;
+startOfString   = document.cookie.indexOf("dispMonth");
+countbegin      = document.cookie.indexOf("=",startOfString) + 1;
+countend        = document.cookie.indexOf(";",countbegin);
+if (countend == -1) {
+countend = document.cookie.length;
+}
+dispMonth     = eval ("document.cookie.substring(countbegin,countend)");
+firstOfMonth  = new Date(today.getYear(),dispMonth,1);
+monthName = new Array("","January","February","March","April","May","June","July","August","September","October","November","December");
+}
+//
+// entry point
+//
+function openCalendar (monthFldName, dateFldname,monthFldName1, dateFldname1,formNumber) {
+init();
+formNum  = formNumber;
+//NQF: begin
+//added to accept LHS variable of this type : arr(x)
+for (var j=0; j< document.forms[formNum].length; j++) {
+
+if(document.forms[formNum].elements[j].name != null && document.forms[formNum].elements[j].name != undefined)
+{
+    if ( document.forms[formNum].elements[j].name.toLowerCase() == monthFldName.toLowerCase())
+    {
+    monthFld = "elements["+j+"]";
+    dispMonth=document.forms[formNum].elements[j].selectedIndex;
+    }
+
+
+if ( document.forms[formNum].elements[j].name.toLowerCase() == dateFldname.toLowerCase() ) {
+dateFld = "elements["+j+"]";
+}
+
+if(monthFldName1!=''){
+if ( document.forms[formNum].elements[j].name.toLowerCase() == monthFldName1.toLowerCase()) {
+monthFld1 = "elements["+j+"]";
+} }else{
+monthFld1 = '';
+
+}
+
+if(dateFldname1!=''){
+if ( document.forms[formNum].elements[j].name.toLowerCase() == dateFldname1.toLowerCase() ) {
+dateFld1 ="elements["+j+"]";
+} }else{
+dateFld1 ='';
+}
+}
+
+}
+//NQF: end
+windowOptions  = "toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,copyhistory=yes,width=275,height=290";
+calendarWindow = this.open("","calendarWindow",windowOptions);
+calendarWindow.callingForm = this;
+redraw(-1);
+}
+//
+// repaint the calendar
+//
+
+function redraw(increment) {
+calendarWindow.callingForm = this;
+//Y2K Browser compatibility issues. getYear() function works for IE.. but had to be
+//altered to appear correctly for Netscape.
+if (navigator.appName =='Netscape' ) {
+newYear = today.getYear();
+newYear = 1900 + newYear;
+}
+else {  newYear = today.getYear();
+}
+var tmpDate = new Date();
+tmpDate.setMonth(dispMonth);
+if ( tmpDate.getTime() < today.getTime() )
+newYear++;
+firstOfMonth = new Date(newYear,dispMonth,1);
+//End Y2K Browser fix.
+calendarWindow.document.open();
+calTitle = "<TITLE>.res [ calendar ]<\/TITLE>";
+calendarWindow.document.write(calTitle);
+drawCalendar(firstOfMonth);
+calendarWindow.document.write(htmlBuffer);
+calendarWindow.document.close();
+calendarWindow.callingForm = this;
+//calendarWindow.focus();
+if (increment == 1) {
+	calendarWindow.document.forms[0].monthUp.focus();
+}else {
+	calendarWindow.document.forms[0].monthDn.focus();
+}
+}
+//
+// fill the calling forms date and month
+//
+function fillDate(filler) {
+var m = monthNum-1;
+var d = filler-1;
+eval("document.forms[" + formNum + "]." + monthFld + ".selectedIndex=" + m);
+eval("document.forms[" + formNum + "]." + dateFld  + ".selectedIndex=" + d);
+if(monthFld1!='')
+eval("document.forms[" + formNum + "]." + monthFld1 + ".selectedIndex=" + m);
+/*if(dateFld1!='')
+eval("document.forms[" + formNum + "]." + dateFld1  + ".selectedIndex=" + d);*/
+calendarWindow.close();
+}
+//
+// set the month
+//
+function changeMonth (increment) {
+nextMonth = dispMonth;
+if (increment == 1) {
+nextMonth++;
+} else {
+nextMonth--;
+}
+if (nextMonth == 12)
+   nextMonth = 0;
+if (nextMonth == -1)
+   nextMonth = 11;
+dispMonth = nextMonth;
+document.cookie="dispMonth="+nextMonth;
+redraw(increment);
+}
+//
+// generate the calendar document
+//
+//BORDER WIDTH=50% bgcolor=
+function drawCalendar (theDate) {
+monthNum = theDate.getMonth() + 1;
+htmlBuffer  = "<HTML><head><title>Calendar</title><link type='text/css' href='application/presentation/D5DE/vm_custom.css' rel='stylesheet'></head><BODY BGCOLOR=#ffffff><FORM>";
+				                htmlBuffer += "<CENTER><TABLE border='1' cellpadding='0' cellspacing='1' bordercolor='#9FCAC0'#6699cc><TH COLSPAN=2><INPUT class='input_button' TYPE=BUTTON NAME=monthDn VALUE=\"<<\" onClick=callingForm.changeMonth(-1)>";
+htmlBuffer += "<TH COLSPAN=3 class='font_title_dark'>"+monthName[monthNum];
+// getYear returns the year in year - 1900
+// this causes ugly display
+var tempYear = theDate.getYear()
+if ( tempYear <= 1900 ) {
+tempYear += 1900;
+}
+htmlBuffer += " " + tempYear;
+htmlBuffer += "</FONT><td COLSPAN=2 align='center'><INPUT class='input_button' TYPE=BUTTON NAME=monthUp VALUE=\">>\" onClick=callingForm.changeMonth(1)></td><TR>";
+htmlBuffer += "<TH class='font_title_light_bold'><FONT COLOR=#000000>S</FONT><TH  class='font_title_light_bold'><FONT COLOR=#000000>M</FONT><TH  class='font_title_light_bold'><FONT COLOR=#000000>T</FONT><TH  class='font_title_light_bold'><FONT COLOR=#000000>W</FONT><TH  class='font_title_light_bold'><FONT COLOR=#000000>T</FONT><TH  class='font_title_light_bold'><FONT COLOR=#000000>F</FONT><TH  class='font_title_light_bold'><FONT COLOR=#000000>S</FONT><TR>";
+drawBody(theDate);
+htmlBuffer += "<\/TABLE><\/BODY><\/HTML>";
+}
+//
+// generate the calendar body
+//
+function drawBody (theDate) {
+//a fix for DST problem
+theDate.setHours(11);
+theDate.setMinutes(30);
+thisMonth = theDate.getMonth();
+thisDate  = theDate.getDate();
+firstSunday(theDate);
+for (w=0; w<6; w++) {
+for (d=0; d<7; d++) {
+date = theDate.getDate();
+htmlBuffer   += "<TD ALIGN=CENTER class='font_default_center'>";
+// skip previous month
+if (theDate.getMonth() != thisMonth) {
+htmlBuffer += "<BR>";
+} else {
+htmlBuffer += "<INPUT class='input_cal' TYPE=BUTTON NAME="+date+" VALUE=";
+if ( date < 10 ) {
+htmlBuffer += "0";
+}
+htmlBuffer += date+" onClick=callingForm.fillDate(" + date + ")>";
+}
+// increment the date
+newTime = theDate.getTime() + msPerDay;
+theDate.setTime(newTime);
+
+}
+htmlBuffer += "<TR>";
+}
+htmlBuffer += "<\/FORM>";
+}
+//
+// reset the startdate to get the
+// previous sunday before the current date
+// so that the drawing can begin from a sunday
+//
+function firstSunday (fromDate) {
+while (fromDate.getDay() != 0) {
+newTime = fromDate.getTime() - msPerDay;
+fromDate.setTime(newTime);
+}
+}
+</script>
+						</head>
+	<body>
+		<div id="pageHeader">
+				<div id="header-logo">
+ <h1 id="logo">Boletos Viajes</h1>
+ <div class="help">
+  <div class="help-cont"><span class="icon-help"></span> Help
+  </div>
+  <ul class="list-help">
+   <li> </li>
+   <li><a href="mailto:help@aeromexico.com">help@aeromexico.com</a></li>
+   <li>1 (800) 237 6639</li>
+  </ul>
+ </div>
+</div>
+<div class="clear"></div>
+<div class="blue-separator"></div>
+<script language="JavaScript" type="text/javascript" src="https://s3.amazonaws.com/aeromexico/external_prod_9.js"></script>
+<script type="text/javascript" src="application/javascript/common_helpers.js"></script>
+		</div>
+												<div id="main-Page" class="semiFlexOutbound">
+			<div id="pushHeader"></div>
+						<form method="post" name="RequestAirForm" action="/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&">
+				<input type="hidden" name="page" value="ssw_SemiFlexInboundMessage">
+				<input type="hidden" name="action" value="selectFlight">
+				<input type="hidden" name="selectedFlight" value="1">
+								<input type="hidden" name="posid" value="D5DE">
+								<input type="hidden" name="From" value="CUN">
+								<input type="hidden" name="To" value="CUU">
+
+
+															
+		
+							
+		
+	
+			    					
+
+					<div id="sideMenuArea" class="sideBarArea;">
+    	<div id="sidebar">
+    		<div>
+    			<p class="cart">
+	
+							
+                                    									<img src="application/images/default/cartOff.gif" border="0" title="Your Travel Shopping Cart is Empty" alt="Your Travel Shopping Cart is Empty" class="vertical">
+                    0 Items</li>
+
+									    			<ul class="navigation">
+    				<li class="navLink6">    					<a href="http://www.aeromexico.com/us">Home</a>
+    				</li>
+    
+    				    					    					                                                                                                                                                                                                                                       				       					    						<script type="text/javascript" language="JavaScript">
+//Added for the SPR# 28654
+function openVT(language,airlineCode){
+        var lang=language;
+        var airline=airlineCode;
+        var vtoserver='http://www.virtuallythere.com/';
+        var  win = window.open(vtoserver+'/new/homePage.html?pnr=&name=&language='+lang+'&host='+airline+'&pcc=&clocktype=12&error=&nosub=N','VTO','width=670,height=350,screenX=200,screenY=200,toolbar=yes,location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,resizable=yes');
+        win.focus();
+}
+//change ends for SPR#28654
+        </script>
+    				
+       			<li class="navLink4">
+                                                               <a id="ss_WelcomeId" wjTrackingName="myReservations" onclick="wsClickTrack(this);" href="/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=ssw_UserHomePageMessage&requestFrom=shopForTravel&action=shopForTravel&SCItem=All">
+							Search for Flights
+                                    </a>
+                            			</li>
+       					
+       	   	    						</ul>
+    			<fieldset class="navDropdown">
+    				<legend>Select Language</legend>
+    				<label for="Language">language:</label>
+    						
+                    <select name="language" id="language" onChange="javascript:doRefresh('/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&','SSWSemiFlexService','1','','ssw_SemiFlexOutboundMessage')" class="input_select">
+	      				            <option value="en" selected>English
+	            </option>
+					   						    <option value="es">Espa&ntilde;ol
+                 </option>
+					        </select>
+	    			</fieldset>
+    									
+        <script type="text/javascript" language="JavaScript">
+                    function confirmRedirect(alertMsg)
+                    {
+                        input_box=confirm(alertMsg);
+                        if (input_box==true)
+                        {
+                            // Output when OK is clicked
+                            return true;
+                        }
+                        else
+                        {
+                            // Output when Cancel is clicked
+                            return false;
+                        }
+                    }
+                     //function added to decide whether to display alert window for frames redirect
+                   function confirmFramesRedirect(alertMsg,form_input)
+                    {
+                        var targetObjName='linkURLTarget'+(form_input.selectedIndex +1);
+                        var targetObj=document.getElementById(targetObjName);
+                        if(targetObj!=null && targetObj!=undefined && targetObj.value=='NEW_WINDOW')
+                        {
+                          return true;
+                        }
+                        input_box=confirm(alertMsg);
+                        if (input_box==true)
+                        {
+                        // Output when OK is clicked
+                        return true;
+                        }
+                        else
+                        {
+                            // Output when Cancel is clicked
+                            return false;
+                        }
+                    }
+                </script>
+			            
+			<ul class="navigation">
+	                    	                        	                            <li>
+                                    <a onclick="Javascript:return confirmRedirect('Warning! You are about to leave the booking website. You may lose any saved information. Do you want to continue?')" href="http://www.flightview.com" ></a>
+                                </li>
+	                        
+						                                                                                			</ul>
+			
+
+	    
+    			        			    				    													<script type="text/javascript" language="javascript">
+				function modSearchSubmit() {
+				
+				var newurl='/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&';
+																												newurl += '&returnTime='+ document.forms[0].retTime.value;
+															newurl += '&DisplayMinPrice=673.30';
+														    																																																							newurl += '&CHD=0';
+														    																																																							newurl += '&CityKeyToGetTimeZoneOffset=To';
+																												newurl += '&returnMonth='+ document.forms[0].retMonth.value;
+																							    																																																							newurl += '&returnYear=2012';
+																							newurl += '&To='+ document.forms[0].returnCity.value;
+																		    																																																							newurl += '&ShoppingCartCount=0';
+														    																																																							newurl += '&page=ssw_SemiFlexOutboundMessage';
+														    																																																							newurl += '&REMOTE_USER_IP=63.110.184.98';
+																										newurl += '&departTime='+ document.forms[0].depTime.value;
+																																							newurl += '&ADT='+ document.forms[0].ADT_lnv.value;
+																		newurl += '&departDay='+ document.forms[0].depDay.value;
+																			    																																																							newurl += '&errorsExist=FALSE';
+														    																																																							newurl += '&actionType=semiFlex';
+														    																																																							newurl += '&departYear=2012';
+														    																																																							newurl += '&INF=0';
+																											newurl += '&returnDay='+ document.forms[0].retDay.value;
+																						    																																																							newurl += '&showAirlines=FALSE';
+														    																																																							newurl += '&MinutesOffset=0';
+																														newurl += '&action=SSWSemiFlexService';
+																									    																																																							newurl += '&DelegateHostName=usAM_SABRE';
+														    																																																							newurl += '&departTimeZoneOffset=0';
+														    																																																							newurl += '&posid=D5DE';
+														    																																																							newurl += '&BROWSER_USER_AGENT=AppEngine-Google; (+http://code.google.com/appengine)';
+																				for (rCounter=0; rCounter < document.forms[0].direction.length; rCounter++) {
+							if (document.forms[0].direction[rCounter].checked)
+							{
+							newurl += '&direction='+ document.forms[0].direction[rCounter].value;
+							}
+							}
+																											newurl += '&departMonth='+ document.forms[0].depMonth.value;
+																				    																																																							newurl += '&realRequestAir=realRequestAir';
+																						newurl += '&From='+ document.forms[0].departCity.value;
+																// Editted for UMNR Age Fix.
+				if(document.getElementById("umnrAge1") != null){
+				newurl += '&umnrAge1='+ document.forms[0].umnrAge1.value;
+				}
+				if(document.getElementById("umnrAge2") != null){
+				newurl += '&umnrAge2='+ document.forms[0].umnrAge2.value;
+				}
+				if(document.getElementById("umnrAge3") != null){
+				newurl += '&umnrAge3='+ document.forms[0].umnrAge3.value;
+				}
+				if(document.getElementById("umnrAge4") != null){
+				newurl += '&umnrAge4='+ document.forms[0].umnrAge4.value;
+				}
+				if(document.getElementById("umnrAge5") != null){
+				newurl += '&umnrAge5='+ document.forms[0].umnrAge5.value;
+				}
+				if(document.getElementById("umnrAge6") != null){
+				newurl += '&umnrAge6='+ document.forms[0].umnrAge6.value;
+				}
+				// Editted Ends.
+				window.location.replace(newurl);
+				}
+                function setDirection(direction)
+                  {
+                      var retDateId = document.getElementById('retDate');
+                      var retTimeId = document.getElementById('retTime');
+                      if(direction == 'returntravel')
+                      {
+                          if( (retDateId != null && retDateId != undefined) && (retTimeId != null && retTimeId != undefined))
+                          {
+                              retDateId.style.display = '';
+                              retTimeId.style.display = 'block';
+                          }
+                      }
+                      else
+                      {
+                          if( (retDateId != null && retDateId != undefined) && (retTimeId != null && retTimeId != undefined))
+                          {
+                              retDateId.style.display = 'none';
+                              retTimeId.style.display = 'none';
+                          }
+                      }
+                  }
+				function setMultiDestinationCities(depart_name, return_name) {
+				returnEl=document.forms[0].elements[return_name];
+				/* Added for SPR 120068*/
+				var sel_indx = returnEl.selectedIndex;
+				var selectedCityOption = returnEl.value;
+																returnEl.options.length=144;
+																													returnEl.options[1].value="ONT";
+						returnEl.options[1].text="Ontario (ONT) ";
+																																				returnEl.options[2].value="VGO";
+						returnEl.options[2].text="Vigo (VGO) ";
+																																				returnEl.options[3].value="BSB";
+						returnEl.options[3].text="Brasilia (BSB) ";
+																																				returnEl.options[4].value="FAT";
+						returnEl.options[4].text="Fresno (FAT) ";
+																																				returnEl.options[5].value="RIC";
+						returnEl.options[5].text="Richmond (RIC) ";
+																																				returnEl.options[6].value="IAD";
+						returnEl.options[6].text="Washington-Dulles (IAD) ";
+																																				returnEl.options[7].value="GIG";
+						returnEl.options[7].text="Rio De Janeiro-Intl (GIG) ";
+																																				returnEl.options[8].value="AGU";
+						returnEl.options[8].text="Aguascalientes (AGU) ";
+																																				returnEl.options[9].value="TRC";
+						returnEl.options[9].text="Torreon (TRC) ";
+																																				returnEl.options[10].value="LIS";
+						returnEl.options[10].text="Lisbon (LIS) ";
+																																				returnEl.options[11].value="SJO";
+						returnEl.options[11].text="San Jose, CR (SJO) ";
+																																				returnEl.options[12].value="DCA";
+						returnEl.options[12].text="Washington-Ronald Reagan (DCA) ";
+																																				returnEl.options[13].value="NRT";
+						returnEl.options[13].text="Tokyo Narita Airport (NRT) ";
+																																				returnEl.options[14].value="BRO";
+						returnEl.options[14].text="Brownsville (BRO) ";
+																																				returnEl.options[15].value="CCP";
+						returnEl.options[15].text="Concepcion (CCP) ";
+																																				returnEl.options[16].value="NCE";
+						returnEl.options[16].text="Nice (NCE) ";
+																																				returnEl.options[17].value="RDU";
+						returnEl.options[17].text="Raleigh (RDU) ";
+																																				returnEl.options[18].value="MAM";
+						returnEl.options[18].text="Matamoros (MAM) ";
+																																				returnEl.options[19].value="BJX";
+						returnEl.options[19].text="Leon/Guanajuato (BJX) ";
+																																				returnEl.options[20].value="PMI";
+						returnEl.options[20].text="Palma De Mallorca (PMI) ";
+																																				returnEl.options[21].value="CLQ";
+						returnEl.options[21].text="Colima (CLQ) ";
+																																				returnEl.options[22].value="LHR";
+						returnEl.options[22].text="London Heathrow (LHR) ";
+																																				returnEl.options[23].value="PBC";
+						returnEl.options[23].text="Puebla (PBC) ";
+																																				returnEl.options[24].value="REX";
+						returnEl.options[24].text="Reynosa (REX) ";
+																																				returnEl.options[25].value="MSP";
+						returnEl.options[25].text="Minneapolis (MSP) ";
+																																				returnEl.options[26].value="VLC";
+						returnEl.options[26].text="Valencia (VLC) ";
+																																				returnEl.options[27].value="BWI";
+						returnEl.options[27].text="Baltimore (BWI) ";
+																																				returnEl.options[28].value="BAQ";
+						returnEl.options[28].text="Barranquilla (BAQ) ";
+																																				returnEl.options[29].value="VSA";
+						returnEl.options[29].text="Villahermosa (VSA) ";
+																																				returnEl.options[30].value="MRS";
+						returnEl.options[30].text="Marseille (MRS) ";
+																																				returnEl.options[31].value="ATL";
+						returnEl.options[31].text="Atlanta (ATL) ";
+																																				returnEl.options[32].value="MAD";
+						returnEl.options[32].text="Madrid (MAD) ";
+																																				returnEl.options[33].value="OAX";
+						returnEl.options[33].text="Oaxaca (OAX) ";
+																																				returnEl.options[34].value="MEX";
+						returnEl.options[34].text="Mexico City (MEX) ";
+																																				returnEl.options[35].value="BCN";
+						returnEl.options[35].text="Barcelona (BCN) ";
+																																				returnEl.options[36].value="JUL";
+						returnEl.options[36].text="Juliaca (JUL) ";
+																																				returnEl.options[37].value="SLC";
+						returnEl.options[37].text="Salt Lake City (SLC) ";
+																																				returnEl.options[38].value="DGO";
+						returnEl.options[38].text="Durango (DGO) ";
+																																				returnEl.options[39].value="CUN";
+						returnEl.options[39].text="Cancun (CUN) ";
+																																				returnEl.options[40].value="CJS";
+						returnEl.options[40].text="Ciudad Juarez (CJS) ";
+																																				returnEl.options[41].value="MIA";
+						returnEl.options[41].text="Miami (MIA) ";
+																																				returnEl.options[42].value="SMF";
+						returnEl.options[42].text="Sacramento (SMF) ";
+																																				returnEl.options[43].value="PEI";
+						returnEl.options[43].text="Pereira (PEI) ";
+																																				returnEl.options[44].value="HUX";
+						returnEl.options[44].text="Huatulco (HUX) ";
+																																				returnEl.options[45].value="STL";
+						returnEl.options[45].text="St Louis (STL) ";
+																																				returnEl.options[46].value="LGW";
+						returnEl.options[46].text="London Gatwick Airport (LGW) ";
+																																				returnEl.options[47].value="PHX";
+						returnEl.options[47].text="Phoenix (PHX) ";
+																																				returnEl.options[48].value="IAH";
+						returnEl.options[48].text="Houston-Intercontinental (IAH) ";
+																																				returnEl.options[49].value="SAP";
+						returnEl.options[49].text="San Pedro Sula (SAP) ";
+																																				returnEl.options[50].value="HMO";
+						returnEl.options[50].text="Hermosillo (HMO) ";
+																																				returnEl.options[51].value="PHL";
+						returnEl.options[51].text="Philadelphia (PHL) ";
+																																				returnEl.options[52].value="AGP";
+						returnEl.options[52].text="Malaga (AGP) ";
+																																				returnEl.options[53].value="TIJ";
+						returnEl.options[53].text="Tijuana (TIJ) ";
+																																				returnEl.options[54].value="TGZ";
+						returnEl.options[54].text="Tuxtla Gutierrez (TGZ) ";
+																																				returnEl.options[55].value="ZIH";
+						returnEl.options[55].text="Ixtapa/Zihuatanejo (ZIH) ";
+																																				returnEl.options[56].value="QRO";
+						returnEl.options[56].text="Queretaro (QRO) ";
+																																				returnEl.options[57].value="PDX";
+						returnEl.options[57].text="Portland (PDX) ";
+																																				returnEl.options[58].value="PAZ";
+						returnEl.options[58].text="Poza Rica (PAZ) ";
+																																				returnEl.options[59].value="ROC";
+						returnEl.options[59].text="Rochester (ROC) ";
+																																				returnEl.options[60].value="SJU";
+						returnEl.options[60].text="San Juan (SJU) ";
+																																				returnEl.options[61].value="BGA";
+						returnEl.options[61].text="Bucaramanga (BGA) ";
+																																				returnEl.options[62].value="GRU";
+						returnEl.options[62].text="Sao Paulo-Guarulho (GRU) ";
+																																				returnEl.options[63].value="LAP";
+						returnEl.options[63].text="La Paz Mex (LAP) ";
+																																				returnEl.options[64].value="LMM";
+						returnEl.options[64].text="Los Mochis (LMM) ";
+																																				returnEl.options[65].value="TAM";
+						returnEl.options[65].text="Tampico (TAM) ";
+																																				returnEl.options[66].value="MDE";
+						returnEl.options[66].text="Medellin (MDE) ";
+																																				returnEl.options[67].value="LAS";
+						returnEl.options[67].text="Las Vegas (LAS) ";
+																																				returnEl.options[68].value="DTW";
+						returnEl.options[68].text="Detroit-Metro (DTW) ";
+																																				returnEl.options[69].value="CDG";
+						returnEl.options[69].text="Paris De Gaulle (CDG) ";
+																																				returnEl.options[70].value="CIX";
+						returnEl.options[70].text="Chiclayo (CIX) ";
+																																				returnEl.options[71].value="ACE";
+						returnEl.options[71].text="Lanzarote (ACE) ";
+																																				returnEl.options[72].value="FLN";
+						returnEl.options[72].text="Florianopo (FLN) ";
+																																				returnEl.options[73].value="MEM";
+						returnEl.options[73].text="Memphis (MEM) ";
+																																				returnEl.options[74].value="ICN";
+						returnEl.options[74].text="Seoul Incheon (ICN) ";
+																																				returnEl.options[75].value="MTY";
+						returnEl.options[75].text="Monterrey (MTY) ";
+																																				returnEl.options[76].value="ORD";
+						returnEl.options[76].text="Chicago-O'Hare (ORD) ";
+																																				returnEl.options[77].value="CUZ";
+						returnEl.options[77].text="Cuzco (CUZ) ";
+																																				returnEl.options[78].value="JFK";
+						returnEl.options[78].text="New York-Kennedy (JFK) ";
+																																				returnEl.options[79].value="CUU";
+						returnEl.options[79].text="Chihuahua (CUU) ";
+																																				returnEl.options[80].value="CCS";
+						returnEl.options[80].text="Caracas (CCS) ";
+																																				returnEl.options[81].value="EZE";
+						returnEl.options[81].text="Buenos Aires-Pistarini (EZE) ";
+																																				returnEl.options[82].value="TAP";
+						returnEl.options[82].text="Tapachula (TAP) ";
+																																				returnEl.options[83].value="ZCL";
+						returnEl.options[83].text="Zacatecas (ZCL) ";
+																																				returnEl.options[84].value="CTM";
+						returnEl.options[84].text="Chetumal (CTM) ";
+																																				returnEl.options[85].value="CME";
+						returnEl.options[85].text="Ciudad Del Carmen (CME) ";
+																																				returnEl.options[86].value="BNA";
+						returnEl.options[86].text="Nashville (BNA) ";
+																																				returnEl.options[87].value="MID";
+						returnEl.options[87].text="Merida (MID) ";
+																																				returnEl.options[88].value="ZLO";
+						returnEl.options[88].text="Manzanillo (ZLO) ";
+																																				returnEl.options[89].value="PVR";
+						returnEl.options[89].text="Puerto Vallarta (PVR) ";
+																																				returnEl.options[90].value="SLW";
+						returnEl.options[90].text="Saltillo (SLW) ";
+																																				returnEl.options[91].value="TLS";
+						returnEl.options[91].text="Toulouse (TLS) ";
+																																				returnEl.options[92].value="CEN";
+						returnEl.options[92].text="Ciudad Obregon (CEN) ";
+																																				returnEl.options[93].value="MCI";
+						returnEl.options[93].text="Kansas City (MCI) ";
+																																				returnEl.options[94].value="LGA";
+						returnEl.options[94].text="New York-La Guardia (LGA) ";
+																																				returnEl.options[95].value="MCO";
+						returnEl.options[95].text="Orlando International (MCO) ";
+																																				returnEl.options[96].value="SFO";
+						returnEl.options[96].text="San Francisco (SFO) ";
+																																				returnEl.options[97].value="SAL";
+						returnEl.options[97].text="San Salvador (SAL) ";
+																																				returnEl.options[98].value="MXL";
+						returnEl.options[98].text="Mexicali (MXL) ";
+																																				returnEl.options[99].value="MXP";
+						returnEl.options[99].text="Milan-Malpensa (MXP) ";
+																																				returnEl.options[100].value="VER";
+						returnEl.options[100].text="Veracruz (VER) ";
+																																				returnEl.options[101].value="PUQ";
+						returnEl.options[101].text="Punta Arenas (PUQ) ";
+																																				returnEl.options[102].value="CNF";
+						returnEl.options[102].text="Belo Horizonte (CNF) ";
+																																				returnEl.options[103].value="LIM";
+						returnEl.options[103].text="Lima (LIM) ";
+																																				returnEl.options[104].value="REC";
+						returnEl.options[104].text="Recife (REC) ";
+																																				returnEl.options[105].value="CWB";
+						returnEl.options[105].text="Curitiba (CWB) ";
+																																				returnEl.options[106].value="AXM";
+						returnEl.options[106].text="Armenia (AXM) ";
+																																				returnEl.options[107].value="FRA";
+						returnEl.options[107].text="Frankfurt (FRA) ";
+																																				returnEl.options[108].value="SCL";
+						returnEl.options[108].text="Santiago (SCL) ";
+																																				returnEl.options[109].value="MTT";
+						returnEl.options[109].text="Minatitlan (MTT) ";
+																																				returnEl.options[110].value="LYS";
+						returnEl.options[110].text="Lyon (LYS) ";
+																																				returnEl.options[111].value="CUL";
+						returnEl.options[111].text="Culiacan (CUL) ";
+																																				returnEl.options[112].value="PEM";
+						returnEl.options[112].text="Puerto Maldonado (PEM) ";
+																																				returnEl.options[113].value="YYZ";
+						returnEl.options[113].text="Toronto (YYZ) ";
+																																				returnEl.options[114].value="ALB";
+						returnEl.options[114].text="Albany (ALB) ";
+																																				returnEl.options[115].value="CVG";
+						returnEl.options[115].text="Cincinnati (CVG) ";
+																																				returnEl.options[116].value="DEN";
+						returnEl.options[116].text="Denver (DEN) ";
+																																				returnEl.options[117].value="SJD";
+						returnEl.options[117].text="Cabo San Lucas (SJD) ";
+																																				returnEl.options[118].value="ACA";
+						returnEl.options[118].text="Acapulco (ACA) ";
+																																				returnEl.options[119].value="POA";
+						returnEl.options[119].text="Porto Alegre (POA) ";
+																																				returnEl.options[120].value="LAX";
+						returnEl.options[120].text="Los Angeles (LAX) ";
+																																				returnEl.options[121].value="CLO";
+						returnEl.options[121].text="Cali (CLO) ";
+																																				returnEl.options[122].value="CPE";
+						returnEl.options[122].text="Campeche (CPE) ";
+																																				returnEl.options[123].value="AMS";
+						returnEl.options[123].text="Amsterdam (AMS) ";
+																																				returnEl.options[124].value="MLM";
+						returnEl.options[124].text="Morelia (MLM) ";
+																																				returnEl.options[125].value="BDL";
+						returnEl.options[125].text="Hartford Sprngfld (BDL) ";
+																																				returnEl.options[126].value="BOS";
+						returnEl.options[126].text="Boston (BOS) ";
+																																				returnEl.options[127].value="NLD";
+						returnEl.options[127].text="Nuevo Laredo (NLD) ";
+																																				returnEl.options[128].value="MZT";
+						returnEl.options[128].text="Mazatlan (MZT) ";
+																																				returnEl.options[129].value="FCO";
+						returnEl.options[129].text="Rome-Fiumicino (FCO) ";
+																																				returnEl.options[130].value="SLP";
+						returnEl.options[130].text="San Luis Potosi (SLP) ";
+																																				returnEl.options[131].value="SAT";
+						returnEl.options[131].text="San Antonio (SAT) ";
+																																				returnEl.options[132].value="PTY";
+						returnEl.options[132].text="Panama City (PTY) ";
+																																				returnEl.options[133].value="LPA";
+						returnEl.options[133].text="Gran Canaria (LPA) ";
+																																				returnEl.options[134].value="FOR";
+						returnEl.options[134].text="Fortaleza (FOR) ";
+																																				returnEl.options[135].value="PRG";
+						returnEl.options[135].text="Prague (PRG) ";
+																																				returnEl.options[136].value="YUL";
+						returnEl.options[136].text="Montreal Trudeau (YUL) ";
+																																				returnEl.options[137].value="GUA";
+						returnEl.options[137].text="Guatemala (GUA) ";
+																																				returnEl.options[138].value="CZM";
+						returnEl.options[138].text="Cozumel (CZM) ";
+																																				returnEl.options[139].value="CTG";
+						returnEl.options[139].text="Cartagena (CTG) ";
+																																				returnEl.options[140].value="PVG";
+						returnEl.options[140].text="Shanghai Pudong (PVG) ";
+																																				returnEl.options[141].value="MSY";
+						returnEl.options[141].text="New Orleans (MSY) ";
+																																				returnEl.options[142].value="GDL";
+						returnEl.options[142].text="Guadalajara (GDL) ";
+																																				returnEl.options[143].value="BOG";
+						returnEl.options[143].text="Bogota (BOG) ";
+																			repaintDest(depart_name, return_name);
+				           /* Added for SPR 120068*/
+                            var tmpArray  = new Array(returnEl.options.length);
+                         for ( var i = 0; i < returnEl.options.length; i++ )
+                          {
+                                tmpArray[i]  = new Array(returnEl.options[i].text,returnEl.options[i].value);
+                          }
+                          tmpArray.sort();
+
+                          for ( var i = 0; i < returnEl.options.length; i++ )
+                          {
+                                returnEl.options[i].text  = tmpArray[i][0];
+                                returnEl.options[i].value = tmpArray[i][1];
+                          }
+						/* Changed for Tracker 25960*/
+						//if (selectedCityOption)
+						if (sel_indx > 0)
+						{
+						setReturnSelectedIndex(selectedCityOption, return_name);
+						}
+
+				}
+</script>
+	<script type="text/javascript" language="javascript" src="application/presentation/default/returnlist.js"></script>
+	<script type="text/javascript" language="javascript" src="application/presentation/D5DE/returnroutes.js"></script>
+<p class="sidebarHead">Modify Search</p>
+<fieldset class="tripType">
+	<legend>Trip Type</legend>
+	<label for="roundTrip">
+					                				<input type="radio" checked name="direction" value="returntravel" onFocus="SwapX('asterisk')" >
+									 Round Trip
+	</label>
+	<label for="oneWay">
+					                				<input type="radio" name="direction" value="onewaytravel" onFocus="SwapY('asterisk')" > One-Way
+								</label>
+</fieldset>
+<fieldset class="searchFlight">
+	<legend>Search for Flights</legend>
+	<label for="From">
+		<span>From:</span>
+																																			<select class="depCity"  name="departCity" onChange="javascript:setMultiDestinationCities('departCity','returnCity')" style="width:110px;">
+																			<option value="">(city or airport code)</option>
+        	                                                           <option value="ACA">Acapulco   (ACA) </option>
+                                        		                                                           <option value="AGU">Aguascalientes   (AGU) </option>
+                                        		                                                           <option value="ALB">Albany   (ALB) </option>
+                                        		                                                           <option value="AMS">Amsterdam   (AMS) </option>
+                                        		                                                           <option value="AXM">Armenia   (AXM) </option>
+                                        		                                                           <option value="ATL">Atlanta   (ATL) </option>
+                                        		                                                           <option value="BWI">Baltimore   (BWI) </option>
+                                        		                                                           <option value="BCN">Barcelona   (BCN) </option>
+                                        		                                                           <option value="BAQ">Barranquilla   (BAQ) </option>
+                                        		                                                           <option value="CNF">Belo Horizonte   (CNF) </option>
+                                        		                                                           <option value="BOG">Bogota   (BOG) </option>
+                                        		                                                           <option value="BOS">Boston   (BOS) </option>
+                                        		                                                           <option value="BSB">Brasilia   (BSB) </option>
+                                        		                                                           <option value="BRO">Brownsville   (BRO) </option>
+                                        		                                                           <option value="BGA">Bucaramanga   (BGA) </option>
+                                        		                                                           <option value="EZE">Buenos Aires-Pistarini   (EZE) </option>
+                                        		                                                           <option value="SJD">Cabo San Lucas   (SJD) </option>
+                                        		                                                           <option value="CLO">Cali   (CLO) </option>
+                                        		                                                           <option value="CPE">Campeche   (CPE) </option>
+                                        		                                                           <option value="CUN" selected>Cancun   (CUN)</option>
+                                        		                                                           <option value="CCS">Caracas   (CCS) </option>
+                                        		                                                           <option value="CTG">Cartagena   (CTG) </option>
+                                        		                                                           <option value="CTM">Chetumal   (CTM) </option>
+                                        		                                                           <option value="ORD">Chicago-O'Hare   (ORD) </option>
+                                        		                                                           <option value="CIX">Chiclayo   (CIX) </option>
+                                        		                                                           <option value="CUU">Chihuahua   (CUU) </option>
+                                        		                                                           <option value="CVG">Cincinnati   (CVG) </option>
+                                        		                                                           <option value="CME">Ciudad Del Carmen   (CME) </option>
+                                        		                                                           <option value="CJS">Ciudad Juarez   (CJS) </option>
+                                        		                                                           <option value="CEN">Ciudad Obregon   (CEN) </option>
+                                        		                                                           <option value="CLQ">Colima   (CLQ) </option>
+                                        		                                                           <option value="CCP">Concepcion   (CCP) </option>
+                                        		                                                           <option value="CZM">Cozumel   (CZM) </option>
+                                        		                                                           <option value="CUL">Culiacan   (CUL) </option>
+                                        		                                                           <option value="CWB">Curitiba   (CWB) </option>
+                                        		                                                           <option value="CUZ">Cuzco   (CUZ) </option>
+                                        		                                                           <option value="DEN">Denver   (DEN) </option>
+                                        		                                                           <option value="DTW">Detroit-Metro   (DTW) </option>
+                                        		                                                           <option value="DGO">Durango   (DGO) </option>
+                                        		                                                           <option value="FLN">Florianopo   (FLN) </option>
+                                        		                                                           <option value="FOR">Fortaleza   (FOR) </option>
+                                        		                                                           <option value="FRA">Frankfurt   (FRA) </option>
+                                        		                                                           <option value="FAT">Fresno   (FAT) </option>
+                                        		                                                           <option value="LPA">Gran Canaria   (LPA) </option>
+                                        		                                                           <option value="GDL">Guadalajara   (GDL) </option>
+                                        		                                                           <option value="GUA">Guatemala   (GUA) </option>
+                                        		                                                           <option value="BDL">Hartford Sprngfld   (BDL) </option>
+                                        		                                                           <option value="HMO">Hermosillo   (HMO) </option>
+                                        		                                                           <option value="IAH">Houston-Intercontinental   (IAH) </option>
+                                        		                                                           <option value="HUX">Huatulco   (HUX) </option>
+                                        		                                                           <option value="ZIH">Ixtapa/Zihuatanejo   (ZIH) </option>
+                                        		                                                           <option value="JUL">Juliaca   (JUL) </option>
+                                        		                                                           <option value="MCI">Kansas City   (MCI) </option>
+                                        		                                                           <option value="LAP">La Paz Mex   (LAP) </option>
+                                        		                                                           <option value="ACE">Lanzarote   (ACE) </option>
+                                        		                                                           <option value="LAS">Las Vegas   (LAS) </option>
+                                        		                                                           <option value="BJX">Leon/Guanajuato   (BJX) </option>
+                                        		                                                           <option value="LIM">Lima   (LIM) </option>
+                                        		                                                           <option value="LIS">Lisbon   (LIS) </option>
+                                        		                                                           <option value="LGW">London Gatwick Airport   (LGW) </option>
+                                        		                                                           <option value="LHR">London Heathrow   (LHR) </option>
+                                        		                                                           <option value="LAX">Los Angeles   (LAX) </option>
+                                        		                                                           <option value="LMM">Los Mochis   (LMM) </option>
+                                        		                                                           <option value="LYS">Lyon   (LYS) </option>
+                                        		                                                           <option value="MAD">Madrid   (MAD) </option>
+                                        		                                                           <option value="AGP">Malaga   (AGP) </option>
+                                        		                                                           <option value="ZLO">Manzanillo   (ZLO) </option>
+                                        		                                                           <option value="MRS">Marseille   (MRS) </option>
+                                        		                                                           <option value="MAM">Matamoros   (MAM) </option>
+                                        		                                                           <option value="MZT">Mazatlan   (MZT) </option>
+                                        		                                                           <option value="MDE">Medellin   (MDE) </option>
+                                        		                                                           <option value="MEM">Memphis   (MEM) </option>
+                                        		                                                           <option value="MID">Merida   (MID) </option>
+                                        		                                                           <option value="MXL">Mexicali   (MXL) </option>
+                                        		                                                           <option value="MEX">Mexico City   (MEX) </option>
+                                        		                                                           <option value="MIA">Miami   (MIA) </option>
+                                        		                                                           <option value="MXP">Milan-Malpensa   (MXP) </option>
+                                        		                                                           <option value="MTT">Minatitlan   (MTT) </option>
+                                        		                                                           <option value="MSP">Minneapolis   (MSP) </option>
+                                        		                                                           <option value="MTY">Monterrey   (MTY) </option>
+                                        		                                                           <option value="YUL">Montreal Trudeau   (YUL) </option>
+                                        		                                                           <option value="MLM">Morelia   (MLM) </option>
+                                        		                                                           <option value="BNA">Nashville   (BNA) </option>
+                                        		                                                           <option value="MSY">New Orleans   (MSY) </option>
+                                        		                                                           <option value="JFK">New York-Kennedy   (JFK) </option>
+                                        		                                                           <option value="LGA">New York-La Guardia   (LGA) </option>
+                                        		                                                           <option value="NCE">Nice   (NCE) </option>
+                                        		                                                           <option value="NLD">Nuevo Laredo   (NLD) </option>
+                                        		                                                           <option value="OAX">Oaxaca   (OAX) </option>
+                                        		                                                           <option value="ONT">Ontario   (ONT) </option>
+                                        		                                                           <option value="MCO">Orlando International   (MCO) </option>
+                                        		                                                           <option value="PMI">Palma De Mallorca   (PMI) </option>
+                                        		                                                           <option value="PTY">Panama City   (PTY) </option>
+                                        		                                                           <option value="CDG">Paris De Gaulle   (CDG) </option>
+                                        		                                                           <option value="PEI">Pereira   (PEI) </option>
+                                        		                                                           <option value="PHL">Philadelphia   (PHL) </option>
+                                        		                                                           <option value="PHX">Phoenix   (PHX) </option>
+                                        		                                                           <option value="PDX">Portland   (PDX) </option>
+                                        		                                                           <option value="POA">Porto Alegre   (POA) </option>
+                                        		                                                           <option value="PAZ">Poza Rica   (PAZ) </option>
+                                        		                                                           <option value="PRG">Prague   (PRG) </option>
+                                        		                                                           <option value="PBC">Puebla   (PBC) </option>
+                                        		                                                           <option value="PEM">Puerto Maldonado   (PEM) </option>
+                                        		                                                           <option value="PVR">Puerto Vallarta   (PVR) </option>
+                                        		                                                           <option value="PUQ">Punta Arenas   (PUQ) </option>
+                                        		                                                           <option value="QRO">Queretaro   (QRO) </option>
+                                        		                                                           <option value="RDU">Raleigh   (RDU) </option>
+                                        		                                                           <option value="REC">Recife   (REC) </option>
+                                        		                                                           <option value="REX">Reynosa   (REX) </option>
+                                        		                                                           <option value="RIC">Richmond   (RIC) </option>
+                                        		                                                           <option value="GIG">Rio De Janeiro-Intl   (GIG) </option>
+                                        		                                                           <option value="ROC">Rochester   (ROC) </option>
+                                        		                                                           <option value="FCO">Rome-Fiumicino   (FCO) </option>
+                                        		                                                           <option value="SMF">Sacramento   (SMF) </option>
+                                        		                                                           <option value="SLC">Salt Lake City   (SLC) </option>
+                                        		                                                           <option value="SLW">Saltillo   (SLW) </option>
+                                        		                                                           <option value="SAT">San Antonio   (SAT) </option>
+                                        		                                                           <option value="SFO">San Francisco   (SFO) </option>
+                                        		                                                           <option value="SJO">San Jose, CR   (SJO) </option>
+                                        		                                                           <option value="SJU">San Juan   (SJU) </option>
+                                        		                                                           <option value="SLP">San Luis Potosi   (SLP) </option>
+                                        		                                                           <option value="SAP">San Pedro Sula   (SAP) </option>
+                                        		                                                           <option value="SAL">San Salvador   (SAL) </option>
+                                        		                                                           <option value="SCL">Santiago   (SCL) </option>
+                                        		                                                           <option value="GRU">Sao Paulo-Guarulho   (GRU) </option>
+                                        		                                                           <option value="ICN">Seoul Incheon   (ICN) </option>
+                                        		                                                           <option value="PVG">Shanghai Pudong   (PVG) </option>
+                                        		                                                           <option value="STL">St Louis   (STL) </option>
+                                        		                                                           <option value="TAM">Tampico   (TAM) </option>
+                                        		                                                           <option value="TAP">Tapachula   (TAP) </option>
+                                        		                                                           <option value="TIJ">Tijuana   (TIJ) </option>
+                                        		                                                           <option value="NRT">Tokyo Narita Airport   (NRT) </option>
+                                        		                                                           <option value="YYZ">Toronto   (YYZ) </option>
+                                        		                                                           <option value="TRC">Torreon   (TRC) </option>
+                                        		                                                           <option value="TLS">Toulouse   (TLS) </option>
+                                        		                                                           <option value="TGZ">Tuxtla Gutierrez   (TGZ) </option>
+                                        		                                                           <option value="VLC">Valencia   (VLC) </option>
+                                        		                                                           <option value="VER">Veracruz   (VER) </option>
+                                        		                                                           <option value="VGO">Vigo   (VGO) </option>
+                                        		                                                           <option value="VSA">Villahermosa   (VSA) </option>
+                                        		                                                           <option value="IAD">Washington-Dulles   (IAD) </option>
+                                        		                                                           <option value="DCA">Washington-Ronald Reagan   (DCA) </option>
+                                        		                                                           <option value="ZCL">Zacatecas   (ZCL) </option>
+                                        	    						</select>
+														</label>
+	<label for="DepartDate">
+		<select size="1" name="depDay" id="DepartDate">
+									
+			        					
+    		
+	                            <option value="1">1</option>
+            	                            <option value="2">2</option>
+            	                            <option value="3">3</option>
+            	                            <option value="4">4</option>
+            	                            <option value="5">5</option>
+            	                            <option value="6">6</option>
+            	                            <option value="7">7</option>
+            	                            <option value="8">8</option>
+            	                            <option value="9">9</option>
+            	                            <option value="10">10</option>
+            	                            <option value="11">11</option>
+            	                            <option value="12">12</option>
+            	                            <option value="13">13</option>
+            	                            <option value="14">14</option>
+            	                            <option value="15">15</option>
+            	                            <option value="16">16</option>
+            	                            <option value="17">17</option>
+            	                            <option value="18">18</option>
+            	                            <option value="19">19</option>
+            	                            <option value="20">20</option>
+            	                            <option value="21">21</option>
+            	                            <option value="22">22</option>
+            	                            <option value="23">23</option>
+            	                            <option value="24">24</option>
+            	                            <option value="25">25</option>
+            	                            <option value="26">26</option>
+            	                            <option value="27">27</option>
+            	                            <option value="28">28</option>
+            	                            <option value="29">29</option>
+            	                            <option value="30" selected>30</option>
+		                            <option value="31">31</option>
+            	    		</select>
+	</label><label for="DepartMonth">
+		<select size="1" name="depMonth" onchange="document.forms[0].retMonth.selectedIndex=this.selectedIndex">
+																				<option value="JAN" >Jan</option>
+											<option value="FEB" >Feb</option>
+											<option value="MAR" >Mar</option>
+											<option value="APR" >Apr</option>
+											<option value="MAY" >May</option>
+											<option value="JUN" selected=\"selected\">Jun</option>
+											<option value="JUL" >Jul</option>
+											<option value="AUG" >Aug</option>
+											<option value="SEP" >Sep</option>
+											<option value="OCT" >Oct</option>
+											<option value="NOV" >Nov</option>
+											<option value="DEC" >Dec</option>
+					</select>
+	</label>
+			<a href="javascript:openCalendar('depMonth','depDay','retMonth','retDay','0','calendar_depart_container')" class="vertical">
+		<div id="calendar_depart_container" class="flight_calendar_container yui-skin-sam"></div>
+		<img src="application/images/D5DE/calendar.gif" alt="calendar" class="calendar_icon" />
+    </a>
+		<br/><label for="DepartTime">
+		<select name="depTime" id="DepartTime" class="depTime">
+						                                      			         			        					        		
+        <option value="0000">12:00 AM</option>
+                       	    	    	                    <option value="0100">01:00 AM</option>
+                       	    	    	                    <option value="0200">02:00 AM</option>
+                       	    	    	                    <option value="0300">03:00 AM</option>
+                       	    	    	                    <option value="0400">04:00 AM</option>
+                       	    	    	                    <option value="0500">05:00 AM</option>
+                       	    	    	                    <option value="0600">06:00 AM</option>
+                       	    	    	                    <option value="0700">07:00 AM</option>
+                       	    	    	                    <option value="0800">08:00 AM</option>
+                       	    	    	                    <option value="0900">09:00 AM</option>
+                       	    		 	                    <option value="1000">10:00 AM</option>
+                       	    		 	                    <option value="1100">11:00 AM</option>
+                       	    		 	                    <option value="1200">12:00 PM</option>
+                       	    		 	                    <option value="1300" selected>01:00 PM</option>
+                       	    		 	                    <option value="1400">02:00 PM</option>
+                       	    		 	                    <option value="1500">03:00 PM</option>
+                       	    		 	                    <option value="1600">04:00 PM</option>
+                       	    		 	                    <option value="1700">05:00 PM</option>
+                       	    		 	                    <option value="1800">06:00 PM</option>
+                       	    		 	                    <option value="1900">07:00 PM</option>
+                       	    		 	                    <option value="2000">08:00 PM</option>
+                       	    		 	                    <option value="2100">09:00 PM</option>
+                       	    		 	                    <option value="2200">10:00 PM</option>
+                       	    		 	                    <option value="2300">11:00 PM</option>
+                    
+               </select>
+	</label>
+	<label for="To">
+		<span>To:</span>
+																								<select class="dropControl" id="To" class="depCity" name="returnCity" style="width:110px;">
+																							<option value="">(city or airport code)</option>
+        	                                                           <option value="ONT">Ontario   (ONT) </option>
+                                        		                                                           <option value="VGO">Vigo   (VGO) </option>
+                                        		                                                           <option value="BSB">Brasilia   (BSB) </option>
+                                        		                                                           <option value="FAT">Fresno   (FAT) </option>
+                                        		                                                           <option value="RIC">Richmond   (RIC) </option>
+                                        		                                                           <option value="IAD">Washington-Dulles   (IAD) </option>
+                                        		                                                           <option value="GIG">Rio De Janeiro-Intl   (GIG) </option>
+                                        		                                                           <option value="AGU">Aguascalientes   (AGU) </option>
+                                        		                                                           <option value="TRC">Torreon   (TRC) </option>
+                                        		                                                           <option value="LIS">Lisbon   (LIS) </option>
+                                        		                                                           <option value="SJO">San Jose, CR   (SJO) </option>
+                                        		                                                           <option value="DCA">Washington-Ronald Reagan   (DCA) </option>
+                                        		                                                           <option value="NRT">Tokyo Narita Airport   (NRT) </option>
+                                        		                                                           <option value="BRO">Brownsville   (BRO) </option>
+                                        		                                                           <option value="CCP">Concepcion   (CCP) </option>
+                                        		                                                           <option value="NCE">Nice   (NCE) </option>
+                                        		                                                           <option value="RDU">Raleigh   (RDU) </option>
+                                        		                                                           <option value="MAM">Matamoros   (MAM) </option>
+                                        		                                                           <option value="BJX">Leon/Guanajuato   (BJX) </option>
+                                        		                                                           <option value="PMI">Palma De Mallorca   (PMI) </option>
+                                        		                                                           <option value="CLQ">Colima   (CLQ) </option>
+                                        		                                                           <option value="LHR">London Heathrow   (LHR) </option>
+                                        		                                                           <option value="PBC">Puebla   (PBC) </option>
+                                        		                                                           <option value="REX">Reynosa   (REX) </option>
+                                        		                                                           <option value="MSP">Minneapolis   (MSP) </option>
+                                        		                                                           <option value="VLC">Valencia   (VLC) </option>
+                                        		                                                           <option value="BWI">Baltimore   (BWI) </option>
+                                        		                                                           <option value="BAQ">Barranquilla   (BAQ) </option>
+                                        		                                                           <option value="VSA">Villahermosa   (VSA) </option>
+                                        		                                                           <option value="MRS">Marseille   (MRS) </option>
+                                        		                                                           <option value="ATL">Atlanta   (ATL) </option>
+                                        		                                                           <option value="MAD">Madrid   (MAD) </option>
+                                        		                                                           <option value="OAX">Oaxaca   (OAX) </option>
+                                        		                                                           <option value="MEX">Mexico City   (MEX) </option>
+                                        		                                                           <option value="BCN">Barcelona   (BCN) </option>
+                                        		                                                           <option value="JUL">Juliaca   (JUL) </option>
+                                        		                                                           <option value="SLC">Salt Lake City   (SLC) </option>
+                                        		                                                           <option value="DGO">Durango   (DGO) </option>
+                                        		                                                           <option value="CUN">Cancun   (CUN) </option>
+                                        		                                                           <option value="CJS">Ciudad Juarez   (CJS) </option>
+                                        		                                                           <option value="MIA">Miami   (MIA) </option>
+                                        		                                                           <option value="SMF">Sacramento   (SMF) </option>
+                                        		                                                           <option value="PEI">Pereira   (PEI) </option>
+                                        		                                                           <option value="HUX">Huatulco   (HUX) </option>
+                                        		                                                           <option value="STL">St Louis   (STL) </option>
+                                        		                                                           <option value="LGW">London Gatwick Airport   (LGW) </option>
+                                        		                                                           <option value="PHX">Phoenix   (PHX) </option>
+                                        		                                                           <option value="IAH">Houston-Intercontinental   (IAH) </option>
+                                        		                                                           <option value="SAP">San Pedro Sula   (SAP) </option>
+                                        		                                                           <option value="HMO">Hermosillo   (HMO) </option>
+                                        		                                                           <option value="PHL">Philadelphia   (PHL) </option>
+                                        		                                                           <option value="AGP">Malaga   (AGP) </option>
+                                        		                                                           <option value="TIJ">Tijuana   (TIJ) </option>
+                                        		                                                           <option value="TGZ">Tuxtla Gutierrez   (TGZ) </option>
+                                        		                                                           <option value="ZIH">Ixtapa/Zihuatanejo   (ZIH) </option>
+                                        		                                                           <option value="QRO">Queretaro   (QRO) </option>
+                                        		                                                           <option value="PDX">Portland   (PDX) </option>
+                                        		                                                           <option value="PAZ">Poza Rica   (PAZ) </option>
+                                        		                                                           <option value="ROC">Rochester   (ROC) </option>
+                                        		                                                           <option value="SJU">San Juan   (SJU) </option>
+                                        		                                                           <option value="BGA">Bucaramanga   (BGA) </option>
+                                        		                                                           <option value="GRU">Sao Paulo-Guarulho   (GRU) </option>
+                                        		                                                           <option value="LAP">La Paz Mex   (LAP) </option>
+                                        		                                                           <option value="LMM">Los Mochis   (LMM) </option>
+                                        		                                                           <option value="TAM">Tampico   (TAM) </option>
+                                        		                                                           <option value="MDE">Medellin   (MDE) </option>
+                                        		                                                           <option value="LAS">Las Vegas   (LAS) </option>
+                                        		                                                           <option value="DTW">Detroit-Metro   (DTW) </option>
+                                        		                                                           <option value="CDG">Paris De Gaulle   (CDG) </option>
+                                        		                                                           <option value="CIX">Chiclayo   (CIX) </option>
+                                        		                                                           <option value="ACE">Lanzarote   (ACE) </option>
+                                        		                                                           <option value="FLN">Florianopo   (FLN) </option>
+                                        		                                                           <option value="MEM">Memphis   (MEM) </option>
+                                        		                                                           <option value="ICN">Seoul Incheon   (ICN) </option>
+                                        		                                                           <option value="MTY">Monterrey   (MTY) </option>
+                                        		                                                           <option value="ORD">Chicago-O'Hare   (ORD) </option>
+                                        		                                                           <option value="CUZ">Cuzco   (CUZ) </option>
+                                        		                                                           <option value="JFK">New York-Kennedy   (JFK) </option>
+                                        		                                                           <option value="CUU" selected>Chihuahua   (CUU)</option>
+                                        		                                                           <option value="CCS">Caracas   (CCS) </option>
+                                        		                                                           <option value="EZE">Buenos Aires-Pistarini   (EZE) </option>
+                                        		                                                           <option value="TAP">Tapachula   (TAP) </option>
+                                        		                                                           <option value="ZCL">Zacatecas   (ZCL) </option>
+                                        		                                                           <option value="CTM">Chetumal   (CTM) </option>
+                                        		                                                           <option value="CME">Ciudad Del Carmen   (CME) </option>
+                                        		                                                           <option value="BNA">Nashville   (BNA) </option>
+                                        		                                                           <option value="MID">Merida   (MID) </option>
+                                        		                                                           <option value="ZLO">Manzanillo   (ZLO) </option>
+                                        		                                                           <option value="PVR">Puerto Vallarta   (PVR) </option>
+                                        		                                                           <option value="SLW">Saltillo   (SLW) </option>
+                                        		                                                           <option value="TLS">Toulouse   (TLS) </option>
+                                        		                                                           <option value="CEN">Ciudad Obregon   (CEN) </option>
+                                        		                                                           <option value="MCI">Kansas City   (MCI) </option>
+                                        		                                                           <option value="LGA">New York-La Guardia   (LGA) </option>
+                                        		                                                           <option value="MCO">Orlando International   (MCO) </option>
+                                        		                                                           <option value="SFO">San Francisco   (SFO) </option>
+                                        		                                                           <option value="SAL">San Salvador   (SAL) </option>
+                                        		                                                           <option value="MXL">Mexicali   (MXL) </option>
+                                        		                                                           <option value="MXP">Milan-Malpensa   (MXP) </option>
+                                        		                                                           <option value="VER">Veracruz   (VER) </option>
+                                        		                                                           <option value="PUQ">Punta Arenas   (PUQ) </option>
+                                        		                                                           <option value="CNF">Belo Horizonte   (CNF) </option>
+                                        		                                                           <option value="LIM">Lima   (LIM) </option>
+                                        		                                                           <option value="REC">Recife   (REC) </option>
+                                        		                                                           <option value="CWB">Curitiba   (CWB) </option>
+                                        		                                                           <option value="AXM">Armenia   (AXM) </option>
+                                        		                                                           <option value="FRA">Frankfurt   (FRA) </option>
+                                        		                                                           <option value="SCL">Santiago   (SCL) </option>
+                                        		                                                           <option value="MTT">Minatitlan   (MTT) </option>
+                                        		                                                           <option value="LYS">Lyon   (LYS) </option>
+                                        		                                                           <option value="CUL">Culiacan   (CUL) </option>
+                                        		                                                           <option value="PEM">Puerto Maldonado   (PEM) </option>
+                                        		                                                           <option value="YYZ">Toronto   (YYZ) </option>
+                                        		                                                           <option value="ALB">Albany   (ALB) </option>
+                                        		                                                           <option value="CVG">Cincinnati   (CVG) </option>
+                                        		                                                           <option value="DEN">Denver   (DEN) </option>
+                                        		                                                           <option value="SJD">Cabo San Lucas   (SJD) </option>
+                                        		                                                           <option value="ACA">Acapulco   (ACA) </option>
+                                        		                                                           <option value="POA">Porto Alegre   (POA) </option>
+                                        		                                                           <option value="LAX">Los Angeles   (LAX) </option>
+                                        		                                                           <option value="CLO">Cali   (CLO) </option>
+                                        		                                                           <option value="CPE">Campeche   (CPE) </option>
+                                        		                                                           <option value="AMS">Amsterdam   (AMS) </option>
+                                        		                                                           <option value="MLM">Morelia   (MLM) </option>
+                                        		                                                           <option value="BDL">Hartford Sprngfld   (BDL) </option>
+                                        		                                                           <option value="BOS">Boston   (BOS) </option>
+                                        		                                                           <option value="NLD">Nuevo Laredo   (NLD) </option>
+                                        		                                                           <option value="MZT">Mazatlan   (MZT) </option>
+                                        		                                                           <option value="FCO">Rome-Fiumicino   (FCO) </option>
+                                        		                                                           <option value="SLP">San Luis Potosi   (SLP) </option>
+                                        		                                                           <option value="SAT">San Antonio   (SAT) </option>
+                                        		                                                           <option value="PTY">Panama City   (PTY) </option>
+                                        		                                                           <option value="LPA">Gran Canaria   (LPA) </option>
+                                        		                                                           <option value="FOR">Fortaleza   (FOR) </option>
+                                        		                                                           <option value="PRG">Prague   (PRG) </option>
+                                        		                                                           <option value="YUL">Montreal Trudeau   (YUL) </option>
+                                        		                                                           <option value="GUA">Guatemala   (GUA) </option>
+                                        		                                                           <option value="CZM">Cozumel   (CZM) </option>
+                                        		                                                           <option value="CTG">Cartagena   (CTG) </option>
+                                        		                                                           <option value="PVG">Shanghai Pudong   (PVG) </option>
+                                        		                                                           <option value="MSY">New Orleans   (MSY) </option>
+                                        		                                                           <option value="GDL">Guadalajara   (GDL) </option>
+                                        		                                                           <option value="BOG">Bogota   (BOG) </option>
+                                        	    								</select>
+																												<script type="text/javascript" language="javascript">
+												setMultiDestinationCities('departCity','returnCity');
+											</script>
+																																			</label>
+	<label for="ReturnDate">
+		<select size="1" name="retDay" id="ReturnDate" >
+									
+			        					
+    		
+	                            <option value="1">1</option>
+            	                            <option value="2">2</option>
+            	                            <option value="3" selected>3</option>
+		                            <option value="4">4</option>
+            	                            <option value="5">5</option>
+            	                            <option value="6">6</option>
+            	                            <option value="7">7</option>
+            	                            <option value="8">8</option>
+            	                            <option value="9">9</option>
+            	                            <option value="10">10</option>
+            	                            <option value="11">11</option>
+            	                            <option value="12">12</option>
+            	                            <option value="13">13</option>
+            	                            <option value="14">14</option>
+            	                            <option value="15">15</option>
+            	                            <option value="16">16</option>
+            	                            <option value="17">17</option>
+            	                            <option value="18">18</option>
+            	                            <option value="19">19</option>
+            	                            <option value="20">20</option>
+            	                            <option value="21">21</option>
+            	                            <option value="22">22</option>
+            	                            <option value="23">23</option>
+            	                            <option value="24">24</option>
+            	                            <option value="25">25</option>
+            	                            <option value="26">26</option>
+            	                            <option value="27">27</option>
+            	                            <option value="28">28</option>
+            	                            <option value="29">29</option>
+            	                            <option value="30">30</option>
+            	                            <option value="31">31</option>
+            	    		</select>
+	</label><label for="returnMonth" >
+		<select size="1" name="retMonth">
+																				<option value="JAN" >Jan</option>
+											<option value="FEB" >Feb</option>
+											<option value="MAR" >Mar</option>
+											<option value="APR" >Apr</option>
+											<option value="MAY" >May</option>
+											<option value="JUN" >Jun</option>
+											<option value="JUL" selected=\"selected\">Jul</option>
+											<option value="AUG" >Aug</option>
+											<option value="SEP" >Sep</option>
+											<option value="OCT" >Oct</option>
+											<option value="NOV" >Nov</option>
+											<option value="DEC" >Dec</option>
+					</select>
+				</label>
+		<a href="javascript:openCalendar('retMonth','retDay','','','0','calendar_return_container')" class="vertical">
+			<div id="calendar_return_container" class="flight_calendar_container yui-skin-sam"></div>
+		  <img src="application/images/D5DE/calendar.gif" border="0" alt="calendar" class="calendar_icon" />
+		</a>
+		<br />
+
+	<label for="ReturnTime" >
+		<select name="retTime" id="ReturnTime" class="retCity" class="retTime">
+										        			        					        		
+        <option value="0000">12:00 AM</option>
+                       	    	    	                    <option value="0100">01:00 AM</option>
+                       	    	    	                    <option value="0200">02:00 AM</option>
+                       	    	    	                    <option value="0300">03:00 AM</option>
+                       	    	    	                    <option value="0400">04:00 AM</option>
+                       	    	    	                    <option value="0500">05:00 AM</option>
+                       	    	    	                    <option value="0600">06:00 AM</option>
+                       	    	    	                    <option value="0700">07:00 AM</option>
+                       	    	    	                    <option value="0800">08:00 AM</option>
+                       	    	    	                    <option value="0900">09:00 AM</option>
+                       	    		 	                    <option value="1000">10:00 AM</option>
+                       	    		 	                    <option value="1100">11:00 AM</option>
+                       	    		 	                    <option value="1200">12:00 PM</option>
+                       	    		 	                    <option value="1300" selected>01:00 PM</option>
+                       	    		 	                    <option value="1400">02:00 PM</option>
+                       	    		 	                    <option value="1500">03:00 PM</option>
+                       	    		 	                    <option value="1600">04:00 PM</option>
+                       	    		 	                    <option value="1700">05:00 PM</option>
+                       	    		 	                    <option value="1800">06:00 PM</option>
+                       	    		 	                    <option value="1900">07:00 PM</option>
+                       	    		 	                    <option value="2000">08:00 PM</option>
+                       	    		 	                    <option value="2100">09:00 PM</option>
+                       	    		 	                    <option value="2200">10:00 PM</option>
+                       	    		 	                    <option value="2300">11:00 PM</option>
+                    
+    		</select>
+	</label>
+	<label for="Adults">
+			<span class="matrixIcon">
+				Adults:
+			</span>
+			<input type="hidden" name="ADT" value ="1"> 			
+			<select id="Adults" size="1" name="ADT_lnv">
+													                                                				
+			        					
+    		
+	                            <option value="0">0</option>
+            	                            <option value="1" selected>1</option>
+		                            <option value="2">2</option>
+            	                            <option value="3">3</option>
+            	                            <option value="4">4</option>
+            	                            <option value="5">5</option>
+            	                            <option value="6">6</option>
+            	    			</select>
+		</label>
+								<div class="sidebarBtn">
+		<a href="#" onClick="javascript:modSearchSubmit();">
+						<input name="Search" type="button" value="Search">
+		</a>
+	</div>
+</fieldset>
+			    				    			    			    			    			    			    			    			    			    			    			    			    			    			    			    			    			    			                        	    
+    				    				<p class="singleLine">
+    				<img src="application/images/D5DE/en/asteric.gif" border="0" alt="leftNavigation_default conditional agency special" title="agency special" width="16" height="16">
+    				
+    			</p>
+    
+    
+    	                                  
+                                                                                                                                              	</div>
+        <div class="clear"></div>
+    	<div></div>
+    	</div>
+    		</div>
+																				<div id="pageContent">
+																					    																
+		
+    <ol id="progressBar">
+                		    			    			    			<li class=" pb_complete" id="pb1">Dates</li>
+    		    			    			    			<li class="selected " id="pb2">Flights</li>
+    		    			    			    			<li class=" " id="pb3">Passengers</li>
+    		    			    			    			<li class=" " id="pb4">Payment</li>
+    		    			    			    			<li class=" " id="pb5">Confirmation</li>
+    		    	</ol>
+        <p class="displayBaggageLink">
+            Price shown is for one passenger. Total price, includes taxes and fees. There may be <A href="http://www.aeromexico.com/servicesfees" target=_blank><u>additional fees for your carry - on / checked baggage.</u></A><br><br>
+	  </p>		
+                        
+				<h1>Step 1: Select Departing Flight</h1>
+				<input name="actionType" value="semiFlex" type="hidden"/>
+																				<input name="FILTER_RANGE_OUTBOUND_FLIGHT_WARNING" value="" type="hidden">
+															           															<input name="DisplayMinPrice" type="hidden" value="673.30">
+						      
+          	  <h2 class="borderBottom">      
+             <a href="/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=ssw_SemiFlexOutboundMessage&amp;language=en&amp;action=RedisplayOutbound&amp;From=CUN&amp;To=CUU">My Search</a>&nbsp;
+            </h2>      
+      <p class="flightInfo semiFlexBg">&nbsp;
+																									June, Saturday 30
+								       	    <span class="cityName">Cancun </span>
+	    	    
+            , MX&nbsp;(CUN)            								To
+																       	    <span class="cityName">Chihuahua </span>
+	    	    
+            , MX&nbsp;(CUU)            													</p>
+						<div class="semiFlexHeaders">
+		<div class="flightOptions">
+									<div class="flight">
+				<div class="column semiFlexFive">
+					Flight
+				</div>
+				<div class="column weekDaysSix">
+
+
+						
+						<a href="/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=ssw_SemiFlexOutboundMessage&language=en&action=sort&direction=outbound&sortBy=departureTime&From=CUN&To=CUU&depDay=30&depMonth=JUN&depTime=1300&retDay=03&retMonth=JUL&retTime=1300">
+							<img border="0" src="application/images/default/sortArrow.gif" width="6" height="6">Departs</a>
+
+				</div>
+				<div class="column weekDaysSix">
+						<a href="/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=ssw_SemiFlexOutboundMessage&amp;language=en&amp;action=sort&amp;direction=outbound&amp;sortBy=arrivalTime&amp;From=CUN&amp;To=CUU&amp;depDay=30&amp;depMonth=JUN&amp;depTime=1300&amp;retDay=03&amp;retMonth=JUL&amp;retTime=1300">   <img border="0" src="application/images/default/sortArrow.gif" width="6" height="6">Arrives</a>
+				</div>
+				<div class="column semiFlexFive">
+					Stops
+				</div>
+				<div class="column semiFlexFour">
+					Aircraft
+				</div>
+					<div class="column two">
+						<a href="/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=ssw_SemiFlexOutboundMessage&amp;language=en&amp;action=sort&amp;direction=outbound&amp;sortBy=price&amp;From=CUN&amp;To=CUU&amp;depDay=30&amp;depMonth=JUN&amp;depTime=1300&amp;retDay=03&amp;retMonth=JUL&amp;retTime=1300"> <img border="0" src="application/images/default/sortArrow.gif" width="6" height="6">Price</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="flightOptions noSpace sfo_1">
+					    													<div class="semiFlexBorder priceBg">
+
+										<div class="flightOptions">
+		<div class="flight">
+			<div class="column semiFlexFive">
+				<p class="highlight">
+					                         540
+                   														</p>
+                			</div>
+			<div class="column weekDaysSix centerTxt dep_srcell">
+														       	    <span class="cityName">Cancun </span>
+	    	    
+            , MX&nbsp;(CUN)            																			<p>30-6-12</p>
+								<p>01:50 AM</p>
+													</div>
+													<div class="column weekDaysSix centerTxt arr_srcell">
+																		       	    <span class="cityName">Mexico City </span>
+	    	    
+            , MX&nbsp;(MEX)            																<p>30-6-12</p>
+									<p>04:16 AM</p></div>
+						<div class="column semiFlexFive">
+				0
+			</div>
+			<div class="column semiFlexFour">
+								<p>Boeing 737</p>
+				<br>
+								<p>
+        
+                                      <a href="javascript:loadShopSeatMap('/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=seatMapMessage_learn&action=seatMapPreview&language=en&airline=AM&depDate=2012-06-30T01:50:00&depCity=CUN&arrCity=MEX&flightNum=540&clsSvc=&classes=K&equipment=737') ">
+                 
+              </a>
+            </p>
+			</div>
+									<div class="column two">
+
+        				<p>
+																		                                        </p>
+						
+
+
+								<div class="highlight centerTxt" >
+																													<p>From</p>
+										                                                                                                                                
+                                <p>
+                                    <span class="semiFlexCur"> USD</span>
+                                    <span class="semiFlexAmt"> 673.30</span>
+                                </p>
+
+
+                                                                                                                                <p>Round Trip, adult passenger</p>
+                                                                                                                                                                                                                                                                </div>
+                                                                                                                                
+			</div>
+												<div class="column semiFlexButton">
+                    				    					<div class="button">
+    						<input type="submit" name="Submit" value="Select" onclick="forms[0].selectedFlight.value=9">
+    					</div>
+    					                			</div>
+				</div>
+	</div>
+        
+             
+			<div class="connectingBg Flights"><p>Connecting Flight
+								<span><img src="application/images/sabreSonic/fly1.gif" width="13" height="13" align="absmiddle"></span></p>
+		</div>
+	
+					
+											 							<div class="flightOptions">
+		<div class="flight">
+			<div class="column semiFlexFive">
+				<p class="highlight">
+					                         216
+                   														</p>
+                			</div>
+			<div class="column weekDaysSix centerTxt dep_srcell">
+														       	    <span class="cityName">Mexico City </span>
+	    	    
+            , MX&nbsp;(MEX)            																			<p>30-6-12</p>
+								<p>09:10 AM</p>
+													</div>
+													<div class="column weekDaysSix centerTxt arr_srcell">
+																		       	    <span class="cityName">Chihuahua </span>
+	    	    
+            , MX&nbsp;(CUU)            																<p>30-6-12</p>
+									<p>10:20 AM</p></div>
+						<div class="column semiFlexFive">
+				0
+			</div>
+			<div class="column semiFlexFour">
+								<p>Boeing 737</p>
+				<br>
+								<p>
+        
+                                      <a href="javascript:loadShopSeatMap('/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=seatMapMessage_learn&action=seatMapPreview&language=en&airline=AM&depDate=2012-06-30T09:10:00&depCity=MEX&arrCity=CUU&flightNum=216&clsSvc=&classes=K&equipment=737') ">
+                 
+              </a>
+            </p>
+			</div>
+								</div>
+	</div>
+        
+             
+	
+								</div>
+		</div>
+				
+
+		<div class="flightOptions noSpace sfo_2">
+					    													<div class="semiFlexBorder priceBg">
+
+										<div class="flightOptions">
+		<div class="flight">
+			<div class="column semiFlexFive">
+				<p class="highlight">
+					                         944
+                   														</p>
+                			</div>
+			<div class="column weekDaysSix centerTxt dep_srcell">
+														       	    <span class="cityName">Cancun </span>
+	    	    
+            , MX&nbsp;(CUN)            																			<p>30-6-12</p>
+								<p>05:44 PM</p>
+													</div>
+													<div class="column weekDaysSix centerTxt arr_srcell">
+																		       	    <span class="cityName">Mexico City </span>
+	    	    
+            , MX&nbsp;(MEX)            																<p>30-6-12</p>
+									<p>08:10 PM</p></div>
+						<div class="column semiFlexFive">
+				0
+			</div>
+			<div class="column semiFlexFour">
+								<p>Boeing 737-800</p>
+				<br>
+								<p>
+        
+                                      <a href="javascript:loadShopSeatMap('/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=seatMapMessage_learn&action=seatMapPreview&language=en&airline=AM&depDate=2012-06-30T17:44:00&depCity=CUN&arrCity=MEX&flightNum=944&clsSvc=&classes=M&equipment=738') ">
+                 
+              </a>
+            </p>
+			</div>
+									<div class="column two">
+
+        				<p>
+																		                                        </p>
+						
+
+
+								<div class="highlight centerTxt" >
+																													<p>From</p>
+										                                                                                                                                
+                                <p>
+                                    <span class="semiFlexCur"> USD</span>
+                                    <span class="semiFlexAmt"> 708.80</span>
+                                </p>
+
+
+                                                                                                                                <p>Round Trip, adult passenger</p>
+                                                                                                                                                                                                                                                                </div>
+                                                                                                                                
+			</div>
+												<div class="column semiFlexButton">
+                    				    					<div class="button">
+    						<input type="submit" name="Submit" value="Select" onclick="forms[0].selectedFlight.value=1">
+    					</div>
+    					                			</div>
+				</div>
+	</div>
+        
+             
+			<div class="connectingBg Flights"><p>Connecting Flight
+								<span><img src="application/images/sabreSonic/fly1.gif" width="13" height="13" align="absmiddle"></span></p>
+		</div>
+	
+					
+											 							<div class="flightOptions">
+		<div class="flight">
+			<div class="column semiFlexFive">
+				<p class="highlight">
+					                         292
+                   														</p>
+                			</div>
+			<div class="column weekDaysSix centerTxt dep_srcell">
+														       	    <span class="cityName">Mexico City </span>
+	    	    
+            , MX&nbsp;(MEX)            																			<p>30-6-12</p>
+								<p>09:50 PM</p>
+													</div>
+													<div class="column weekDaysSix centerTxt arr_srcell">
+																		       	    <span class="cityName">Chihuahua </span>
+	    	    
+            , MX&nbsp;(CUU)            																<p>30-6-12</p>
+									<p>11:00 PM</p></div>
+						<div class="column semiFlexFive">
+				0
+			</div>
+			<div class="column semiFlexFour">
+								<p>Boeing 737</p>
+				<br>
+								<p>
+        
+                                      <a href="javascript:loadShopSeatMap('/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=seatMapMessage_learn&action=seatMapPreview&language=en&airline=AM&depDate=2012-06-30T21:50:00&depCity=MEX&arrCity=CUU&flightNum=292&clsSvc=&classes=M&equipment=737') ">
+                 
+              </a>
+            </p>
+			</div>
+								</div>
+	</div>
+        
+             
+	
+								</div>
+		</div>
+				
+
+		<p class="moreResult">
+														<a class="newSearch" href="/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=semiFlexairRequestMessage_air&amp;posid=D5DE&amp;language=en&amp;action=requestAir"></a>
+        
+        	</p>
+													</div>
+</form>
+<div id="push"></div>
+</div>
+<div id="footerContainer">
+		
+
+   <div id="footerBanner">
+	        			</div>
+	<div id="footerNav">
+
+            <p class="reviewPolicies">
+				Please review the Sabre Holdings:
+                    <a id="ss_SecurityPolicyId" wjTrackingName="securityPolicy" onclick="wsClickTrack(this);" href="javascript:openSecurity('/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=mainMenuMessage_reservation')">security policy</a> |
+                    <a id="ss_PrivacyPolicyId" wjTrackingName="privacyPolicy" onclick="wsClickTrack(this);" href="javascript:openPrivacy('/meridia?posid=D5DE&sid=me2re72r9r2mv1-9yyv:ce312927fc46280d1fe5e585accf41df09da67d7e03a006ffc884bd67787deb9&page=mainMenuMessage_reservation')">privacy policy</a>
+
+		           </p>
+				<p class="sabreConnected">
+    				                                 <img border="0" height="34" src="application/images/default/sabreLogo.gif" width="65"/>
+                   
+    			   Sabre is a registered trademark of an affiliate of Sabre Holdings Corporation. All other trademarks, service marks, and trade names are the property of their respective owners. (c) 2006 Sabre Inc. All rights reserved.
+               </p>
+
+            				<p>
+					<div class="clear"></div>
+<div id="footer-cont">
+ 
+ <div class="social">
+
+  <div class="text-social"> Keep me posted:</div>
+  <ul class="icons-social">
+   <li><a target="_blank" href="http://www.aeromexico.com/us/newsletter.html"><span class="icon-newsletter"></span> e-newsletter</a></li>
+
+  </ul>
+ </div>
+ <div class="clear"></div>
+ <div class="copyright">
+<a href="http://www.aeromexico.com/termsandconditions" title="Terms & Conditions" target="_blank">Terms & Conditions</a>
+                 | <a href="http://www.aeromexico.com/privacypolicy" title="Privacy Policy" target="_blank">Privacy Policy</a>
+                 | <a href="http://www.aeromexico.com/contigencyplan" title="Long Tarmac Delay Plan" target="_blank">Long Tarmac Delay Plan</a>
+                 | <a href="http://www.aeromexico.com/customerserviceplan" title="Customer Service Plan" target="_blank">Customer Service Plan</a>
+                 | 
+                <a href="http://www.aeromexico.com/contractofcarriage" title="Contract of Carriage" target="_blank">Contract of Carriage</a>
+                   © 2012 Aeromexico. All rights reserved
+            </div>
+<div class="clear"></div>
+</div>
+<script language ="Javascript">if(document.getElementById("TOTAL_CC_DUE")){var totalCCDue=document.getElementById("TOTAL_CC_DUE");var purchSub=document.getElementById("purchaseButtonId");if(document.getElementById("purchaseButtonId")){purchSub.addEventListener("keypress",purchClick,false);purchSub.addEventListener("mouseover",purchClick,false);}}function purchClick(){var totalDue=document.getElementById("TOTAL_DUE");var txtValue=totalCCDue.value;var ccDue=totalDue.value;if(txtValue<ccDue){txtValue=ccDue;totalCCDue.value=txtValue;}}</script>
+				</p>
+
+                    </div>
+    </div>
+            <span id="verInfo" style="display:none">vmver:2009.18.00,javaver:2009.18.00</span>
+        </body>
+</html>         

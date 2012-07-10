@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="{% block languageBlock %}en{% endblock %}">
+<head>
+    {% block headBlock %}{% endblock %}
+    <title>{% block titleBlock %}FlightFight{% endblock %}</title>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-33194415-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+</head>
+<style>
+	.navButton {
+				-moz-box-shadow: 0px 1px 0px 0px #bbdaf7;
+				-webkit-box-shadow: 0px 1px 0px 0px #bbdaf7;
+				box-shadow: 0px 1px 0px 0px #bbdaf7;
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+				background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+				background-color:#1C94C4;
+				border:1px solid #84bbf3;
+				display:inline-block;
+				color:#ffffff;
+				font-family:arial;
+				font-size:13px;
+				font-weight:bold;
+				padding:4px 8px;
+				text-decoration:none;
+				text-shadow:1px 1px 0px #528ecc;
+				width:110px;
+			}
+			.submitButton:hover {
+				background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+				background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+				background-color:#378de5;
+			}
+			.submitButton:active {
+				position:relative;
+				top:1px;
+			}
+			.navBar{
+				display:block;
+				width:463px;
+				margin:0 auto;
+				-moz-border-radius:4px;
+				-webkit-border-radius:4px;
+				border-radius:4px;
+				border: 2px solid #545B66;
+			}
+	{% block styleBlock %}{% endblock %}
+</style>
+
+<body>
+    <div id="navbar" class="navBar">
+        {% block navbarBlock %}
+        <table style="width:100%; background-color:#999999">
+        	<tr>
+        		<td>
+        			<input class="navButton" type="button" value="Home" id="homeButton" onclick="window.location.href='/'"/>
+        			<input class="navButton" type="button" value="Overview" id="overviewButton" onclick="window.location.href='/overview'"/>
+        			<input class="navButton" type="button" value="Feedback" id="feedbackButton" onclick="window.location.href='/feedback'"/>
+        			<input class="navButton" type="button" value="About" id="createButton" onclick="window.location.href='/about'"/>
+        		</td>
+        	</tr>
+        </table>
+        {% endblock %}
+    </div>
+
+    <div id="content" style="padding-top:1em">
+        {% block contentBlock %}{% endblock %}
+    </div>
+<script>
+	{% block scriptBlock %}{% endblock %}
+</script>
+</body>
+</html>

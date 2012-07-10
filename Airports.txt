@@ -1,0 +1,33 @@
+ACA:Acapulco
+AGU:Aguascalientes
+CUN:Cancun
+CUU:Chihuahua
+CLQ:Colima
+CVJ:Cuernavaca
+CUL:Culican
+GDL:Guadalajara
+HMO:Hermosillo
+LAP:La Paz
+BJX:Leon
+SJD:Los Cabos
+LMM:Los Mochis
+MZT:Mazatlan
+MXL:Mexicali
+MEX:Mexico City
+MTY:Monterrey
+MLM:Morelia
+OAX:Oaxaca
+PBC:Puebla
+PVR:Puerto Vallarta
+TIJ:Tijuana
+TLC:Toluca
+UPN:Uruapan
+ZCL:Zacatecas
+
+MDW:Chicago / Midway
+FAT:Fresno
+LAS:Las Vegas
+LAX:Las Angeles
+SAN:San Diego
+OAK:San Francisco / Oakland
+SJC:San Jose California

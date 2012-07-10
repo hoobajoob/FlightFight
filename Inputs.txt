@@ -1,0 +1,34 @@
+var direction
+var departCity
+var depMonth
+var depDay
+var depTime
+var
+
+https://compras.volaris.mx/meridia?posid=C0WE&page=requestAirMessage_air&action=airRequest&realRequestAir=realRequestAir&direction=onewaytravel&departCity=CUU&depMonth=JUL&depDay=16&depTime=&returnCity=CUN&ADT=1&CHD=0&INF=0&classService=CoachClass&actionType=nonFlex&flightType=1&language=en&rem1=KAYAC&retMonth=JUL&retDay=16&retTime=&utm_source=metasearch&utm_medium=deeplink&utm_content=Kayak&utm_campaign=Kayak
+https://compras.volaris.mx/meridia?
+posid=C0WE&
+page=requestAirMessage_air&
+action=airRequest&
+realRequestAir=realRequestAir&
+direction=returntravel&
+departCity=CUU&
+depMonth=JUL&
+depDay=16&
+depTime=&
+returnCity=CUN&
+ADT=1&
+CHD=0&
+INF=0&
+classService=CoachClass&
+actionType=nonFlex&
+flightType=1&
+language=en&
+rem1=KAYAC&
+retMonth=JUL&
+retDay=18&
+retTime=&
+utm_source=metasearch&
+utm_medium=deeplink&
+utm_content=Kayak&
+utm_campaign=Kayak

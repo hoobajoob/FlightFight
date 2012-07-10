@@ -1,0 +1,4 @@
+cron:
+- description: 6 times hourly pull from volaris
+  url: /cron
+  schedule: every 10 minutes synchronized

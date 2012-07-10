@@ -1,0 +1,2 @@
+&departDate=11/07/2012&returnDate=11/10/2012&originAirport=CUU&destinationAirport=CUN&departTime=09:00:00&returnTime=09:00:00&adultCount=1
+http://m.aeromexico.com/aeromexico/main.htm?_eventId=bookAFlight&departureDateDay=07&departureDateMonth=11&departureDateYear=2012&returnDateDay=10&returnDateMonth=11&returnDateYear=2012&originAirport=CUU&destinationAirport=CUN&departTime=09:00:00&returnTime=09:00:00&adultCount=1

@@ -1,0 +1,61 @@
+application: flight-fight
+version: 4
+runtime: python27
+api_version: 1
+threadsafe: false
+
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+  
+- url: /scripts
+  static_dir: scripts
+  
+- url: /_ah/login_required
+  script: do_openid_login.py
+  
+- url: /cron
+  script: main.py
+  
+- url: /cron/init
+  script: main.py
+  
+- url: /feedback
+  script: main.py
+  
+- url: /newflightwatch
+  script: main.py
+  
+- url: /insertfromandroid
+  script: main.py
+  
+- url: /push
+  script: main.py
+  
+- url: /about
+  script: main.py
+  
+- url: /sender
+  script: main.py
+  
+- url: /token
+  script: main.py
+  
+- url: /getdata
+  script: main.py
+  
+- url: /overview
+  script: main.py
+  
+- url: /aero
+  script: main.py
+  
+- url: /login
+  script: main.py
+  
+- url: /remove
+  script: main.py
+  
+- url: /*
+  script: main.py

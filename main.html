@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+	{% block titleBlock %}Flight Fight{% endblock %}
+	{% block languageBlock %}{{locale}}{% endblock %}
+	{% block headBlock %}
+			<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+			<link type="text/css" rel="stylesheet" href="stylesheets/ui-lightness/jquery-ui-1.8.20.custom.css" />
+			<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+			<script type="text/javascript" src="/scripts/jquery.js"></script>
+			<script type="text/javascript" src="/scripts/jquery-ui.js"></script>
+	{% endblock %}
+
+	{% block contentBlock %}
+		<label id="localeLabel" style="display:none">{{locale}}</label>
+		<div style="width:100%">
+		<fieldset style="display: block;width:420px;margin:0 auto;">
+			<legend style="font-size:1.2em;font-weight:bold;color:#1C94C4;">{{welcomeLabel}}</legend>
+				{% autoescape off %}
+				    {{ bodyMessage }}
+				{% endautoescape %}
+		</fieldset>
+		</div>
+    {% endblock %}

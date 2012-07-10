@@ -1,0 +1,206 @@
+{% extends "master.html" %}
+	{% block titleBlock %}Flight Fight - Overview{% endblock %}
+	{% block languageBlock %}{{locale}}{% endblock %}
+	{% block headBlock %}
+			<link type="text/css" rel="stylesheet" href="/stylesheets/overview.css" />
+			<link type="text/css" rel="stylesheet" href="/stylesheets/tablesorter.css" />
+			<link type="text/css" rel="stylesheet" href="stylesheets/ui-lightness/jquery-ui-1.8.20.custom.css" />
+			<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css"
+				type="text/css" media="all" />
+			<script type="text/javascript" src="/scripts/jquery.js"></script>
+			<script type="text/javascript" src="/scripts/jquery-ui.js"></script>
+			<script type="text/javascript" src="/scripts/jquery.tablesorter.js"></script>
+	{% endblock %}
+
+{% block contentBlock %}
+	<form id="overviewForm" method="post">
+		<div style="width: 100%">
+			<fieldset style="display: block; width: 630px; margin: 0 auto;">
+			<legend style="font-size: 1.2em; font-weight: bold; color: #1C94C4;">{{titleLabel}}</legend>
+			<input type="textbox" id="activeResults" name="activeResults" style="display:none"></input>
+			<div>
+				<label class="messageLabel">{{ message }}</label>
+			</div>
+			<table style="width:91%">
+				<tr>
+					<td>
+						<label for="filter">Filter</label>
+					</td>
+					<td align="right">
+						<a href="{{ url_login }}" align="right">{{ url_loginLinktext }}</a>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td style="width:8.5em">
+						<input type="text" name="filter" value="" id="filter" /> 
+					</td>
+					<td>
+						<input class="submitButton" type="button" value="{{clearAllLabel}}" id="clearAllButton" name="clearAllButton">
+					</td>
+				</tr>
+			</table>
+			<table id="resultsTable" class="tablesorter">
+					<thead>
+						<tr>
+						<th style="display: none;"></th>
+						<th class="header">{{activeLabel}}</th>
+						<th class="header">{{departCityLabel}}</th>
+						<th class="header">{{destinationCityLabel}}</th>
+						<th class="header" style="width: 5em">{{departDateLabel}}</th>
+						<th class="header" style="width: 5em">{{returnDateLabel}}</th>
+						<th class="header">{{targetPriceLabel}}</th>
+						<th class="header" colspan="2">{{currentPriceLabel}}</th>
+						<th class="header">{{lowPriceLabel}}</th>
+						<th class="header">{{highPriceLabel}}</th>
+						<th class="header">{{airlineLabel}}</th>
+						<th class="header">{{purchaseLabel}}</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for flightWatch in flightWatches %}
+					<tr id="{{ flightWatch.key }}">
+						<td style="display: none;">
+							<input id="targetPrice" value="{{ flightWatch.targetPrice }}">{{ flightWatch.targetPrice }}</input>
+							<input id="currentPrice" value="{{ flightWatch.currentPrice }}">{{ flightWatch.targetPrice }}</input>
+						</td>
+						<td class="list"><input type="checkbox" class="activeCheckbox" id="activeCheckbox" {{ flightWatch.getActiveForCheckbox }}/></td>
+						<td class="list">{{ flightWatch.departCity }}</td>
+						<td class="list">{{ flightWatch.returnCity }}</td>
+						<td style="width: 5em" class="list">{{ flightWatch.getDepartDateString }}</td>
+						<td style="width: 5em" class="list">{{ flightWatch.getReturnDateString }}</td>
+						<td class="list">{{ flightWatch.getTargetPriceString }}</td>
+						<td class="list"><img alt="" src="/stylesheets/arrow_{{ flightWatch.getTrend }}.gif"></img></td>
+						<td class="list">{{ flightWatch.getCurrentPriceString }}</td>
+						<td class="list">{{ flightWatch.getLowPriceString }}</td>
+						<td class="list">{{ flightWatch.getHighPriceString }}</td>
+						<td class="list">{{ flightWatch.airline }}</td>
+						<td class="list" id="purchaseCell">{% autoescape off %}{{ flightWatch.getPurchaseLink }}{% endautoescape %}</td>
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+				<table>
+					<tr>
+					<td>
+						<input class="submitButton" type="button" value="{{hideInactiveLabel}}" id="hideInactiveButton" name="hideInactiveButton">
+					</td>
+					<td align="right" style="padding-right:2em">
+					<input class="submitButton" type="submit" value="{{submitLabel}}" id="submitButton" name="submitButton">
+					</td>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+	</form>
+    {% endblock %}
+    
+	{% block scriptBlock %}
+		var activeResults = new Array();
+		$(document).ready(function() {
+							$('#filter').show();  
+							applyClass('resultsTable tbody tr:odd td', 'odd');
+							applyPriceColor();
+
+							//default each row to visible  
+							$('#resultsTable tbody tr').addClass('visible');
+							//overrides CSS display:none property
+							//so only users w/ JS will see the
+							//filter box
+							$('#search').show();
+							$('#filter').val('');
+							$('#filter').keyup(function(event) {
+								//if esc is pressed or nothing is entered
+								if (event.keyCode == 27 || $(this).val() == '') {
+									//if esc is pressed we want to clear the value of search box
+									$(this).val('');
+
+									//we want each row to be visible because if nothing
+									//is entered then all rows are matched.
+									$('#resultsTable tbody tr').removeClass('visible').show().addClass('visible');
+								}
+
+								//if there is text, lets filter
+								else {
+									filter('#resultsTable tbody tr', $(this).val());
+								}
+
+								//reapply zebra rows
+								$('#resultsTable tbody tr:visible').removeClass('odd');
+								applyClass('#resultsTable tbody tr:visible:even','odd');
+								applyPriceColor();
+							});
+							
+							$('#hideInactiveButton').click(function(event) {
+								$('#resultsTable tbody tr:visible').each(function (i) {
+										if ($(this).find('#activeCheckbox').is(':checked') != true) {
+												$(this).hide().removeClass('visible');
+											}
+									});
+							});
+							
+							$('#clearAllButton').click(function(event) {
+								$('#resultsTable tbody tr').show().addClass('visible');
+
+								$('#filter').val('');
+
+								//reapply zebra rows
+								$('#resultsTable tbody tr:visible').removeClass('odd');
+								applyClass('#resultsTable tbody tr:visible:even','odd');
+								applyPriceColor();
+							});
+
+							$("#resultsTable").tablesorter({ widgets: ['zebra']});
+							
+							$('.activeCheckbox').each(function(){
+								activeResults[$(this).closest('tr').attr('id')] = $(this).is(':checked');
+							});
+						});
+		//used to apply alternating row styles  
+		function applyClass(selector, className) {
+			$(selector).removeClass(className).addClass(className);
+		}
+		 
+		function applyPriceColor() {
+			$('#resultsTable tbody tr:visible').each(function(){
+
+				if (parseFloat($(this).find('#targetPrice').val()) > parseFloat($(this).find('#currentPrice').val())){
+					$(this).find('#purchaseCell').removeClass('greenCell').addClass('greenCell');
+				}
+				else if (parseFloat($(this).find('#targetPrice').val()) < parseFloat($(this).find('#currentPrice').val())){
+					$(this).find('#purchaseCell').removeClass('redCell').addClass('redCell');
+				}
+				else {
+					$(this).find('#purchaseCell').removeClass('greyCell').addClass('greyCell');
+				}
+			});
+		}
+		
+		$('#resultsTable tbody tr').hover(function() {
+			$(this).find('td').addClass('hovered');
+		}, function() {
+			$(this).find('td').removeClass('hovered');
+		});
+		
+		$('.activeCheckbox').change(function(){
+			activeResults[$(this).closest('tr').attr('id')] = $(this).is(':checked');
+			listString = "";
+			for (var fw in activeResults)
+				listString += fw + "|" + activeResults[fw] + ","
+			$('#activeResults').val(listString);
+		});
+		
+
+		//filter results based on query  
+		function filter(selector, query) {
+			query = $.trim(query); //trim white space  
+			query = query.replace(/ /gi, '|'); //add OR for regex query  
+
+			$(selector).each(function() {
+								($(this).text().search(new RegExp(query, "i")) < 0) ? $(
+										this).hide().removeClass('visible')
+										: $(this).show().addClass('visible');
+							});
+		}
+	{% endblock %}

@@ -1,0 +1,98 @@
+.ui-combobox {
+	position: relative;
+	display: inline-block;
+}
+
+.ui-button {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin-left: -1px;
+	padding: 0;
+	/* adjust styles for IE 6/7 */
+	*height: 1.7em;
+	*top: 0.1em;
+}
+
+.ui-autocomplete-input {
+	margin: 0;
+	padding: 0.3em;
+}
+
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto;
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+	/* add padding to account for vertical scrollbar */
+	padding-right: 20px;
+}
+
+.ui-autocomplete-input {
+	width: 200px;
+}
+
+#hopAdditionList {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	margin-top: 5px;
+}
+
+#hopAdditionList li {
+	margin: 0 3px 3px 3px;
+	padding: 0em 0.4em 0em 0.4em;
+	font-size: 1.0em;
+	height: auto;
+	overflow: auto;
+	width: 650px;
+}
+
+.input-label {
+	font-weight: bold;
+}
+
+body {
+	font-family: tahoma;
+}
+
+label {
+	font-weight: bold;
+	font-size: 0.7em;
+}
+
+input {
+	font-size: 0.9em;
+}
+
+.heading {
+	color: #1C94C4;
+	text-decoration: underline;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.resultHeading {
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.resultAlphaAcidHeading {
+	font-size: 1.4em;
+	font-weight: bold;
+	color: #1C94C4;
+}
+
+label.error {
+	float: none;
+	color: red;
+	padding-left: .5em;
+	vertical-align: top;
+}
+
+.messageLabel{
+	font-size: .7em;
+	color: #1CBB84;
+}

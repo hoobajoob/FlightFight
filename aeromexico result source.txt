@@ -1,0 +1,2248 @@
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile11.dtd">
+<html dir="ltr">
+	
+	<head><title>Aeromexico: Compra un vuelo</title><link rel="stylesheet" href="resources/dynamic/css/jqtouch.xcss?theme=aeromexico" type="text/css"/>
+						
+							<meta name="HandheldFriendly" content="True"/>
+						
+						<meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="shortcut icon" href="/favicon.ico"/><link rel="icon" href="/favicon.png" type="image/png"/></head>
+	<body class="ltr">
+		<div class="toolbar">
+			
+
+<div class="toolbar">
+	<div class='h1'><h1 class="innerHeadGradient">
+		<a href="main.htm?execution=e1s7&amp;_eventId=home">
+			<img src="/resources/images/aeromexico/home_logo.png"/>
+		</a>
+	</h1></div>
+		
+</div>
+		</div>
+		<div id="jqt">
+			<div id="summary" class=" current">
+				
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile11.dtd">
+<html dir="ltr">
+	
+	<head><title>Elige el vuelo de salida</title><link rel="stylesheet" href="resources/dynamic/css/jqtouch.xcss?theme=aeromexico" type="text/css"/>
+						
+							<meta name="HandheldFriendly" content="True"/>
+						
+						<meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="shortcut icon" href="/favicon.ico"/><link rel="icon" href="/favicon.png" type="image/png"/></head>
+
+	<div class="toolbar">
+		<div class="titleHeader">Elige el vuelo de salida</div>
+		<div class="redBorder"></div>
+	</div>
+
+	<body class="ltr">
+		
+		
+		
+		
+
+		
+
+			<div class="foDate bold alignCenter paddingTop">Sáb, 30 Jun 2012</div>
+			<div class="foFlights stationNames">
+				<p class="text">
+					Desde: Cancún, MX</p>
+				<p class="text">
+					A: Ciudad de México, MX</p>
+			</div>
+
+			
+				<div class='flightSummaryDiv noBorderBottom'><ul class="topBorder">
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 588</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">01:22 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">03:42 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_0&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="specialButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5882012-06-30T13:22:002012-06-30T15:42:00&outCategory=especial">
+											Especial
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,448.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5882012-06-30T13:22:002012-06-30T15:42:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,670.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5882012-06-30T13:22:002012-06-30T15:42:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5882012-06-30T13:22:002012-06-30T15:42:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 444</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">01:37 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">03:57 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_1&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="specialButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=4442012-06-30T13:37:002012-06-30T15:57:00&outCategory=especial">
+											Especial
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,281.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=4442012-06-30T13:37:002012-06-30T15:57:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,670.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=4442012-06-30T13:37:002012-06-30T15:57:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=4442012-06-30T13:37:002012-06-30T15:57:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 574</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">01:57 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">04:17 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_2&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Especial
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5742012-06-30T13:57:002012-06-30T16:17:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">4,114.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5742012-06-30T13:57:002012-06-30T16:17:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5742012-06-30T13:57:002012-06-30T16:17:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 428</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">02:55 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">05:15 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_3&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Especial
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=4282012-06-30T14:55:002012-06-30T17:15:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,670.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=4282012-06-30T14:55:002012-06-30T17:15:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=4282012-06-30T14:55:002012-06-30T17:15:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 1922*</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">03:20 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">05:44 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_4&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Especial
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=19222012-06-30T15:20:002012-06-30T17:44:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,892.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=19222012-06-30T15:20:002012-06-30T17:44:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=19222012-06-30T15:20:002012-06-30T17:44:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 594</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">03:35 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">05:59 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_5&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Especial
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											AM Plus
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="notAvailableButton">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																	No disponible
+																
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5942012-06-30T15:35:002012-06-30T17:59:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 578</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">05:01 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">07:27 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_6&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="bargainButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5782012-06-30T17:01:002012-06-30T19:27:00&outCategory=bargain">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">2,548.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="specialButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5782012-06-30T17:01:002012-06-30T19:27:00&outCategory=especial">
+											Especial
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">2,815.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5782012-06-30T17:01:002012-06-30T19:27:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,670.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5782012-06-30T17:01:002012-06-30T19:27:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5782012-06-30T17:01:002012-06-30T19:27:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 944</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">05:44 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">08:10 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_7&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Especial
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											AM Plus
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=9442012-06-30T17:44:002012-06-30T20:10:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=9442012-06-30T17:44:002012-06-30T20:10:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 582</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">06:15 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">08:40 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_8&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="bargainButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5822012-06-30T18:15:002012-06-30T20:40:00&outCategory=bargain">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">2,548.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="specialButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5822012-06-30T18:15:002012-06-30T20:40:00&outCategory=especial">
+											Especial
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">2,815.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5822012-06-30T18:15:002012-06-30T20:40:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,670.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="notAvailableButton">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																	No disponible
+																
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="notAvailableButton">
+															Premier Plus
+														</a></div>
+														
+															
+																No disponible
+															
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 586</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">07:20 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">09:45 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_9&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="bargainButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5862012-06-30T19:20:002012-06-30T21:45:00&outCategory=bargain">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">2,548.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="specialButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5862012-06-30T19:20:002012-06-30T21:45:00&outCategory=especial">
+											Especial
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">2,815.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5862012-06-30T19:20:002012-06-30T21:45:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,670.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5862012-06-30T19:20:002012-06-30T21:45:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5862012-06-30T19:20:002012-06-30T21:45:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+								
+							
+							
+							<p class="bafFlightNumHead">Vuelo:  AM 570</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">08:43 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">11:07 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">0</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_10&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="specialButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5702012-06-30T20:43:002012-06-30T23:07:00&outCategory=especial">
+											Especial
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">2,948.00
+												MXN</span>
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5702012-06-30T20:43:002012-06-30T23:07:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">3,670.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5702012-06-30T20:43:002012-06-30T23:07:00&outCategory=premier">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																
+																	<div>
+																		<div><div class="confirmPadleft">
+																			Tarifa total:
+																		</div></div>
+																		<div><div>
+																			<span class="priceValue">4,114.00
+																			MXN</span>
+																		</div></div>
+																	</div>
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=5702012-06-30T20:43:002012-06-30T23:07:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">4,807.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+							
+								
+							
+							<p class="bafFlightNumHead">Vuelos:  AM 5534*/AM 5063*</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">12:24 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">08:09 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">1</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_11&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Especial
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											AM Plus
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="notAvailableButton">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																	No disponible
+																
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=55342012-06-30T12:24:002012-06-30T16:00:0050632012-06-30T17:35:002012-06-30T20:09:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">34,258.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+						<li>
+							
+							
+							
+								
+							
+							<p class="bafFlightNumHead">Vuelos:  AM 5326*/AM 5451*</p>
+							<table class="flightSegmentTable">
+								<tr><td class="dataLabelSmall">
+									Sale:
+								</td>
+								<td class="dataElement">01:35 PM</td></tr>
+
+								<tr><td class="dataLabelSmall">
+									Llega:
+								</td>
+								<td class="dataElement">11:16 PM </td></tr>
+								<tr><td class="dataLabelSmall">
+									Escalas:
+								</td>
+								<td class="dataElement">1</td></tr>
+							</table>
+
+							<div class="moreDetailsGridCell">
+								<span><a class="moreDetailsLink foMoreDetailsLink" href="main.htm?execution=e1s7&amp;cardId=flightResults_12&amp;source=outBound">
+									M&aacute;s detalles
+								</a></span>
+							</div>
+
+							<p class="foText text dayDateTable">
+								El precio total de un pasajero, incluyendo los impuestos y tasas
+							</p>
+
+							<table class="categories">
+								<tr><td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Econ&oacute;mica
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="notAvailableButton">
+											Especial
+										</a></div>
+										
+											
+												No disponible
+											
+											
+										
+									</div>
+								</td>
+								<td class="alignCenter verticalAlignTop">
+									<div class="foFareButton">
+										<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+											Reglas para <br> Tarifas
+										</a></div>
+										<div class='navbutton'><a class="amPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=53262012-06-30T13:35:002012-06-30T17:15:0054512012-06-30T20:50:002012-06-30T23:16:00&outCategory=amPlus">
+											AM Plus
+										</a></div>
+										
+											
+											
+												Tarifa total:
+												<br />
+												<span class="priceValue">21,945.00
+												MXN</span>
+											
+										
+									</div>
+								</td></tr>
+								<td colspan="3">
+									<table class="alignCenter homeFooter">
+										<tr><td class="flightClassWidth"></td>
+										<td>
+											<table class="homeFooter">
+												<tr><td class="verticalAlignTop">
+													<div class="alignCenter foFareButton">
+														<div><a class="priceValue addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="notAvailableButton">
+															Premier
+														</a></div>
+														<div><div>
+															
+																
+																	No disponible
+																
+																
+															
+														</div></div>
+													</div>
+												</td>
+												<td class="verticalAlignTop">
+													<div class="leftAlign foFareButton">
+														<div><a class="confirmPadleft addUnderLine" href="main.htm?execution=e1s7&amp;_eventId=fareRulesxmlfeedOutbound">
+															Reglas para <br> Tarifas
+														</a></div>
+														<div class='navbutton'><a class="premierPlusButton" href="main.htm?execution=e1s7&amp;_eventId=fareNext&amp;outUniqueLocator=53262012-06-30T13:35:002012-06-30T17:15:0054512012-06-30T20:50:002012-06-30T23:16:00&outCategory=premierPlus">
+															Premier Plus
+														</a></div>
+														
+															
+															
+																<div><div>
+																	<div><div class="confirmPadleft">
+																		Tarifa total:
+																	</div></div>
+																	<div><div>
+																		<span class="priceValue">34,258.00
+																		MXN</span>
+																	</div></div>
+																</div></div>
+															
+														
+													</div>
+												</td></tr>
+											</table>
+										</td>
+										<td class="flightClassWidth"></td></tr>
+									</table>
+								</td></tr>
+							</table>
+
+							<table class="flightDetailsTable">
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=taxesAndFeesOutbound">
+										Haz clic aqu&iacute; para informaci&oacute;n sobre impuestos y tarifas
+									</a>
+								</td></tr>
+								<tr><td class="foText alignCenter">
+									El precio mostrado corresponde a un s&oacute;lo pasajero. Incluye impuestos y cargos adicionales. Es posible que apliquen
+								</td></tr>
+								<tr><td class="alignCenter">
+									<a class="labelBlueSmallFontCopa flightSummaryMoreLink" href="main.htm?execution=e1s7&amp;_eventId=baggagePoliciesOutbound">
+										cargos adicionales por su equipaje de mano/equipaje documentado
+									</a>
+								</td></tr>
+							</table>
+						</li>
+					
+				</ul></div>
+			
+			
+			
+		
+
+		<div>
+			<div class="centerAlignSilent">
+				<span class='navbutton'><a class="nswidth default" href="main.htm?execution=e1s7&amp;_eventId=newSearch">
+					Nueva b&uacute;squeda
+				</a></span>
+			</div>
+			
+		</div>
+		
+						
+		
+
+		
+		<img src="../ga.jsp?utmac=UA-8747974-14&amp;utmn=2070604598&amp;utme=8%28ctxlang*svrctxlang%299%28en*es%29&amp;utmr=-&amp;utmp=&amp;guid=ON&amp;utmul=es&amp;utmsr=654*1201" class="tracking-ga"/>
+	</body>
+</html>
+			</div>
+			
+		</div>
+		<p class="topPadding"></p>
+		<div class="pageFooter">
+			
+
+
+
+
+<div class="desktopSiteLink">
+
+	
+		<a href="main.htm?execution=e1s7&amp;_eventId=home">Inicio</a> |
+	
+	<a href="http://www.aeromexico.com?plataforma=web">Versi&oacute;n completa</a>
+	
+		| <a href="main.htm?execution=e1s7&amp;_eventId=termsAndConditions&amp;reqFrom=reqFromFooter">T&eacute;rminos y Condiciones</a>
+	
+
+</div>
+
+<div class="footerWithHomeButton">
+	<table class="homeFooter">
+		<tr><td class="footerText1">
+			<span class="copyRightMessage"> &copy; 2012 Aerom&eacute;xico.<br>Todos los Derechos Reservados </span>
+		</td>
+		<td class="footerText2">
+							
+			
+				<a class="fbLink" href="http://www.facebook.com/AeromexicoViajes">
+					<img class="paddingTop" src="/resources/images/aeromexico/facebook.png"/>
+				</a>
+			
+		</td>
+		<td class="footerText2">
+			
+				<a class="twitterLink" href="http://twitter.com/aeromexico_com">
+					<img class="paddingTop" src="/resources/images/aeromexico/twitter.png"/>
+				</a>
+			
+		</td></tr>
+	</table>
+</div>
+
+		</div>
+	</body>
+</html>
