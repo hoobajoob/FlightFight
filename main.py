@@ -379,16 +379,15 @@ class Home(webapp.RequestHandler):
         
         fw.targetPrice = float(self.request.get('targetPriceTextBox')[1:])
         fw.dateLeniency = 1
-        
+    
+        fw.active = True
+        fw.author = users.get_current_user()
+        fw.put()
         
         if users.get_current_user():
-            fw.active = True
-            fw.put()
             taskqueue.add(url='/newflightwatch', params={'fwKey': fw.key()})
             self.redirect('/overview?message=Successfully added Flight Watch')
         else:
-            fw.author = users.get_current_user()
-            fw.put()
             self.redirect('/login?fwKey=' + str(fw.key()))
 
 
@@ -549,6 +548,12 @@ class Overview(webapp.RequestHandler):
             locale = self.request.headers['Accept-Language'][0:2]
         user = users.get_current_user();    
         if user:
+            if self.request.get("fwKey"):
+                fw = FlightWatch.get(self.request.get("fwKey"))
+                if fw is not None:
+                    fw.author = user
+                    fw.authorEmail = user.email()
+                    fw.put()
             url_login = users.create_logout_url(self.request.uri)
             if locale == 'en':
                 url_loginLinktext = 'Logout'
@@ -624,12 +629,7 @@ class Overview(webapp.RequestHandler):
             path = os.path.join(os.path.dirname(__file__), 'overview.html')
             self.response.out.write(template.render(path, template_values))
         else:
-            url_login = users.create_login_url(self.request.uri)
-            if locale == 'en':
-                url_loginLinktext = 'Login'
-            else:
-                url_loginLinktext = 'Entrar'
-            self.redirect(users.create_login_url(self.request.uri))
+            self.redirect('/login')
            
     def post(self):
         activeList = self.request.get('activeResults').rsplit(",")
@@ -1331,6 +1331,8 @@ class Login(webapp.RequestHandler):
     def get(self):
         if self.request.get('destination'):
             destination = self.request.get('destination')
+        elif self.request.get('fwKey'):
+            destination = '/overview?fwKey=' + self.request.get('fwKey')
         else:
             destination = '/overview'
         # template_values = {

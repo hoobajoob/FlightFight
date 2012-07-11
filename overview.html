@@ -18,6 +18,7 @@
 			<fieldset style="display: block; width: 630px; margin: 0 auto;">
 			<legend style="font-size: 1.2em; font-weight: bold; color: #1C94C4;">{{titleLabel}}</legend>
 			<input type="textbox" id="activeResults" name="activeResults" style="display:none"></input>
+			<input type="textbox" id="showInactive" name="showInactive" style="display:none" value='true'></input>
 			<div>
 				<label class="messageLabel">{{ message }}</label>
 			</div>
@@ -133,11 +134,24 @@
 							});
 							
 							$('#hideInactiveButton').click(function(event) {
-								$('#resultsTable tbody tr:visible').each(function (i) {
-										if ($(this).find('#activeCheckbox').is(':checked') != true) {
-												$(this).hide().removeClass('visible');
-											}
-									});
+								if ($('#showInactive').val() == 'true'){
+										$('#resultsTable tbody tr:visible').each(function (i) {
+												if ($(this).find('#activeCheckbox').is(':checked') != true) {
+														$(this).hide("slow").removeClass('visible');
+													}
+											});
+										$('#hideInactiveButton').val('Show Inactive');
+										$('#showInactive').val('false');
+									}
+								else{
+										$('#resultsTable tbody tr').each(function (i) {
+												if ($(this).find('#activeCheckbox').is(':checked') != true) {
+														$(this).show("slow").addClass('visible');
+													}
+											});
+										$('#hideInactiveButton').val('Hide Inactive');
+										$('#showInactive').val('true');
+								};
 							});
 							
 							$('#clearAllButton').click(function(event) {
