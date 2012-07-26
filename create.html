@@ -112,7 +112,7 @@
 							<select id="returnCityDropDown" name="returnCityDropDown" style="width:190px">
 								<option value="null">Select Destination</option>
 								{% for city in cities %}
-									<option id="{{ city.shortName }}" value="{{ city.shortName }}">{{ city.longName }}</option>
+									<option id="{{ city.shortName }}" value="{{ city.shortName }}" class="autohide{% for airport in city.associatedAirports %} {{ airport }}{% endfor %}">{{ city.longName }}</option>
 								{% endfor %}
 							</select>
 						</td>
@@ -151,7 +151,6 @@
 				}
 			});
 			$( "#departDatePicker, #returnDatePicker" ).datepicker("option", $.datepicker.regional[ $( "#localeLabel" ).text() ]);
-			$( "#departDatePicker, #returnDatePicker" ).datepicker("option", "dateFormat", "d MM, yy" );
 			if ( $( "#roundTripCheckbox" ).is(':checked')) {
 					$( "#returnDatePicker" ).css('display', '');
 					$( "#returnDateLabel" ).css('display', '');
@@ -186,5 +185,12 @@
 		    $("#departCityDropDown").rules("add", "notNull");
 		    $("#returnCityDropDown").rules("add", "notNull");
 		    $("#targetPriceTextBox").rules("add", "currency");
+			
+			$( "#returnCityDropDown .autohide").css('display', 'none');
+			$( "#departCityDropDown" ).change(function() {
+				$( "#returnCityDropDown .autohide").css('display', 'none');
+				var airport = $( "#departCityDropDown" ).val();
+				$( "#returnCityDropDown ." + airport ).css('display', '');
+			});
 		});
 	{% endblock %}
