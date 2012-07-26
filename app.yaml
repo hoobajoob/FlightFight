@@ -13,7 +13,7 @@ handlers:
   static_dir: scripts
   
 - url: /_ah/login_required
-  script: do_openid_login.py
+  script: main.py
   
 - url: /cron
   script: main.py

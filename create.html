@@ -151,6 +151,7 @@
 				}
 			});
 			$( "#departDatePicker, #returnDatePicker" ).datepicker("option", $.datepicker.regional[ $( "#localeLabel" ).text() ]);
+			$( "#departDatePicker, #returnDatePicker" ).datepicker("option", "dateFormat", "d MM, yy" );
 			if ( $( "#roundTripCheckbox" ).is(':checked')) {
 					$( "#returnDatePicker" ).css('display', '');
 					$( "#returnDateLabel" ).css('display', '');

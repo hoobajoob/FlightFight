@@ -6,6 +6,7 @@ import json
 import utils
 import re
 import urllib, urllib2, Cookie
+import locale
 
 from google.appengine.ext.webapp import template
 from google.appengine.ext import db
@@ -121,8 +122,8 @@ class FlightWatch(db.Model):
         else:
             return '$' + str(Decimal(str(self.currentPrice)).quantize(Decimal('.01'), rounding=ROUND_UP))
    
-    def getRemoveLink(self, label):
-        return '<a href="' + self.request.host_url + '/remove?fwKey=' + str(self.key()) + '">' + label + '</a>';
+    def getRemoveLink(self, label, baseURL):
+        return '<a href="' + baseURL + '/remove?fwKey=' + str(self.key()) + '">' + label + '</a>';
 
     def getPurchaseLink(self):
         direction = 'onewaytravel'
@@ -303,21 +304,21 @@ class Aero(webapp.RequestHandler):
                     
 class Home(webapp.RequestHandler):
     def get(self):
-        locale = 'en'
+        curLocale = 'en'
         if self.request.get("locale"):
-            locale = self.request.get("locale")[0:2]
+            curLocale = self.request.get("locale")[0:2]
         elif 'Accept-Language' in self.request.headers:
-            locale = self.request.headers['Accept-Language'][0:2]
+            curLocale = self.request.headers['Accept-Language'][0:2]
         
         if users.get_current_user():
             url_login = users.create_logout_url(self.request.uri)
-            if locale == 'en':
+            if curLocale == 'en':
                 url_loginLinktext = 'Logout'
             else:
                 url_loginLinktext = 'Salir'
         else:
-            url_login = users.create_login_url(self.request.uri)
-            if locale == 'en':
+            url_login = '/login'
+            if curLocale == 'en':
                 url_loginLinktext = 'Login'
             else:
                 url_loginLinktext = 'Entrar'
@@ -325,12 +326,12 @@ class Home(webapp.RequestHandler):
         
         message = self.request.get("message");
         if message == '':
-            if locale == 'en':
+            if curLocale == 'en':
                 message = 'Just fill and submit this form to start tracking the best price.'
             else:
                 message = 'Just fill and submit this form to start tracking the best price.'
                 
-        if locale == 'en':
+        if curLocale == 'en':
             departCityLabel = 'Depart City'
             departDateLabel = 'Depart Date'
             returnCityLabel = 'Return City'
@@ -369,6 +370,13 @@ class Home(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
     def post(self):
+        curLocale = 'en'
+        if self.request.get("locale"):
+            curLocale = self.request.get("locale")[0:2]
+        elif 'Accept-Language' in self.request.headers:
+            curLocale = self.request.headers['Accept-Language'][0:2]
+        
+        loc = locale.setlocale(locale.LC_TIME, 'es_MX');
         fw = FlightWatch()
         fw.roundTrip = self.request.get('roundTripCheckbox') == 'True'
         fw.departCity = self.request.get('departCityDropDown')
@@ -393,24 +401,24 @@ class Home(webapp.RequestHandler):
 
 class Feedback(webapp.RequestHandler):
     def get(self):
-        locale = 'en'
+        curLocale = 'en'
         if self.request.get("locale"):
-            locale = self.request.get("locale")[0:2]
+            curLocale = self.request.get("locale")[0:2]
         elif 'Accept-Language' in self.request.headers:
-            locale = self.request.headers['Accept-Language'][0:2]
+            curLocale = self.request.headers['Accept-Language'][0:2]
             
         
         if users.get_current_user():
             display = 'display:none'
             url_login = users.create_logout_url(self.request.uri)
-            if locale == 'en':
+            if curLocale == 'en':
                 url_loginLinktext = 'Logout'
             else:
                 url_loginLinktext = 'Salir'
         else:
             display = ''
-            url_login = users.create_login_url(self.request.uri)
-            if locale == 'en':
+            url_login = '/login'
+            if curLocale == 'en':
                 url_loginLinktext = 'Login'
             else:
                 url_loginLinktext = 'Entrar'
@@ -419,7 +427,7 @@ class Feedback(webapp.RequestHandler):
         
         types = []
                 
-        if locale == 'en':
+        if curLocale == 'en':
             emailLabel = 'Email Address'
             typeLabel = 'Feedback Type'
             typeDropDownLabel = 'Select Feedback Type'
@@ -479,29 +487,29 @@ class Feedback(webapp.RequestHandler):
 
 class About(webapp.RequestHandler):
     def get(self):
-        locale = 'en'
+        curLocale = 'en'
         if self.request.get("locale"):
-            locale = self.request.get("locale")[0:2]
+            curLocale = self.request.get("locale")[0:2]
         elif 'Accept-Language' in self.request.headers:
-            locale = self.request.headers['Accept-Language'][0:2]
+            curLocale = self.request.headers['Accept-Language'][0:2]
             
         
         if users.get_current_user():
             url_login = users.create_logout_url(self.request.uri)
-            if locale == 'en':
+            if curLocale == 'en':
                 url_loginLinktext = 'Logout'
             else:
                 url_loginLinktext = 'Salir'
         else:
-            url_login = users.create_login_url(self.request.uri)
-            if locale == 'en':
+            url_login = '/login'
+            if curLocale == 'en':
                 url_loginLinktext = 'Login'
             else:
                 url_loginLinktext = 'Entrar'
         
         message = self.request.get("message");
                 
-        if locale == 'en':
+        if curLocale == 'en':
             welcomeLabel = 'Welcome to Flight Fight'
             bodyMessage = "Flight Fight is an experimental project to monitor flight price changes for a specific \
                 origin, destination and date combination, called a \'Flight Watch\'.</p>For now, Flight Fight uses a Google login for verification.  \
@@ -541,11 +549,11 @@ class About(webapp.RequestHandler):
 
 class Overview(webapp.RequestHandler):
     def get(self):
-        locale = 'en'        
+        curLocale = 'en'        
         if self.request.get("locale"):
-            locale = self.request.get("locale")[0:2]
+            curLocale = self.request.get("locale")[0:2]
         elif 'Accept-Language' in self.request.headers:
-            locale = self.request.headers['Accept-Language'][0:2]
+            curLocale = self.request.headers['Accept-Language'][0:2]
         user = users.get_current_user();    
         if user:
             if self.request.get("fwKey"):
@@ -555,7 +563,7 @@ class Overview(webapp.RequestHandler):
                     fw.authorEmail = user.email()
                     fw.put()
             url_login = users.create_logout_url(self.request.uri)
-            if locale == 'en':
+            if curLocale == 'en':
                 url_loginLinktext = 'Logout'
             else:
                 url_loginLinktext = 'Salir'
@@ -570,8 +578,8 @@ class Overview(webapp.RequestHandler):
                 elif fw.authorEmail == user.email():
                         flightWatches.append(fw)
                     
-                if locale == 'en':
-                    titleLabel = 'Flight Watch Overview for ' + user.nickname()
+                if curLocale == 'en':
+                    titleLabel = 'Flight Watch Overview for ' + user.email()
                     activeLabel = "Active"
                     departCityLabel = 'Depart City'
                     departDateLabel = 'Depart Date'
@@ -587,7 +595,7 @@ class Overview(webapp.RequestHandler):
                     clearAllLabel = 'Clear All Filters'
                     airlineLabel = 'Airline'
                 else:
-                    titleLabel = 'Flight Watch Overview for ' + user.nickname()
+                    titleLabel = 'Flight Watch Overview for ' + user.email()
                     activeLabel = "Activo"
                     departCityLabel = 'Salidas'
                     departDateLabel = 'Fecha de salida'
@@ -751,7 +759,7 @@ class SendPush:
         return ""
     
 class FlightWatchUpdate:
-    def process(self, fw, locale):
+    def process(self, fw, curLocale):
         if fw.active:
             if fw.departDate < datetime.now():
                 fw.active = False
@@ -846,7 +854,7 @@ class FlightWatchUpdate:
                                 message.to = email
                                 message.subject = 'Flight-Fight Update - Price Decrease'
                                 message.body = 'Flight Fight Price Update:\n\nThe price of a monitored flight has gone DOWN!!\n\n Flight details:\n' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '\nYour Target Price: ' + str(fw.targetPrice) + '\Previous Price: ' + str(fw.currentPrice) + '\nCurrent Price: ' + str(lowestPrice) + ' on ' + fw.airline
-                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
                                 message.body = message.body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
                                 message.send()
                             finally:
@@ -859,7 +867,7 @@ class FlightWatchUpdate:
                                 message.to = email
                                 message.subject = 'Flight-Fight Update - Price Increase'
                                 message.body = 'Flight Fight Price Update:\n\nThe price of a monitored flight has gone UP!!\n\n Flight details:\n' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '\nYour Target Price: ' + str(fw.targetPrice) + '\Previous Price: ' + str(fw.currentPrice) + '\nCurrent Price: ' + str(lowestPrice) + ' on ' + fw.airline
-                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
                                 message.body = message.body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
                                 message.send()
                             finally:
@@ -872,7 +880,7 @@ class FlightWatchUpdate:
                                 message.to = email
                                 message.subject = 'Flight-Fight Update - New Flight Added'
                                 message.body = 'Flight Fight Flight Tracking:\n\nYou are now monitoring a new flight on Volaris and AeroMexico!!\n\n Flight details:\n' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '\nYour Target Price: ' + str(fw.targetPrice) + '\nCurrent Price: ' + str(lowestPrice) + ' on ' + fw.airline
-                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
                                 message.body = message.body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
                                 message.send()
                             finally:
@@ -881,7 +889,7 @@ class FlightWatchUpdate:
                     if newEntry or fw.currentPrice != lowestPrice:
                         if newEntry:
                             fw.currentPrice = lowestPrice
-                            fw.dollars = locale == "en"
+                            fw.dollars = curLocale == "en"
                             
                         if newEntry or lowestPrice < fw.lowPrice:
                             fw.lowPrice = lowestPrice
@@ -896,11 +904,11 @@ class FlightWatchUpdate:
 
 class CronJob(webapp.RequestHandler):
     def get(self):    
-        locale = 'en'        
+        curLocale = 'en'        
         if self.request.get("locale"):
-            locale = self.request.get("locale")[0:2]
+            curLocale = self.request.get("locale")[0:2]
         elif 'Accept-Language' in self.request.headers:
-            locale = self.request.headers['Accept-Language'][0:2]   
+            curLocale = self.request.headers['Accept-Language'][0:2]   
                  
         fwu = FlightWatchUpdate()
         cuids = self.request.get('cuid')
@@ -919,11 +927,11 @@ class CronJob(webapp.RequestHandler):
             
 class AddFlightWatch(webapp.RequestHandler):
     def post(self):
-        locale = 'en'
+        curLocale = 'en'
         if self.request.get("locale"):
-            locale = self.request.get("locale")[0:2]
+            curLocale = self.request.get("locale")[0:2]
         elif 'Accept-Language' in self.request.headers:
-            locale = self.request.headers['Accept-Language'][0:2] 
+            curLocale = self.request.headers['Accept-Language'][0:2] 
             
         fwKey = self.request.get('fwKey')
         
