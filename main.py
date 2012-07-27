@@ -49,6 +49,11 @@ class City(db.Model):
     longName = db.StringProperty(multiline=False)
     associatedAirports = db.StringListProperty()
 
+class transCity(db.Model):
+    shortName = db.StringProperty(multiline=False)
+    longName = db.StringProperty(multiline=False)
+    associatedAirports = db.StringListProperty()
+
 class FlightEntry(db.Model):
     roundTrip = db.BooleanProperty()
     departCity = db.StringProperty(multiline=False)
@@ -224,6 +229,109 @@ class Aero(webapp.RequestHandler):
             "ADT": "1",
             "CHD": "0",
             "INF": "0"
+        }
+        
+        form_data = urllib.urlencode(form_fields)
+        
+        try:
+            resultPage = urlfetch.fetch(url=url, method=urlfetch.POST, payload=form_data, deadline=60)
+            if resultPage.status_code == 200:
+                lowPrice = None
+                page = str(resultPage.content)
+                soup = BeautifulSoup(page)
+                tdIn = soup.findAll("span", {"class": "semiFlexAmt"})
+                
+                for i in tdIn:
+                    price = float(i.contents[0].strip())
+                    if lowPrice == None or price < lowPrice:
+                        lowPrice = price
+                        
+                return lowPrice
+         
+        except urlfetch.DownloadError as err:
+            print 'Error Fetching URL: ' + url + ' --- Error Type: ' + str(type(err)) + ' --- Error Args: ' + str(err.args) + ' --- Error Message: ' + str(err)
+            return None
+            
+    def get(self):
+        key = self.request.get("fwKey")
+        if key != '':
+            fw = FlightWatch.get(key)
+            if fw is not None:
+                url = "https://reservations.aeromexico.com/meridia"
+                if fw.roundTrip:
+                    direction = "returntravel"
+                    returnMonth = list(calendar.month_abbr)[fw.returnDate.month]
+                    returnDay = str(fw.returnDate.day)
+                else:
+                    direction = "onewaytravel"
+                    returnMonth = ''
+                    returnDay = ''
+                form_fields = {
+                    "posid": "D5DE",
+                    "page": "ssw_SemiFlexOutboundMessage",
+                    "action": "SSWSemiFlexService",
+                    "actionType": "semiFlex",
+                    "realRequestAir": "realRequestAir",
+                    "departCity": fw.departCity,
+                    "depMonth": list(calendar.month_abbr)[fw.departDate.month],
+                    "depDay": str(fw.departDate.day),
+                    "depYear": "2012",
+                    "depTime": "anytime",
+                    "returnCity": fw.returnCity,
+                    "retMonth": returnMonth,
+                    "retDay": returnDay,
+                    "retYear": "2012",
+                    "retTime": "anytime",
+                    "direction": direction,
+                    "ADT": "1",
+                    "CHD": "0",
+                    "INF": "0"
+                }
+                
+                form_data = urllib.urlencode(form_fields)
+                
+                try:
+                    print 'Fetching url: ' + url
+                    #resultPage = urlfetch.fetch(url=url, method=urlfetch.POST, payload=form_data, deadline=60)
+                    resultPage = URLOpener().open(url, urlfetch.POST, form_data)
+                    if resultPage.status_code == 200:
+                        self.response.out.write(resultPage.content)
+                    else:
+                        print 'Error Fetching URL: ' + url
+                     
+                 
+                except urlfetch.DownloadError as err:
+                    print 'Error Fetching URL: ' + url + ' --- Error Type: ' + str(type(err)) + ' --- Error Args: ' + str(err.args) + ' --- Error Message: ' + str(err)
+            else:
+                print 'Error Fetching URL: ' + url
+                
+class Southwest(webapp.RequestHandler):
+    def process(self, direction, departCity, returnCity, depMonth, depDay, depYear, retMonth, retDay, retYear):
+        url = "URL=http://www.southwest.com/flight/search-flight.html?int=HOMEQBOMAIR"
+        
+        
+        
+        
+        form_fields = {
+            "ss": "0",
+            "fareType": "DOLLARS",
+            "disc": "",
+            "submitButton": "",
+            "previouslySelectedBookingWidgetTab": "",
+            "originAirportButtonClicked": "no",
+            "destinationAirportButtonClicked": "no",
+            "formToken": "",
+            "toggle_selfltnew": "",
+            "toggle_AggressiveDrawers": "",
+            "returnAirport": direction,
+            "originAirport": departCity,
+            "destinationAirport": returnCity,
+            "outboundDateString": depMonth + "/" + depDay + "/" + depYear,
+            "outboundTimeOfDay": "ANYTIME",
+            "returnDateString": retMonth + "/" + retDay + "/" + retYear,          
+            "outboundTimeOfDay": "ANYTIME",
+            "adultPassengerCount": "1",
+            "seniorPassengerCount": "0"
         }
         
         form_data = urllib.urlencode(form_fields)
@@ -1151,7 +1259,7 @@ class Init(webapp.RequestHandler):
         city = City()
         city.KeyName = "SJO"
         city.shortName = "SJO"
-        city.longName = "San Jose"
+        city.longName = "San Jose - SJO"
         city.associatedAirports = ["ACA","AGU","ATL","BJX","CDG","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DEN","DGO","FAT","GDL","HMO","HUX","IAD","IAH","JFK","LAP","LAS","LAX","LMM","MAM","MCO","MEX","MIA","MID","MLM","MTT","MTY","MXL","MZT","NLD","NRT","OAX","ONT","ORD","PAZ","PHX","PVG","PVR","QRO","REX","SAT","SFO","SJD","SLP","SLW","SMF","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","YUL","YYZ","ZCL","ZIH","ZLO"]
         city.put()
 
@@ -1937,9 +2045,7 @@ class Init(webapp.RequestHandler):
         city.shortName = "MSY"
         city.longName = "New Orleans"
         city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        
+        city.put()        
 
         city = City()
         city.KeyName = "RDU"
@@ -1988,6 +2094,48 @@ class Init(webapp.RequestHandler):
         city.shortName = "SMF"
         city.longName = "Sacramento"
         city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH","ACA","AGU","AGU","BJX","BOG","CEN","CJS","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH"]
+        city.put()
+
+        city = City()
+        city.KeyName = "UPN"
+        city.shortName = "UPN"
+        city.longName = "Uruapan"
+        city.put()
+
+        city = City()
+        city.KeyName = "TLC"
+        city.shortName = "TLC"
+        city.longName = "Toluca"
+        city.put()
+
+        city = City()
+        city.KeyName = "CVJ"
+        city.shortName = "CVJ"
+        city.longName = "Cuernavaca"
+        city.put()
+
+        city = City()
+        city.KeyName = "MDW"
+        city.shortName = "MDW"
+        city.longName = "Chicago / Midway"
+        city.put()
+        
+        city = City()
+        city.KeyName = "SAN"
+        city.shortName = "SAN"
+        city.longName = "San Diego"
+        city.put()
+        
+        city = City()
+        city.KeyName = "OAK"
+        city.shortName = "OAK"
+        city.longName = "San Francisco - Oakland"
+        city.put()        
+        
+        city = City()
+        city.KeyName = "SJC"
+        city.shortName = "SJC"
+        city.longName = "San Jose - SJC"
         city.put()
 
 
@@ -2180,6 +2328,257 @@ class Remove(webapp.RequestHandler):
             self.response.out.write('Oops!  That Flight Watch could not be found.  Please reply to the email that directed you here and mention this error.<br><p>Thank You!<br><br><p>Flight Fight Team')
 
 
+class tV(webapp.RequestHandler):
+    def get(self):        
+        city = transCity()
+        city.KeyName = "ACA"
+        city.shortName = "ACA"
+        city.longName = "Acapulco"
+        city.associatedAirports = ["TIJ","SJD","MTY","LAP","CUL"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "LAX"
+        city.shortName = "LAX"
+        city.longName = "Los Angeles"
+        city.associatedAirports = ["MEX","CUN","GDL","AGU","MTY","SJD","HMO","LAP","CUL","PBC","LMM","CUU","UPN","CUU","ZCL","TLC","MLM"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "TLC"
+        city.shortName = "TLC"
+        city.longName = "Toluca"
+        city.associatedAirports = ["SJC","MDW","LAS","LAX","TIJ","MZT","GDL","CUN","SJD","TUS","TUL","TPA","STL","SNA","SMF","SLC","SFO","SEA","RNO","RDU","PHX","PHL","PDX","ORF","ONT","OMA","MHT","MCI","IND","GEG","ELP","DEN","CMH","BWI","BUR","BOI","BNA","ABQ"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "AGU"
+        city.shortName = "AGU"
+        city.longName = "Aguascalientes"
+        city.associatedAirports = ["LAX","TIJ","SJD","LAP","CUN","SAN","LAS","CUL","HMO"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "CUN"
+        city.shortName = "CUN"
+        city.longName = "Cancun"
+        city.associatedAirports = ["CUU","SJC","OAK","MXL","LAX","LAP","HMO","FAT","CUL","PBC","MEX","GDL","MTY","BJX","AGU","TLC","MDW","LAS","MCO","TIJ","SJD","PVR"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "MEX"
+        city.shortName = "MEX"
+        city.longName = "Mexico City"
+        city.associatedAirports = ["TIJ","SJD","MXL","SJC","MDW","LAX","LAS","LAP","FAT","CUL","PVR","MTY","GDL","HMO","SAN","CUU","CUN","TUS","TUL","TPA","STL","SNA","SMF","SLC","SFO","SEA","SDF","RNO","RDU","PVD","PIT","PHX","PHL","PDX","ORF","ONT","OMA","OKC","MSY","MSP","MHT","MCI","LGA","ISP","IND","IAD","GEG","EWR","ELP","DTW","DEN","CMH","CLE","BWI","BUR","BUF","BOS","BOI","BNA","BDL","AUS","ALB","ABQ","MCO","OAK","LMM"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "CUU"
+        city.shortName = "CUU"
+        city.longName = "Chihuahua"
+        city.associatedAirports = ["GDL","CUN","MEX","CUL","MDW","LAP","HMO","MCO","SJD","PVR","TIJ"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "CVJ"
+        city.shortName = "CVJ"
+        city.longName = "Cuernavaca"
+        city.associatedAirports = ["TIJ","LAP","LAP","HMO","CUL"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "CUL"
+        city.shortName = "CUL"
+        city.longName = "Culiacan"
+        city.associatedAirports = ["SJD","LAP","TLC","CUN","TIJ","MEX","GDL","HMO","CUU","MXL","MDW","LAS","ZCL","UPN","OAX","SJC","PVR","OAK","LAX","MTY","MLM","BJX","MCO","AGU","ACA","CVJ"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "GDL"
+        city.shortName = "GDL"
+        city.longName = "Guadalajara"
+        city.associatedAirports = ["CUU","FAT","TLC","TIJ","MXL","MEX","LAP","HMO","MTY","LMM","PBC","MKE","MHT","MCI","MAF","LIT","LGA","LBB","JAX","ISP","IND","IAD","HOU","GEG","FLL","EWR","ELP","ECP","DTW","DEN","DAL","CMH","CLE","BWI","BUR","BUF","BOS","BOI","BNA","BHM","BDL","AUS","AMA","ALB","ABQ","CUN","TUS","TUL","TPA","CUL","MCO","STL","SNA","SMF","SLC","SFO","SJC","SAN","OAK","MDW","LAX","LAS","SEA","SDF","SJD","SAT","RNO","RDU","PVD","PIT","PHX","PHL","PDX","ORF","ONT","OMA","OKC","MSY","MSP"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "HMO"
+        city.shortName = "HMO"
+        city.longName = "Hermosillo"
+        city.associatedAirports = ["TLC","CUN","TIJ","MEX","PBC","CUL","MDW","FAT","SJD","MZT","CUU","OAK","OAX","LAX","LAS","ZCL","UPN","GDL","PVR","LAP","MTY","MLM","LMM","BJX","AGU"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "LAP"
+        city.shortName = "LAP"
+        city.longName = "La Paz"
+        city.associatedAirports = ["MEX","CUL","TLC","MXL","CUN","PVR","AGU","OAK","MDW","UPN","OAX","MTY","CVJ","CUU","SJC","TIJ","LAS","LAX","MLM","CVJ","MZT","HMO","GDL","BJX","CLQ","ACA"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "BJX"
+        city.shortName = "BJX"
+        city.longName = "Leon"
+        city.associatedAirports = ["TIJ","SJD","CUN","MTY","LAP","CUL","MDW","LMM","HMO"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "SJD"
+        city.shortName = "SJD"
+        city.longName = "Los Cabos"
+        city.associatedAirports = ["CUL","AGU","OAK","UPN","OAX","MTY","MLM","MEX","HMO","BJX","ACA","PBC","PVR","MDW","ZCL","MXL","TIJ","TLC","PBC","SAN","LAX","CVJ","SJC","SAN","LAX","GDL","CUU","CUN","LAS","FAT"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "MZT"
+        city.shortName = "MZT"
+        city.longName = "Mazatlan"
+        city.associatedAirports = ["TIJ","UPN","TLC","MTY","OAX","CVJ"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "MXL"
+        city.shortName = "MXL"
+        city.longName = "Mexicali"
+        city.associatedAirports = ["TLC","LAP","CUN","MDW","CUL","MTY","SJD","GDL","MEX","LMM","PVR"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "LAS"
+        city.shortName = "LAS"
+        city.longName = "Las Vegas"
+        city.associatedAirports = ["TLC","MEX","GDL","CUL","PBC","MTY","LAP","HMO","CUN","LMM","MLM","CUU","PVR","SJD"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "SAN"
+        city.shortName = "SAN"
+        city.longName = "San Diego"
+        city.associatedAirports = ["MEX","GDL","CUL","MTY","CUN","TLC","LAP","HMO","CUU","PVR","LMM"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "MDW"
+        city.shortName = "MDW"
+        city.longName = "Chicago / Midway"
+        city.associatedAirports = ["TLC","MEX","GDL","MXL","LAP","HMO","CUL","TIJ","ZCL","MLM","CUN","PVR","LMM","CUU","BJX"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "LMM"
+        city.shortName = "LMM"
+        city.longName = "Los Mochis"
+        city.associatedAirports = ["TIJ","UPN","TLC","OAX","MTY","GDL","SJD","LAS","LAX","FAT","MLM","ACA","CUN","MEX","HMO","BJX"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "MTY"
+        city.shortName = "MTY"
+        city.longName = "Monterrey"
+        city.associatedAirports = ["TIJ","LAX","GDL","CUN","SJD","MZT","MLM","MEX","LMM","LAP","MDW","MXL","LAS","UPN","PVR","CUL","BJX","ACA","OAX","CVJ","CLQ","HMO","SJC"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "OAX"
+        city.shortName = "OAX"
+        city.longName = "Oaxaca"
+        city.associatedAirports = ["TIJ","SJD","LMM","LAP","CUL","HMO","MZT","MTY","GDL","AGU"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "PBC"
+        city.shortName = "PBC"
+        city.longName = "Puebla"
+        city.associatedAirports = ["TIJ","HMO","GDL","SJD","LAS","CUN","OAK","LAX","FAT","SJD","MXL","MTY","CUL","MDW"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "PVR"
+        city.shortName = "PVR"
+        city.longName = "Puerto Vallarta"
+        city.associatedAirports = ["TIJ","LAP","MEX","SJD","CUL","MTY","HMO","CVJ","SAN","OAK","MDW","LAS","MXL","CUU","CUN"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "OAK"
+        city.shortName = "OAK"
+        city.longName = "San Francisco / Oakland"
+        city.associatedAirports = ["TLC","MEX","CUN","SJD","LAP","PBC","GDL","CUL","LMM","PVR","MLM"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "SJC"
+        city.shortName = "SJC"
+        city.longName = "San Jose California"
+        city.associatedAirports = ["TLC","MEX","CUN","GDL","MLM"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "TIJ"
+        city.shortName = "TIJ"
+        city.longName = "Tijuana"
+        city.associatedAirports = ["ZCL","UPN","TLC","SJD","PVR","PBC","OAX","MZT","MTY","MLM","MEX","LMM","HMO","GDL","CLQ","MDW","LAP","CVJ","CUL","BJX","MCO","AGU","ACA","CUN","CUU"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "UPN"
+        city.shortName = "UPN"
+        city.longName = "Uruapan"
+        city.associatedAirports = ["TIJ","SJD","MZT","LAP","CUL","MTY","HMO","LAX"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "ZCL"
+        city.shortName = "ZCL"
+        city.longName = "Zacatecas"
+        city.associatedAirports = ["LAX","TIJ","CUL","MDW","LAP","SJD","HMO"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "MCO"
+        city.shortName = "MCO"
+        city.longName = "Orlando"
+        city.associatedAirports = ["TIJ","GDL","CUU","CUL","CUN","MEX"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "MLM"
+        city.shortName = "MLM"
+        city.longName = "Morelia"
+        city.associatedAirports = ["TIJ","LAX","SJD","MTY","MDW","LAP","SFO","PHX","OAK","LAS","DEN","LMM","HMO","CUL","TUS","SMF","SLC","SJC"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "FAT"
+        city.shortName = "FAT"
+        city.longName = "Fresno"
+        city.associatedAirports = ["GDL","TLC","MEX","CUN","HMO","LAP","PBC","LMM","CUU","SJD"]
+        city.put()
+
+        city = transCity()
+        city.KeyName = "CLQ"
+        city.shortName = "CLQ"
+        city.longName = "Colima"
+        city.associatedAirports = ["TIJ","LAP"]
+        city.put()
+
+        
+        for transcity in transCity.all():
+            for mainCity in transcity.associatedAirports:
+                nomatch = True
+                q = City.all()
+                q.filter('shortName =', mainCity)
+                for rootCity in q:
+                    nomatch = False
+                    if rootCity is None:
+                        print 'error'
+                    else:
+                        rootCity.associatedAirports.append(transcity.shortName)
+                        rootCity.put()
+                
+                if nomatch:
+                    print '\n --' + mainCity
+                
+
 application = webapp.WSGIApplication([
   ('/', Home),
   ('/cron', CronJob),
@@ -2196,7 +2595,8 @@ application = webapp.WSGIApplication([
   ('/aero', Aero),
   ('/remove', Remove),
   ('/_ah/login_required', Login),
-  ('/login', Login)
+  ('/login', Login),
+  ('/transVolaris', tV)
 ], debug=True)
 
 
