@@ -1,0 +1,15 @@
+class City(db.Model):
+    shortName = db.StringProperty(multiline=False)
+    longName = db.StringProperty(multiline=False)
+    associatedAirports = db.StringListProperty()
+
+
+try:
+    while True:
+        q = City.all()
+        assert q.count()
+        db.delete(q.fetch(200))
+        time.sleep(0.5)
+except Exception, e:
+    print repr(e)+'\n'
+    pass

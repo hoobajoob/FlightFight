@@ -232,7 +232,6 @@ class Aero(webapp.RequestHandler):
             resultPage = urlfetch.fetch(url=url, method=urlfetch.POST, payload=form_data, deadline=60)
             if resultPage.status_code == 200:
                 lowPrice = None
-                lowPriceRet = None
                 page = str(resultPage.content)
                 soup = BeautifulSoup(page)
                 tdIn = soup.findAll("span", {"class": "semiFlexAmt"})
@@ -326,12 +325,12 @@ class Home(webapp.RequestHandler):
         
         message = self.request.get("message");
         if message == '':
-            if locale == 'en':
+            if curLocale == 'en':
                 message = 'Just fill and submit this form to start tracking the best price.'
             else:
                 message = 'Just fill and submit this form to start tracking the best price.'
                 
-        if locale == 'en':
+        if curLocale == 'en':
             departCityLabel = 'Depart City'
             departDateLabel = 'Depart Date'
             returnCityLabel = 'Return City'
@@ -357,7 +356,7 @@ class Home(webapp.RequestHandler):
             'url_login': url_login,
             'url_loginLinktext': url_loginLinktext,
             'cities': cities,
-            'locale': locale,
+            'locale': curLocale,
             'departCityLabel': departCityLabel,
             'departDateLabel': departDateLabel,
             'returnCityLabel': returnCityLabel,
@@ -463,7 +462,6 @@ class Feedback(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))
 
     def post(self):
-        isError = False
         if users.get_current_user():
             userEmail = users.get_current_user().email()
         else:
@@ -815,7 +813,7 @@ class FlightWatchUpdate:
                         lowestPrice = volarisPrice
                         fw.airline = "Volaris"
                     else:
-                        lowestPRice = aeroPrice
+                        lowestPrice = aeroPrice
                         fw.airline = "AeroMexico"
                 elif volarisPrice is None and aeroPrice is not None:
                     lowestPrice = aeroPrice
@@ -913,13 +911,13 @@ class CronJob(webapp.RequestHandler):
                 for cuid in cuids.split(','):
                     if fw.authorEmail is not None:
                         if fw.authorEmail == cuid:
-                            fwu.process(fw, locale)
+                            fwu.process(fw, curLocale)
                     if fw.author is not None:
                         if fw.author.email() == cuid:
-                            fwu.process(fw, locale)
+                            fwu.process(fw, curLocale)
         else:
             for fw in FlightWatch.all():
-                fwu.process(fw, locale)
+                fwu.process(fw, curLocale)
             
 class AddFlightWatch(webapp.RequestHandler):
     def post(self):
@@ -933,7 +931,7 @@ class AddFlightWatch(webapp.RequestHandler):
         
         fw = FlightWatch.get(fwKey)
         if fw is not None:
-            FlightWatchUpdate().process(fw, locale)
+            FlightWatchUpdate().process(fw, curLocale)
 
         
 class Predictive(webapp.RequestHandler):
@@ -1056,14 +1054,14 @@ class Init(webapp.RequestHandler):
         city.KeyName = "YUL"
         city.shortName = "YUL"
         city.longName = "Montreal - Trudeau"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "YYZ"
         city.shortName = "YYZ"
         city.longName = "Toronto - Pearson"
-        city.associatedAirports = ["GDL","GRU","LIM","MEX","SCL","SJO"]
+        city.associatedAirports = ["GDL","GRU","LIM","MEX","SCL","SJO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
@@ -1706,14 +1704,14 @@ class Init(webapp.RequestHandler):
         city = City()
         city.KeyName = "LGW"
         city.shortName = "LGW"
-        city.longName = "Londres - Gatwick"
+        city.longName = "London - Gatwick"
         city.associatedAirports = ["CUN","MEX"]
         city.put()
 
         city = City()
         city.KeyName = "LHR"
         city.shortName = "LHR"
-        city.longName = "Londres - Heathrow"
+        city.longName = "London - Heathrow"
         city.associatedAirports = ["MEX"]
         city.put()
 
@@ -1721,140 +1719,133 @@ class Init(webapp.RequestHandler):
         city.KeyName = "ALB"
         city.shortName = "ALB"
         city.longName = "Albany"
-        city.associatedAirports = ["CUN","GDL","MEX"]
+        city.associatedAirports = ["CUN","GDL","MEX","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "ATL"
         city.shortName = "ATL"
         city.longName = "Atlanta"
-        city.associatedAirports = ["ACA","AGU","BCN","BJX","BOG","BOS","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","CZM","DGO","DTW","EZE","FCO","GDL","GRU","GUA","HMO","JFK","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","ORD","PAZ","PMI","PTY","PVG","PVR","REX","ROC","SCL","SJD","SJO","SLC","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VGO","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","BCN","BJX","BOG","BOS","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","CZM","DGO","DTW","EZE","FCO","GDL","GRU","GUA","HMO","JFK","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","ORD","PAZ","PMI","PTY","PVG","PVR","REX","ROC","SCL","SJD","SJO","SLC","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VGO","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "BWI"
         city.shortName = "BWI"
         city.longName = "Baltimore"
-        city.associatedAirports = ["CUN","GDL","MEX","PVR","SJD"]
+        city.associatedAirports = ["CUN","GDL","MEX","PVR","SJD","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "BOS"
         city.shortName = "BOS"
         city.longName = "Boston"
-        city.associatedAirports = ["ATL","CUN","GDL","MEX","SJD"]
+        city.associatedAirports = ["ATL","CUN","GDL","MEX","SJD","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "BRO"
         city.shortName = "BRO"
         city.longName = "Brownsville"
-        city.associatedAirports = ["BJX","CJS","CUL","CUU","GDL","HMO","MEX","MTY","PBC","QRO","TAM","VER"]
+        city.associatedAirports = ["BJX","CJS","CUL","CUU","GDL","HMO","MEX","MTY","PBC","QRO","TAM","VER","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "ORD"
         city.shortName = "ORD"
         city.longName = "Chicago - O'Hare"
-        city.associatedAirports = ["ACA","AGU","ATL","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","ATL","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "CVG"
         city.shortName = "CVG"
         city.longName = "Cincinnati"
-        city.associatedAirports = ["CUN","GDL","MEX","PVR","SJD"]
+        city.associatedAirports = ["CUN","GDL","MEX","PVR","SJD","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "DEN"
         city.shortName = "DEN"
         city.longName = "Denver"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "DTW"
         city.shortName = "DTW"
         city.longName = "Detroit - Metro"
-        city.associatedAirports = ["ATL","CCS","CUN","GDL","GUA","MEX","MTY","PVR","SJD","ZLO"]
+        city.associatedAirports = ["ATL","CCS","CUN","GDL","GUA","MEX","MTY","PVR","SJD","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
-
+        
         city = City()
         city.KeyName = "FAT"
         city.shortName = "FAT"
         city.longName = "Fresno"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "BDL"
         city.shortName = "BDL"
         city.longName = "Hartford Springfield"
-        city.associatedAirports = ["CUN","GDL","MEX","PVR","SJD"]
+        city.associatedAirports = ["CUN","GDL","MEX","PVR","SJD""ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "IAH"
         city.shortName = "IAH"
         city.longName = "Houston - George Bush"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAL","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAL","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "MCI"
         city.shortName = "MCI"
         city.longName = "Kansas City"
-        city.associatedAirports = ["CUN","GDL","MEX","SJD"]
+        city.associatedAirports = ["CUN","GDL","MEX","SJD","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "LAS"
         city.shortName = "LAS"
         city.longName = "Las Vegas"
-        city.associatedAirports = ["ACA","AGU","BJX","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PBC","PTY","PVR","QRO","REX","SAL","SCL","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","BJX","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PBC","PTY","PVR","QRO","REX","SAL","SCL","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "LAX"
         city.shortName = "LAX"
         city.longName = "Los Angeles"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAL","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAL","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "MEM"
         city.shortName = "MEM"
         city.longName = "Memphis"
-        city.associatedAirports = ["CUN"]
+        city.associatedAirports = ["CUN","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "MIA"
         city.shortName = "MIA"
         city.longName = "Miami"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "MSP"
         city.shortName = "MSP"
         city.longName = "Minneapolis - St. Paul"
-        city.associatedAirports = ["MEX","CUN"]
-        city.put()
-
-        city = City()
-        city.KeyName = "BNA"
-        city.shortName = "BNA"
-        city.longName = "Nashville"
-        city.associatedAirports = ["CUN","GDL","MEX","SJD"," "]
+        city.associatedAirports = ["MEX","CUN","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "JFK"
         city.shortName = "JFK"
         city.longName = "New York - John F Kennedy"
-        city.associatedAirports = ["ACA","AGU","ATL","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAL","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","AGU","ATL","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAL","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
@@ -1867,7 +1858,7 @@ class Init(webapp.RequestHandler):
         city = City()
         city.KeyName = "MSY"
         city.shortName = "MSY"
-        city.longName = "Nueva Orleans"
+        city.longName = "New Orleans"
         city.associatedAirports = ["ACA","AGU","BJX","CME","CPE","CUN","CUU","GDL","MEX","MID","MTY","MZT","OAX","PVR","SJD","TRC","VSA","ZIH"]
         city.put()
 
@@ -1875,91 +1866,42 @@ class Init(webapp.RequestHandler):
         city.KeyName = "ONT"
         city.shortName = "ONT"
         city.longName = "Ontario"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "MCO"
         city.shortName = "MCO"
         city.longName = "Orlando"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "PHL"
         city.shortName = "PHL"
         city.longName = "Philadelphia"
-        city.associatedAirports = ["CUN","GDL","MEX"]
+        city.associatedAirports = ["CUN","GDL","MEX","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "PHX"
         city.shortName = "PHX"
         city.longName = "Phoenix"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH"]
+        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "PDX"
         city.shortName = "PDX"
         city.longName = "Portland"
-        city.associatedAirports = ["MEX"]
-        city.put()
-
-        city = City()
-        city.KeyName = "RDU"
-        city.shortName = "RDU"
-        city.longName = "Raleigh"
-        city.associatedAirports = ["CUN","GDL","MEX"]
-        city.put()
-
-        city = City()
-        city.KeyName = "RIC"
-        city.shortName = "RIC"
-        city.longName = "Richmond"
-        city.associatedAirports = ["MEX"]
-        city.put()
-
-        city = City()
-        city.KeyName = "ROC"
-        city.shortName = "ROC"
-        city.longName = "Rochester"
-        city.associatedAirports = ["ATL","MEX"]
-        city.put()
-
-        city = City()
-        city.KeyName = "SMF"
-        city.shortName = "SMF"
-        city.longName = "Sacramento"
-        city.associatedAirports = ["ACA","AGU","AGU","BJX","BOG","CEN","CJS","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "SLC"
-        city.shortName = "SLC"
-        city.longName = "Salt Lake City"
-        city.associatedAirports = ["ATL","CCS","CJS","CUL","CUN","CUU","GDL","HMO","LAP","MEX","MTY","PVR","SJD","TRC","ZLO"]
-        city.put()
-
-        city = City()
-        city.KeyName = "SAT"
-        city.shortName = "SAT"
-        city.longName = "San Antonio"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
-        city.put()
-
-        city = City()
-        city.KeyName = "SFO"
-        city.shortName = "SFO"
-        city.longName = "San Francisco"
-        city.associatedAirports = ["ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAL","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
+        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
         city.KeyName = "STL"
         city.shortName = "STL"
         city.longName = "St. Louis"
-        city.associatedAirports = ["CUN","GDL","MEX","PVR","SJD"]
+        city.associatedAirports = ["CUN","GDL","MEX","PVR","SJD","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
@@ -1973,7 +1915,7 @@ class Init(webapp.RequestHandler):
         city.KeyName = "IAD"
         city.shortName = "IAD"
         city.longName = "Washington - Dulles"
-        city.associatedAirports = ["ACA","AGU","BJX","CEN","CJS","CME","CPE","CUL","CUN","CUU","GDL","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MZT","NLD","OAX","PTY","PVR","QRO","REX","SAL","SAP","SJD","SJO","SLP","SLW","TAM","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH"]
+        city.associatedAirports = ["ACA","AGU","BJX","CEN","CJS","CME","CPE","CUL","CUN","CUU","GDL","GUA","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MZT","NLD","OAX","PTY","PVR","QRO","REX","SAL","SAP","SJD","SJO","SLP","SLW","TAM","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
         city = City()
@@ -1984,143 +1926,10 @@ class Init(webapp.RequestHandler):
         city.put()
 
         city = City()
-        city.KeyName = "ALB"
-        city.shortName = "ALB"
-        city.longName = "Albany"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "ATL"
-        city.shortName = "ATL"
-        city.longName = "Atlanta"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "BDL"
-        city.shortName = "BDL"
-        city.longName = "Hartford Springfield"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
         city.KeyName = "BNA"
         city.shortName = "BNA"
         city.longName = "Nashville"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "BOS"
-        city.shortName = "BOS"
-        city.longName = "Boston"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "BRO"
-        city.shortName = "BRO"
-        city.longName = "Brownsville"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "BWI"
-        city.shortName = "BWI"
-        city.longName = "Baltimore"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "CVG"
-        city.shortName = "CVG"
-        city.longName = "Cincinnati"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "ORD"
-        city.shortName = "ORD"
-        city.longName = "Chicago - O'Hare"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "DEN"
-        city.shortName = "DEN"
-        city.longName = "Denver"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "DTW"
-        city.shortName = "DTW"
-        city.longName = "Detroit - Metro"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "FAT"
-        city.shortName = "FAT"
-        city.longName = "Fresno"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "IAH"
-        city.shortName = "IAH"
-        city.longName = "Houston - George Bush"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "LAS"
-        city.shortName = "LAS"
-        city.longName = "Las Vegas"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "LAX"
-        city.shortName = "LAX"
-        city.longName = "Los Angeles"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MCI"
-        city.shortName = "MCI"
-        city.longName = "Kansas City"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MEM"
-        city.shortName = "MEM"
-        city.longName = "Memphis"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MIA"
-        city.shortName = "MIA"
-        city.longName = "Miami"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MCO"
-        city.shortName = "MCO"
-        city.longName = "Orlando"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MSP"
-        city.shortName = "MSP"
-        city.longName = "Minneapolis - St. Paul"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
+        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH","CUN","GDL","MEX","SJD"]
         city.put()
 
         city = City()
@@ -2130,46 +1939,13 @@ class Init(webapp.RequestHandler):
         city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
         city.put()
 
-        city = City()
-        city.KeyName = "JFK"
-        city.shortName = "JFK"
-        city.longName = "Nueva York - John F Kennedy"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "ONT"
-        city.shortName = "ONT"
-        city.longName = "Ontario"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "PDX"
-        city.shortName = "PDX"
-        city.longName = "Portland"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "PHL"
-        city.shortName = "PHL"
-        city.longName = "Philadelphia"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "PHX"
-        city.shortName = "PHX"
-        city.longName = "Phoenix"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
+        
 
         city = City()
         city.KeyName = "RDU"
         city.shortName = "RDU"
         city.longName = "Raleigh - Durham"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
+        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH","CUN","GDL","MEX"]
         city.put()
 
         city = City()
@@ -2183,294 +1959,35 @@ class Init(webapp.RequestHandler):
         city.KeyName = "ROC"
         city.shortName = "ROC"
         city.longName = "Rochester"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
+        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH","ATL","MEX"]
         city.put()
 
         city = City()
         city.KeyName = "SAT"
         city.shortName = "SAT"
         city.longName = "San Antonio"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
+        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH","ACA","AGU","BJX","BOG","CCS","CEN","CJS","CLQ","CME","CPE","CTM","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SCL","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
         city.put()
 
         city = City()
         city.KeyName = "SFO"
         city.shortName = "SFO"
         city.longName = "San Francisco"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
+        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH","ACA","AGU","BJX","BOG","CEN","CJS","CLQ","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","GUA","HMO","HUX","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PTY","PVR","QRO","REX","SAL","SAP","SJD","SJO","SLP","SLW","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH","ZLO"]
         city.put()
 
         city = City()
         city.KeyName = "SLC"
         city.shortName = "SLC"
         city.longName = "Salt Lake City"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
+        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH","ATL","CCS","CJS","CUL","CUN","CUU","GDL","HMO","LAP","MEX","MTY","PVR","SJD","TRC","ZLO"]
         city.put()
 
         city = City()
         city.KeyName = "SMF"
         city.shortName = "SMF"
         city.longName = "Sacramento"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "STL"
-        city.shortName = "STL"
-        city.longName = "St. Louis"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "IAD"
-        city.shortName = "IAD"
-        city.longName = "Washington - Dulles"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "YUL"
-        city.shortName = "YUL"
-        city.longName = "Montreal Trudeau"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-
-        city = City()
-        city.KeyName = "YYZ"
-        city.shortName = "YYZ"
-        city.longName = "Toronto - Pearson"
-        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH"]
-        city.put()
-        
-        city = City()
-        city.KeyName = "ACA"
-        city.shortName = "ACA"
-        city.longName = "Acapulco"
-        city.associatedAirports = ["TIJ","SJD","MTY","LAP","CUL"]
-        city.put()
-
-        city = City()
-        city.KeyName = "LAX"
-        city.shortName = "LAX"
-        city.longName = "Los Angeles"
-        city.associatedAirports = ["MEX","CUN","GDL","AGU","MTY","SJD","HMO","LAP","CUL","PBC","LMM","CUU","UPN","CUU","ZCL","TLC","MLM"]
-        city.put()
-
-        city = City()
-        city.KeyName = "TLC"
-        city.shortName = "TLC"
-        city.longName = "Toluca"
-        city.associatedAirports = ["SJC","MDW","LAS","LAX","TIJ","MZT","GDL","CUN","SJD","TUS","TUL","TPA","STL","SNA","SMF","SLC","SFO","SEA","RNO","RDU","PHX","PHL","PDX","ORF","ONT","OMA","MHT","MCI","IND","GEG","ELP","DEN","CMH","BWI","BUR","BOI","BNA","ABQ"]
-        city.put()
-
-        city = City()
-        city.KeyName = "AGU"
-        city.shortName = "AGU"
-        city.longName = "Aguascalientes"
-        city.associatedAirports = ["LAX","TIJ","SJD","LAP","CUN","SAN","LAS","CUL","HMO"]
-        city.put()
-
-        city = City()
-        city.KeyName = "CUN"
-        city.shortName = "CUN"
-        city.longName = "Cancun"
-        city.associatedAirports = ["CUU","SJC","OAK","MXL","LAX","LAP","HMO","FAT","CUL","PBC","MEX","GDL","MTY","BJX","AGU","TLC","MDW","LAS","MCO","TIJ","SJD","PVR"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MEX"
-        city.shortName = "MEX"
-        city.longName = "Mexico City"
-        city.associatedAirports = ["TIJ","SJD","MXL","SJC","MDW","LAX","LAS","LAP","FAT","CUL","PVR","MTY","GDL","HMO","SAN","CUU","CUN","TUS","TUL","TPA","STL","SNA","SMF","SLC","SFO","SEA","SDF","RNO","RDU","PVD","PIT","PHX","PHL","PDX","ORF","ONT","OMA","OKC","MSY","MSP","MHT","MCI","LGA","ISP","IND","IAD","GEG","EWR","ELP","DTW","DEN","CMH","CLE","BWI","BUR","BUF","BOS","BOI","BNA","BDL","AUS","ALB","ABQ","MCO","OAK","LMM"]
-        city.put()
-
-        city = City()
-        city.KeyName = "CUU"
-        city.shortName = "CUU"
-        city.longName = "Chihuahua"
-        city.associatedAirports = ["GDL","CUN","MEX","CUL","MDW","LAP","HMO","MCO","SJD","PVR","TIJ"]
-        city.put()
-
-        city = City()
-        city.KeyName = "CVJ"
-        city.shortName = "CVJ"
-        city.longName = "Cuernavaca"
-        city.associatedAirports = ["TIJ","LAP","LAP","HMO","CUL"]
-        city.put()
-
-        city = City()
-        city.KeyName = "CUL"
-        city.shortName = "CUL"
-        city.longName = "Culiacan"
-        city.associatedAirports = ["SJD","LAP","TLC","CUN","TIJ","MEX","GDL","HMO","CUU","MXL","MDW","LAS","ZCL","UPN","OAX","SJC","PVR","OAK","LAX","MTY","MLM","BJX","MCO","AGU","ACA","CVJ"]
-        city.put()
-
-        city = City()
-        city.KeyName = "GDL"
-        city.shortName = "GDL"
-        city.longName = "Guadalajara"
-        city.associatedAirports = ["CUU","FAT","TLC","TIJ","MXL","MEX","LAP","HMO","MTY","LMM","PBC","MKE","MHT","MCI","MAF","LIT","LGA","LBB","JAX","ISP","IND","IAD","HOU","GEG","FLL","EWR","ELP","ECP","DTW","DEN","DAL","CMH","CLE","BWI","BUR","BUF","BOS","BOI","BNA","BHM","BDL","AUS","AMA","ALB","ABQ","CUN","TUS","TUL","TPA","CUL","MCO","STL","SNA","SMF","SLC","SFO","SJC","SAN","OAK","MDW","LAX","LAS","SEA","SDF","SJD","SAT","RNO","RDU","PVD","PIT","PHX","PHL","PDX","ORF","ONT","OMA","OKC","MSY","MSP"]
-        city.put()
-
-        city = City()
-        city.KeyName = "HMO"
-        city.shortName = "HMO"
-        city.longName = "Hermosillo"
-        city.associatedAirports = ["TLC","CUN","TIJ","MEX","PBC","CUL","MDW","FAT","SJD","MZT","CUU","OAK","OAX","LAX","LAS","ZCL","UPN","GDL","PVR","LAP","MTY","MLM","LMM","BJX","AGU"]
-        city.put()
-
-        city = City()
-        city.KeyName = "LAP"
-        city.shortName = "LAP"
-        city.longName = "La Paz"
-        city.associatedAirports = ["MEX","CUL","TLC","MXL","CUN","PVR","AGU","OAK","MDW","UPN","OAX","MTY","CVJ","CUU","SJC","TIJ","LAS","LAX","MLM","CVJ","MZT","HMO","GDL","BJX","CLQ","ACA"]
-        city.put()
-
-        city = City()
-        city.KeyName = "BJX"
-        city.shortName = "BJX"
-        city.longName = "Leon"
-        city.associatedAirports = ["TIJ","SJD","CUN","MTY","LAP","CUL","MDW","LMM","HMO"]
-        city.put()
-
-        city = City()
-        city.KeyName = "SJD"
-        city.shortName = "SJD"
-        city.longName = "Los Cabos"
-        city.associatedAirports = ["CUL","AGU","OAK","UPN","OAX","MTY","MLM","MEX","HMO","BJX","ACA","PBC","PVR","MDW","ZCL","MXL","TIJ","TLC","PBC","SAN","LAX","CVJ","SJC","SAN","LAX","GDL","CUU","CUN","LAS","FAT"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MZT"
-        city.shortName = "MZT"
-        city.longName = "Mazatlan"
-        city.associatedAirports = ["TIJ","UPN","TLC","MTY","OAX","CVJ"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MXL"
-        city.shortName = "MXL"
-        city.longName = "Mexicali"
-        city.associatedAirports = ["TLC","LAP","CUN","MDW","CUL","MTY","SJD","GDL","MEX","LMM","PVR"]
-        city.put()
-
-        city = City()
-        city.KeyName = "LAS"
-        city.shortName = "LAS"
-        city.longName = "Las Vegas"
-        city.associatedAirports = ["TLC","MEX","GDL","CUL","PBC","MTY","LAP","HMO","CUN","LMM","MLM","CUU","PVR","SJD"]
-        city.put()
-
-        city = City()
-        city.KeyName = "SAN"
-        city.shortName = "SAN"
-        city.longName = "San Diego"
-        city.associatedAirports = ["MEX","GDL","CUL","MTY","CUN","TLC","LAP","HMO","CUU","PVR","LMM"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MDW"
-        city.shortName = "MDW"
-        city.longName = "Chicago / Midway"
-        city.associatedAirports = ["TLC","MEX","GDL","MXL","LAP","HMO","CUL","TIJ","ZCL","MLM","CUN","PVR","LMM","CUU","BJX"]
-        city.put()
-
-        city = City()
-        city.KeyName = "LMM"
-        city.shortName = "LMM"
-        city.longName = "Los Mochis"
-        city.associatedAirports = ["TIJ","UPN","TLC","OAX","MTY","GDL","SJD","LAS","LAX","FAT","MLM","ACA","CUN","MEX","HMO","BJX"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MTY"
-        city.shortName = "MTY"
-        city.longName = "Monterrey"
-        city.associatedAirports = ["TIJ","LAX","GDL","CUN","SJD","MZT","MLM","MEX","LMM","LAP","MDW","MXL","LAS","UPN","PVR","CUL","BJX","ACA","OAX","CVJ","CLQ","HMO","SJC"]
-        city.put()
-
-        city = City()
-        city.KeyName = "OAX"
-        city.shortName = "OAX"
-        city.longName = "Oaxaca"
-        city.associatedAirports = ["TIJ","SJD","LMM","LAP","CUL","HMO","MZT","MTY","GDL","AGU"]
-        city.put()
-
-        city = City()
-        city.KeyName = "PBC"
-        city.shortName = "PBC"
-        city.longName = "Puebla"
-        city.associatedAirports = ["TIJ","HMO","GDL","SJD","LAS","CUN","OAK","LAX","FAT","SJD","MXL","MTY","CUL","MDW"]
-        city.put()
-
-        city = City()
-        city.KeyName = "PVR"
-        city.shortName = "PVR"
-        city.longName = "Puerto Vallarta"
-        city.associatedAirports = ["TIJ","LAP","MEX","SJD","CUL","MTY","HMO","CVJ","SAN","OAK","MDW","LAS","MXL","CUU","CUN"]
-        city.put()
-
-        city = City()
-        city.KeyName = "OAK"
-        city.shortName = "OAK"
-        city.longName = "San Francisco / Oakland"
-        city.associatedAirports = ["TLC","MEX","CUN","SJD","LAP","PBC","GDL","CUL","LMM","PVR","MLM"]
-        city.put()
-
-        city = City()
-        city.KeyName = "SJC"
-        city.shortName = "SJC"
-        city.longName = "San Jose California"
-        city.associatedAirports = ["TLC","MEX","CUN","GDL","MLM"]
-        city.put()
-
-        city = City()
-        city.KeyName = "TIJ"
-        city.shortName = "TIJ"
-        city.longName = "Tijuana"
-        city.associatedAirports = ["ZCL","UPN","TLC","SJD","PVR","PBC","OAX","MZT","MTY","MLM","MEX","LMM","HMO","GDL","CLQ","MDW","LAP","CVJ","CUL","BJX","MCO","AGU","ACA","CUN","CUU"]
-        city.put()
-
-        city = City()
-        city.KeyName = "UPN"
-        city.shortName = "UPN"
-        city.longName = "Uruapan"
-        city.associatedAirports = ["TIJ","SJD","MZT","LAP","CUL","MTY","HMO","LAX"]
-        city.put()
-
-        city = City()
-        city.KeyName = "ZCL"
-        city.shortName = "ZCL"
-        city.longName = "Zacatecas"
-        city.associatedAirports = ["LAX","TIJ","CUL","MDW","LAP","SJD","HMO"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MCO"
-        city.shortName = "MCO"
-        city.longName = "Orlando"
-        city.associatedAirports = ["TIJ","GDL","CUU","CUL","CUN","MEX"]
-        city.put()
-
-        city = City()
-        city.KeyName = "MLM"
-        city.shortName = "MLM"
-        city.longName = "Morelia"
-        city.associatedAirports = ["TIJ","LAX","SJD","MTY","MDW","LAP","SFO","PHX","OAK","LAS","DEN","LMM","HMO","CUL","TUS","SMF","SLC","SJC"]
-        city.put()
-
-        city = City()
-        city.KeyName = "FAT"
-        city.shortName = "FAT"
-        city.longName = "Fresno"
-        city.associatedAirports = ["GDL","TLC","MEX","CUN","HMO","LAP","PBC","LMM","CUU","SJD"]
-        city.put()
-
-        city = City()
-        city.KeyName = "CLQ"
-        city.shortName = "CLQ"
-        city.longName = "Colima"
-        city.associatedAirports = ["TIJ","LAP"]
+        city.associatedAirports = ["ACA","EZE","CUN","GDL","GUA","HUX","MEX","MID","MZT","OAX","PVR","GRU","SJD","SJO","ZIH","ACA","AGU","AGU","BJX","BOG","CEN","CJS","CME","CPE","CUL","CUN","CUU","DGO","EZE","GDL","GRU","HMO","LAP","LIM","LMM","MAM","MEX","MID","MLM","MTT","MTY","MXL","MZT","NLD","OAX","PAZ","PVR","QRO","REX","SAP","SJD","SJO","SLP","TAM","TAP","TGZ","TIJ","TRC","VER","VSA","ZCL","ZIH"]
         city.put()
 
 

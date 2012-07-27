@@ -132,7 +132,13 @@
 								applyClass('#resultsTable tbody tr:visible:even','odd');
 								applyPriceColor();
 							});
-							
+							$('#resultsTable tbody tr:visible').each(function (i) {
+									if ($(this).find('#activeCheckbox').is(':checked') != true) {
+											$(this).hide("slow").removeClass('visible');
+										}
+								});
+							$('#hideInactiveButton').val('Show Inactive');
+							$('#showInactive').val('false');
 							$('#hideInactiveButton').click(function(event) {
 								if ($('#showInactive').val() == 'true'){
 										$('#resultsTable tbody tr:visible').each(function (i) {
