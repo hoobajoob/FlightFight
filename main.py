@@ -49,7 +49,7 @@ class City(db.Model):
     longName = db.StringProperty(multiline=False)
     associatedAirports = db.StringListProperty()
 
-class transCity(db.Model):
+class TransCity(db.Model):
     shortName = db.StringProperty(multiline=False)
     longName = db.StringProperty(multiline=False)
     associatedAirports = db.StringListProperty()
@@ -304,139 +304,7 @@ class Aero(webapp.RequestHandler):
                     print 'Error Fetching URL: ' + url + ' --- Error Type: ' + str(type(err)) + ' --- Error Args: ' + str(err.args) + ' --- Error Message: ' + str(err)
             else:
                 print 'Error Fetching URL: ' + url
-                
-class Southwest(webapp.RequestHandler):
-    def process(self, fw):
-        url = "http://www.southwest.com/flight/search-flight.html?int=HOMEQBOMAIR"
-        
-        if fw.roundTrip:
-            direction = "RoundTrip"
-            returnMonth = list(calendar.month_abbr)[fw.returnDate.month]
-            returnDay = str(fw.returnDate.day)
-            returnYear = str(fw.returnDate.year)
-        else:
-            direction = ""
-            returnMonth = ''
-            returnDay = ''
-            returnYear = ''
-        
-
-        form_fields = {
-            "ss": "0",
-            "fareType": "DOLLARS",
-            "disc": "",
-            "submitButton": "",
-            "previouslySelectedBookingWidgetTab": "",
-            "originAirportButtonClicked": "no",
-            "destinationAirportButtonClicked": "no",
-            "formToken": "",
-            "toggle_selfltnew": "",
-            "toggle_AggressiveDrawers": "",
-            "returnAirport": direction,
-            "originAirport": fw.departCity,
-            "destinationAirport": fw.returnCity,
-            "outboundDateString": str(fw.departDate.month) + "/" + str(fw.departDate.day) + "/" + str(fw.departDate.year),
-            "outboundTimeOfDay": "ANYTIME",
-            "returnDateString": returnMonth + "/" + returnDay + "/" + returnYear,          
-            "outboundTimeOfDay": "ANYTIME",
-            "adultPassengerCount": "1",
-            "seniorPassengerCount": "0"
-        }
-                
-        form_data = urllib.urlencode(form_fields)
-        
-        try:
-            resultPage = urlfetch.fetch(url=url, method=urlfetch.POST, payload=form_data, deadline=60)
-            if resultPage.status_code == 200:
-                lowPrice = None
-                page = str(resultPage.content)
-                soup = BeautifulSoup(page)
-                tdIn = soup.findAll("input", {"id": re.compile('*QA\b')})
-                
-                for i in tdIn:
-                    ns = i.nextSibling
-                    ns = ns.nextSibling
                     
-                    price = float(i.contents[0].strip())
-                    if lowPrice == None or price < lowPrice:
-                        lowPrice = price
-                        
-                return lowPrice
-         
-        except urlfetch.DownloadError as err:
-            print 'Error Fetching URL: ' + url + ' --- Error Type: ' + str(type(err)) + ' --- Error Args: ' + str(err.args) + ' --- Error Message: ' + str(err)
-            return None            
-    def get(self):
-        key = self.request.get("fwKey")
-        if key != '':
-            fw = FlightWatch.get(key)
-            if fw is not None:
-                url = "http://www.southwest.com/flight/search-flight.html?int=HOMEQBOMAIR"
-        
-                if fw.roundTrip:
-                    direction = "RoundTrip"
-                    returnMonth = list(calendar.month_abbr)[fw.returnDate.month]
-                    returnDay = str(fw.returnDate.day)
-                    returnYear = str(fw.returnDate.year)
-                else:
-                    direction = ""
-                    returnMonth = ''
-                    returnDay = ''
-                    returnYear = ''
-                
-        
-                form_fields = {
-                    "ss": "0",
-                    "fareType": "DOLLARS",
-                    "disc": "",
-                    "submitButton": "",
-                    "previouslySelectedBookingWidgetTab": "",
-                    "originAirportButtonClicked": "no",
-                    "destinationAirportButtonClicked": "no",
-                    "formToken": "",
-                    "toggle_selfltnew": "",
-                    "toggle_AggressiveDrawers": "",
-                    "returnAirport": direction,
-                    "originAirport": fw.departCity,
-                    "destinationAirport": fw.returnCity,
-                    "outboundDateString": str(fw.departDate.month) + "/" + str(fw.departDate.day) + "/" + str(fw.departDate.year),
-                    "outboundTimeOfDay": "ANYTIME",
-                    "returnDateString": returnMonth + "/" + returnDay + "/" + returnYear,          
-                    "outboundTimeOfDay": "ANYTIME",
-                    "adultPassengerCount": "1",
-                    "seniorPassengerCount": "0"
-                }
-                        
-                form_data = urllib.urlencode(form_fields)
-                
-                try:
-                    print 'Fetching url: ' + url
-                    #resultPage = urlfetch.fetch(url=url, method=urlfetch.POST, payload=form_data, deadline=60)
-                    resultPage = URLOpener().open(url, urlfetch.POST, form_data)
-                    
-                    if resultPage.status_code == 200:
-                        lowPrice = None
-                        page = str(resultPage.content)
-                        soup = BeautifulSoup(page)
-                        #tdIn = soup.findAll("input", id=re.compile('QA$'))
-                        tdIn = soup.findAll("div", {"class": "prduct_info"})
-
-                        for i in tdIn:
-                            self.response.out.write('</br>new')
-                            ns = i.nextSibling
-                            ns = ns.nextSibling
-                            self.response.out.write(ns.contents[0])
-                        #print resultPage.content
-                        print form_data
-                    else:
-                        print 'Error Fetching URL: ' + url
-                     
-                 
-                except urlfetch.DownloadError as err:
-                    print 'Error Fetching URL: ' + url + ' --- Error Type: ' + str(type(err)) + ' --- Error Args: ' + str(err.args) + ' --- Error Message: ' + str(err)
-            else:
-                print 'Error Fetching URL: ' + url
-                                  
                     
 class Home(webapp.RequestHandler):
     def get(self):
@@ -913,7 +781,6 @@ class FlightWatchUpdate:
                 depYear = str(fw.departDate.year)
                 
                 aeroPrice = Aero().process(direction, departCity, returnCity, depMonth, depDay, depYear, retMonth, retDay, retYear)
-                southwestPrice = Southwest().process(direction, departCity, returnCity, depMonth, depDay, depYear, retMonth, retDay, retYear)
                 volarisPrice = None
                 url = 'https://compras.volaris.mx/meridia?posid=C0WE&page=requestAirMessage_air&action=airRequest&realRequestAir=realRequestAir' + '&direction=' + direction + '&departCity=' + departCity + '&depMonth=' + depMonth + '&depDay=' + depDay + '&depTime=&returnCity=' + returnCity + '&ADT=1&CHD=0&INF=0&classService=CoachClass&actionType=nonFlex&flightType=1&language=en' + returnString
                 #self.response.out.write("Fetching URL: " + url)
@@ -2363,231 +2230,231 @@ class Remove(webapp.RequestHandler):
 
 class tV(webapp.RequestHandler):
     def get(self):        
-        city = transCity()
+        city = TransCity()
         city.KeyName = "ACA"
         city.shortName = "ACA"
         city.longName = "Acapulco"
         city.associatedAirports = ["TIJ","SJD","MTY","LAP","CUL"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "LAX"
         city.shortName = "LAX"
         city.longName = "Los Angeles"
         city.associatedAirports = ["MEX","CUN","GDL","AGU","MTY","SJD","HMO","LAP","CUL","PBC","LMM","CUU","UPN","CUU","ZCL","TLC","MLM"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "TLC"
         city.shortName = "TLC"
         city.longName = "Toluca"
-        city.associatedAirports = ["SJC","MDW","LAS","LAX","TIJ","MZT","GDL","CUN","SJD","TUS","TUL","TPA","STL","SNA","SMF","SLC","SFO","SEA","RNO","RDU","PHX","PHL","PDX","ORF","ONT","OMA","MHT","MCI","IND","GEG","ELP","DEN","CMH","BWI","BUR","BOI","BNA","ABQ"]
+        city.associatedAirports = ["SJC","MDW","LAS","LAX","TIJ","MZT","GDL","CUN","SJD"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "AGU"
         city.shortName = "AGU"
         city.longName = "Aguascalientes"
         city.associatedAirports = ["LAX","TIJ","SJD","LAP","CUN","SAN","LAS","CUL","HMO"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "CUN"
         city.shortName = "CUN"
         city.longName = "Cancun"
         city.associatedAirports = ["CUU","SJC","OAK","MXL","LAX","LAP","HMO","FAT","CUL","PBC","MEX","GDL","MTY","BJX","AGU","TLC","MDW","LAS","MCO","TIJ","SJD","PVR"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "MEX"
         city.shortName = "MEX"
         city.longName = "Mexico City"
-        city.associatedAirports = ["TIJ","SJD","MXL","SJC","MDW","LAX","LAS","LAP","FAT","CUL","PVR","MTY","GDL","HMO","SAN","CUU","CUN","TUS","TUL","TPA","STL","SNA","SMF","SLC","SFO","SEA","SDF","RNO","RDU","PVD","PIT","PHX","PHL","PDX","ORF","ONT","OMA","OKC","MSY","MSP","MHT","MCI","LGA","ISP","IND","IAD","GEG","EWR","ELP","DTW","DEN","CMH","CLE","BWI","BUR","BUF","BOS","BOI","BNA","BDL","AUS","ALB","ABQ","MCO","OAK","LMM"]
+        city.associatedAirports = ["TIJ","SJD","MXL","SJC","MDW","LAX","LAS","LAP","FAT","CUL","PVR","MTY","GDL","HMO","SAN","CUU","CUN","MCO","OAK","LMM"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "CUU"
         city.shortName = "CUU"
         city.longName = "Chihuahua"
         city.associatedAirports = ["GDL","CUN","MEX","CUL","MDW","LAP","HMO","MCO","SJD","PVR","TIJ"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "CVJ"
         city.shortName = "CVJ"
         city.longName = "Cuernavaca"
         city.associatedAirports = ["TIJ","LAP","LAP","HMO","CUL"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "CUL"
         city.shortName = "CUL"
         city.longName = "Culiacan"
         city.associatedAirports = ["SJD","LAP","TLC","CUN","TIJ","MEX","GDL","HMO","CUU","MXL","MDW","LAS","ZCL","UPN","OAX","SJC","PVR","OAK","LAX","MTY","MLM","BJX","MCO","AGU","ACA","CVJ"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "GDL"
         city.shortName = "GDL"
-        city.longName = "Guadalajara"
-        city.associatedAirports = ["CUU","FAT","TLC","TIJ","MXL","MEX","LAP","HMO","MTY","LMM","PBC","MKE","MHT","MCI","MAF","LIT","LGA","LBB","JAX","ISP","IND","IAD","HOU","GEG","FLL","EWR","ELP","ECP","DTW","DEN","DAL","CMH","CLE","BWI","BUR","BUF","BOS","BOI","BNA","BHM","BDL","AUS","AMA","ALB","ABQ","CUN","TUS","TUL","TPA","CUL","MCO","STL","SNA","SMF","SLC","SFO","SJC","SAN","OAK","MDW","LAX","LAS","SEA","SDF","SJD","SAT","RNO","RDU","PVD","PIT","PHX","PHL","PDX","ORF","ONT","OMA","OKC","MSY","MSP"]
+        city.longName = "Guaajara"
+        city.associatedAirports = ["CUU","FAT","TLC","TIJ","MXL","MEX","LAP","HMO","MTY","LMM","PBC","CUN","CUL","MCO","SJC","SAN","OAK","MDW","LAX","LAS","SJD","SAT"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "HMO"
         city.shortName = "HMO"
         city.longName = "Hermosillo"
         city.associatedAirports = ["TLC","CUN","TIJ","MEX","PBC","CUL","MDW","FAT","SJD","MZT","CUU","OAK","OAX","LAX","LAS","ZCL","UPN","GDL","PVR","LAP","MTY","MLM","LMM","BJX","AGU"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "LAP"
         city.shortName = "LAP"
         city.longName = "La Paz"
         city.associatedAirports = ["MEX","CUL","TLC","MXL","CUN","PVR","AGU","OAK","MDW","UPN","OAX","MTY","CVJ","CUU","SJC","TIJ","LAS","LAX","MLM","CVJ","MZT","HMO","GDL","BJX","CLQ","ACA"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "BJX"
         city.shortName = "BJX"
         city.longName = "Leon"
         city.associatedAirports = ["TIJ","SJD","CUN","MTY","LAP","CUL","MDW","LMM","HMO"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "SJD"
         city.shortName = "SJD"
-        city.longName = "Los Cabos"
+        city.longName = "Los Ca"
         city.associatedAirports = ["CUL","AGU","OAK","UPN","OAX","MTY","MLM","MEX","HMO","BJX","ACA","PBC","PVR","MDW","ZCL","MXL","TIJ","TLC","PBC","SAN","LAX","CVJ","SJC","SAN","LAX","GDL","CUU","CUN","LAS","FAT"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "MZT"
         city.shortName = "MZT"
         city.longName = "Mazatlan"
         city.associatedAirports = ["TIJ","UPN","TLC","MTY","OAX","CVJ"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "MXL"
         city.shortName = "MXL"
         city.longName = "Mexicali"
         city.associatedAirports = ["TLC","LAP","CUN","MDW","CUL","MTY","SJD","GDL","MEX","LMM","PVR"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "LAS"
         city.shortName = "LAS"
         city.longName = "Las Vegas"
         city.associatedAirports = ["TLC","MEX","GDL","CUL","PBC","MTY","LAP","HMO","CUN","LMM","MLM","CUU","PVR","SJD"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "SAN"
         city.shortName = "SAN"
         city.longName = "San Diego"
         city.associatedAirports = ["MEX","GDL","CUL","MTY","CUN","TLC","LAP","HMO","CUU","PVR","LMM"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "MDW"
         city.shortName = "MDW"
         city.longName = "Chicago / Midway"
         city.associatedAirports = ["TLC","MEX","GDL","MXL","LAP","HMO","CUL","TIJ","ZCL","MLM","CUN","PVR","LMM","CUU","BJX"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "LMM"
         city.shortName = "LMM"
         city.longName = "Los Mochis"
         city.associatedAirports = ["TIJ","UPN","TLC","OAX","MTY","GDL","SJD","LAS","LAX","FAT","MLM","ACA","CUN","MEX","HMO","BJX"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "MTY"
         city.shortName = "MTY"
-        city.longName = "Monterrey"
+        city.longName = "Merrey"
         city.associatedAirports = ["TIJ","LAX","GDL","CUN","SJD","MZT","MLM","MEX","LMM","LAP","MDW","MXL","LAS","UPN","PVR","CUL","BJX","ACA","OAX","CVJ","CLQ","HMO","SJC"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "OAX"
         city.shortName = "OAX"
         city.longName = "Oaxaca"
         city.associatedAirports = ["TIJ","SJD","LMM","LAP","CUL","HMO","MZT","MTY","GDL","AGU"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "PBC"
         city.shortName = "PBC"
         city.longName = "Puebla"
         city.associatedAirports = ["TIJ","HMO","GDL","SJD","LAS","CUN","OAK","LAX","FAT","SJD","MXL","MTY","CUL","MDW"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "PVR"
         city.shortName = "PVR"
         city.longName = "Puerto Vallarta"
         city.associatedAirports = ["TIJ","LAP","MEX","SJD","CUL","MTY","HMO","CVJ","SAN","OAK","MDW","LAS","MXL","CUU","CUN"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "OAK"
         city.shortName = "OAK"
         city.longName = "San Francisco / Oakland"
         city.associatedAirports = ["TLC","MEX","CUN","SJD","LAP","PBC","GDL","CUL","LMM","PVR","MLM"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "SJC"
         city.shortName = "SJC"
         city.longName = "San Jose California"
         city.associatedAirports = ["TLC","MEX","CUN","GDL","MLM"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "TIJ"
         city.shortName = "TIJ"
         city.longName = "Tijuana"
         city.associatedAirports = ["ZCL","UPN","TLC","SJD","PVR","PBC","OAX","MZT","MTY","MLM","MEX","LMM","HMO","GDL","CLQ","MDW","LAP","CVJ","CUL","BJX","MCO","AGU","ACA","CUN","CUU"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "UPN"
         city.shortName = "UPN"
         city.longName = "Uruapan"
         city.associatedAirports = ["TIJ","SJD","MZT","LAP","CUL","MTY","HMO","LAX"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "ZCL"
         city.shortName = "ZCL"
         city.longName = "Zacatecas"
         city.associatedAirports = ["LAX","TIJ","CUL","MDW","LAP","SJD","HMO"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "MCO"
         city.shortName = "MCO"
         city.longName = "Orlando"
         city.associatedAirports = ["TIJ","GDL","CUU","CUL","CUN","MEX"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "MLM"
         city.shortName = "MLM"
         city.longName = "Morelia"
-        city.associatedAirports = ["TIJ","LAX","SJD","MTY","MDW","LAP","SFO","PHX","OAK","LAS","DEN","LMM","HMO","CUL","TUS","SMF","SLC","SJC"]
+        city.associatedAirports = ["TIJ","LAX","SJD","MTY","MDW","LAP","OAK","LAS","LMM","HMO","CUL","SJC"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "FAT"
         city.shortName = "FAT"
         city.longName = "Fresno"
         city.associatedAirports = ["GDL","TLC","MEX","CUN","HMO","LAP","PBC","LMM","CUU","SJD"]
         city.put()
 
-        city = transCity()
+        city = TransCity()
         city.KeyName = "CLQ"
         city.shortName = "CLQ"
         city.longName = "Colima"
@@ -2595,7 +2462,7 @@ class tV(webapp.RequestHandler):
         city.put()
 
         
-        for transcity in transCity.all():
+        for transcity in TransCity.all():
             for mainCity in transcity.associatedAirports:
                 nomatch = True
                 q = City.all()
@@ -2626,7 +2493,6 @@ application = webapp.WSGIApplication([
   ('/about', About),
   ('/feedback', Feedback),
   ('/aero', Aero),
-  ('/southwest', Southwest),
   ('/remove', Remove),
   ('/_ah/login_required', Login),
   ('/login', Login),
