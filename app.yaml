@@ -37,8 +37,7 @@ handlers:
   script: main.py
   
 - url: /sender
-  script: main.py
-  
+  script: main.py  
   
 - url: /transVolaris
   script: main.py
@@ -53,6 +52,9 @@ handlers:
   script: main.py
   
 - url: /aero
+  script: main.py
+  
+- url: /southwest
   script: main.py
   
 - url: /login

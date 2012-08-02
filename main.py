@@ -306,12 +306,21 @@ class Aero(webapp.RequestHandler):
                 print 'Error Fetching URL: ' + url
                 
 class Southwest(webapp.RequestHandler):
-    def process(self, direction, departCity, returnCity, depMonth, depDay, depYear, retMonth, retDay, retYear):
-        url = "URL=http://www.southwest.com/flight/search-flight.html?int=HOMEQBOMAIR"
+    def process(self, fw):
+        url = "http://www.southwest.com/flight/search-flight.html?int=HOMEQBOMAIR"
         
+        if fw.roundTrip:
+            direction = "RoundTrip"
+            returnMonth = list(calendar.month_abbr)[fw.returnDate.month]
+            returnDay = str(fw.returnDate.day)
+            returnYear = str(fw.returnDate.year)
+        else:
+            direction = ""
+            returnMonth = ''
+            returnDay = ''
+            returnYear = ''
         
-        
-        
+
         form_fields = {
             "ss": "0",
             "fareType": "DOLLARS",
@@ -324,16 +333,16 @@ class Southwest(webapp.RequestHandler):
             "toggle_selfltnew": "",
             "toggle_AggressiveDrawers": "",
             "returnAirport": direction,
-            "originAirport": departCity,
-            "destinationAirport": returnCity,
-            "outboundDateString": depMonth + "/" + depDay + "/" + depYear,
+            "originAirport": fw.departCity,
+            "destinationAirport": fw.returnCity,
+            "outboundDateString": str(fw.departDate.month) + "/" + str(fw.departDate.day) + "/" + str(fw.departDate.year),
             "outboundTimeOfDay": "ANYTIME",
-            "returnDateString": retMonth + "/" + retDay + "/" + retYear,          
+            "returnDateString": returnMonth + "/" + returnDay + "/" + returnYear,          
             "outboundTimeOfDay": "ANYTIME",
             "adultPassengerCount": "1",
             "seniorPassengerCount": "0"
         }
-        
+                
         form_data = urllib.urlencode(form_fields)
         
         try:
@@ -342,9 +351,12 @@ class Southwest(webapp.RequestHandler):
                 lowPrice = None
                 page = str(resultPage.content)
                 soup = BeautifulSoup(page)
-                tdIn = soup.findAll("span", {"class": "semiFlexAmt"})
+                tdIn = soup.findAll("input", {"id": re.compile('*QA\b')})
                 
                 for i in tdIn:
+                    ns = i.nextSibling
+                    ns = ns.nextSibling
+                    
                     price = float(i.contents[0].strip())
                     if lowPrice == None or price < lowPrice:
                         lowPrice = price
@@ -353,52 +365,69 @@ class Southwest(webapp.RequestHandler):
          
         except urlfetch.DownloadError as err:
             print 'Error Fetching URL: ' + url + ' --- Error Type: ' + str(type(err)) + ' --- Error Args: ' + str(err.args) + ' --- Error Message: ' + str(err)
-            return None
-            
+            return None            
     def get(self):
         key = self.request.get("fwKey")
         if key != '':
             fw = FlightWatch.get(key)
             if fw is not None:
-                url = "https://reservations.aeromexico.com/meridia"
+                url = "http://www.southwest.com/flight/search-flight.html?int=HOMEQBOMAIR"
+        
                 if fw.roundTrip:
-                    direction = "returntravel"
+                    direction = "RoundTrip"
                     returnMonth = list(calendar.month_abbr)[fw.returnDate.month]
                     returnDay = str(fw.returnDate.day)
+                    returnYear = str(fw.returnDate.year)
                 else:
-                    direction = "onewaytravel"
+                    direction = ""
                     returnMonth = ''
                     returnDay = ''
-                form_fields = {
-                    "posid": "D5DE",
-                    "page": "ssw_SemiFlexOutboundMessage",
-                    "action": "SSWSemiFlexService",
-                    "actionType": "semiFlex",
-                    "realRequestAir": "realRequestAir",
-                    "departCity": fw.departCity,
-                    "depMonth": list(calendar.month_abbr)[fw.departDate.month],
-                    "depDay": str(fw.departDate.day),
-                    "depYear": "2012",
-                    "depTime": "anytime",
-                    "returnCity": fw.returnCity,
-                    "retMonth": returnMonth,
-                    "retDay": returnDay,
-                    "retYear": "2012",
-                    "retTime": "anytime",
-                    "direction": direction,
-                    "ADT": "1",
-                    "CHD": "0",
-                    "INF": "0"
-                }
+                    returnYear = ''
                 
+        
+                form_fields = {
+                    "ss": "0",
+                    "fareType": "DOLLARS",
+                    "disc": "",
+                    "submitButton": "",
+                    "previouslySelectedBookingWidgetTab": "",
+                    "originAirportButtonClicked": "no",
+                    "destinationAirportButtonClicked": "no",
+                    "formToken": "",
+                    "toggle_selfltnew": "",
+                    "toggle_AggressiveDrawers": "",
+                    "returnAirport": direction,
+                    "originAirport": fw.departCity,
+                    "destinationAirport": fw.returnCity,
+                    "outboundDateString": str(fw.departDate.month) + "/" + str(fw.departDate.day) + "/" + str(fw.departDate.year),
+                    "outboundTimeOfDay": "ANYTIME",
+                    "returnDateString": returnMonth + "/" + returnDay + "/" + returnYear,          
+                    "outboundTimeOfDay": "ANYTIME",
+                    "adultPassengerCount": "1",
+                    "seniorPassengerCount": "0"
+                }
+                        
                 form_data = urllib.urlencode(form_fields)
                 
                 try:
                     print 'Fetching url: ' + url
                     #resultPage = urlfetch.fetch(url=url, method=urlfetch.POST, payload=form_data, deadline=60)
                     resultPage = URLOpener().open(url, urlfetch.POST, form_data)
+                    
                     if resultPage.status_code == 200:
-                        self.response.out.write(resultPage.content)
+                        lowPrice = None
+                        page = str(resultPage.content)
+                        soup = BeautifulSoup(page)
+                        #tdIn = soup.findAll("input", id=re.compile('QA$'))
+                        tdIn = soup.findAll("div", {"class": "prduct_info"})
+
+                        for i in tdIn:
+                            self.response.out.write('</br>new')
+                            ns = i.nextSibling
+                            ns = ns.nextSibling
+                            self.response.out.write(ns.contents[0])
+                        #print resultPage.content
+                        print form_data
                     else:
                         print 'Error Fetching URL: ' + url
                      
@@ -870,17 +899,21 @@ class FlightWatchUpdate:
                 returnString = ''
                 retMonth = None
                 retDay = None
+                retYear = None
                 if fw.roundTrip:
                     direction = 'returntravel'
                     retMonth = list(calendar.month_abbr)[fw.returnDate.month]
                     retDay = str(fw.returnDate.day)
-                    returnString = '&retMonth=' + retMonth + '&retDay=' + retDay + '&retTime='
+                    retYear = str(fw.returnDate.year)
+                    returnString = '&retMonth=' + retMonth + '&retDay=' + retDay + '&retYear='+ retYear + '&retTime='
                 departCity = fw.departCity
                 returnCity = fw.returnCity
                 depMonth = list(calendar.month_abbr)[fw.departDate.month]
                 depDay = str(fw.departDate.day)
+                depYear = str(fw.departDate.year)
                 
-                aeroPrice = Aero().process(direction, departCity, returnCity, depMonth, depDay, 2012, retMonth, retDay, 2012)
+                aeroPrice = Aero().process(direction, departCity, returnCity, depMonth, depDay, depYear, retMonth, retDay, retYear)
+                southwestPrice = Southwest().process(direction, departCity, returnCity, depMonth, depDay, depYear, retMonth, retDay, retYear)
                 volarisPrice = None
                 url = 'https://compras.volaris.mx/meridia?posid=C0WE&page=requestAirMessage_air&action=airRequest&realRequestAir=realRequestAir' + '&direction=' + direction + '&departCity=' + departCity + '&depMonth=' + depMonth + '&depDay=' + depDay + '&depTime=&returnCity=' + returnCity + '&ADT=1&CHD=0&INF=0&classService=CoachClass&actionType=nonFlex&flightType=1&language=en' + returnString
                 #self.response.out.write("Fetching URL: " + url)
@@ -2593,6 +2626,7 @@ application = webapp.WSGIApplication([
   ('/about', About),
   ('/feedback', Feedback),
   ('/aero', Aero),
+  ('/southwest', Southwest),
   ('/remove', Remove),
   ('/_ah/login_required', Login),
   ('/login', Login),
