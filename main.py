@@ -5,7 +5,7 @@ import logging
 import json
 import utils
 import re
-import urllib, urllib2, Cookie
+import urllib, urllib2, Cookie, time
 
 from google.appengine.ext.webapp import template
 from google.appengine.ext import db
@@ -762,6 +762,7 @@ class FlightWatchUpdate:
         if fw.active:
             if fw.departDate < datetime.now():
                 fw.active = False
+                fw.put()
             else:
                 direction = 'onewaytravel'
                 returnString = ''
@@ -902,7 +903,7 @@ class FlightWatchUpdate:
                         fw.previousPrice = fw.currentPrice
                         fw.currentPrice = lowestPrice
                         fw.dateModified = datetime.now()
-                        fw.put();
+                        fw.put()
 
 class CronJob(webapp.RequestHandler):
     def get(self):    
@@ -2196,6 +2197,28 @@ class GetData(webapp.RequestHandler):
             self.response.headers['Content-Type'] = "text/plain" # Alt. application/json
             self.response.out.write( result + '\n\t]\n}' )
 
+class ClearCities(webapp.RequestHandler):
+    def get(self):
+        try:
+            while True:
+                q = City.all()
+                assert q.count()
+                db.delete(q.fetch(200))
+                time.sleep(0.5)
+        except Exception, e:
+            print repr(e)+'\n'
+            pass
+        try:
+            while True:
+                q = TransCity.all()
+                assert q.count()
+                db.delete(q.fetch(200))
+                time.sleep(0.5)
+        except Exception, e:
+            print repr(e)+'\n'
+            pass
+        print "Cities Cleared"
+
 class Login(webapp.RequestHandler):
     def get(self):
         if self.request.get('destination'):
@@ -2496,7 +2519,8 @@ application = webapp.WSGIApplication([
   ('/remove', Remove),
   ('/_ah/login_required', Login),
   ('/login', Login),
-  ('/transVolaris', tV)
+  ('/transVolaris', tV),
+  ('/cron/cc', ClearCities)
 ], debug=True)
 
 
