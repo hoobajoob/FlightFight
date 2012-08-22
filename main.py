@@ -147,8 +147,10 @@ class FlightWatch(db.Model):
         depMonth = list(calendar.month_abbr)[self.departDate.month]
         depDay = str(self.departDate.day)
         if self.airline == "Volaris":
-            return '<a href="https://compras.volaris.mx/meridia?posid=C0WE&page=requestAirMessage_air&action=airRequest&realRequestAir=realRequestAir' + '&direction=' + direction + '&departCity=' + departCity + '&depMonth=' + depMonth + '&depDay=' + depDay + '&depTime=&returnCity=' + returnCity + '&ADT=1&CHD=0&INF=0&classService=CoachClass&actionType=nonFlex&flightType=1&language=en&rem1=FFLGTC' + returnString + '&utm_source=metasearch&utm_medium=deeplink&utm_content=FlightFight&utm_campaign=FlightFight" class="arefButton" target="_blank">Purchase</a>'
+            style = 'class = arefButton'
+            return '<a href="https://compras.volaris.mx/meridia?posid=C0WE&page=requestAirMessage_air&action=airRequest&realRequestAir=realRequestAir' + '&direction=' + direction + '&departCity=' + departCity + '&depMonth=' + depMonth + '&depDay=' + depDay + '&depTime=&returnCity=' + returnCity + '&ADT=1&CHD=0&INF=0&classService=CoachClass&actionType=nonFlex&flightType=1&language=en&rem1=FFLGTC' + returnString + '&utm_source=metasearch&utm_medium=deeplink&utm_content=FlightFight&utm_campaign=FlightFight" ' + style +' target="_blank">Purchase</a>'
         elif self.airline == "AeroMexico":
+            style = 'class = linkButton'
             return '<form action="https://reservations.aeromexico.com/meridia" method="post" id="bBaf' + str(self.key()) + '" name="bBaf' + str(self.key()) + '" target="_blank">\
                         <div id="search_typetravel">\
                         <input type="hidden" name="posid" value="D5DE">\
@@ -166,7 +168,7 @@ class FlightWatch(db.Model):
                         <input type="hidden" name="retTime" id="retTime" value="anytime">\
                         <input type="hidden" name="ADT" id="ft-adult" value="1">\
                         <input type="hidden" name="direction" id="direction" value="' + direction + '">\
-                        <input type="submit" class="linkButton" value="Purchase" id="ft-submit" title="Click here to purchase your flight"/>\
+                        <input type="submit" ' + style + ' value="Purchase" id="ft-submit" title="Click here to purchase your flight"/>\
                         </div>\
                     </form>'
         else:
@@ -850,44 +852,19 @@ class FlightWatchUpdate:
                     if fw.author is not None:
                         email = fw.author.email()
                     if not newEntry and email is not None:
-                        if lowestPrice < fw.currentPrice:     
-                            try:               
-                                message = mail.EmailMessage()
-                                message.sender = "kc@recroomrecords.com"
-                                message.to = email
-                                message.subject = 'Flight-Fight Update - Price Decrease'
-                                message.body = 'Flight Fight Price Update:\n\nThe price of a monitored flight has gone DOWN!!\n\n Flight details:\n' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '\nYour Target Price: ' + str(fw.targetPrice) + '\Previous Price: ' + str(fw.currentPrice) + '\nCurrent Price: ' + str(lowestPrice) + ' on ' + fw.airline
-                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
-                                message.body = message.body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+                        message = Email().getEmail(fw, email, lowestPrice)
+                        if message is not None:
+                            try:
                                 message.send()
                             finally:
                                 SendPush().send(fw.author, 'update')                            
                                 '''taskqueue.add(url='/sendPush', params={'accountName': fw.key(),'registrationId': fw.key(),'text': 'update'})'''
-                        if lowestPrice > fw.currentPrice:
-                            try:
-                                message = mail.EmailMessage()
-                                message.sender = "kc@recroomrecords.com"
-                                message.to = email
-                                message.subject = 'Flight-Fight Update - Price Increase'
-                                message.body = 'Flight Fight Price Update:\n\nThe price of a monitored flight has gone UP!!\n\n Flight details:\n' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '\nYour Target Price: ' + str(fw.targetPrice) + '\Previous Price: ' + str(fw.currentPrice) + '\nCurrent Price: ' + str(lowestPrice) + ' on ' + fw.airline
-                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
-                                message.body = message.body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
-                                message.send()
-                            finally:
-                                SendPush().send(fw.author, 'update')
-                            
                     if newEntry and fw.author is not None and fw.author.email() is not None:
-                            try:
-                                message = mail.EmailMessage()
-                                message.sender = "kc@recroomrecords.com"
-                                message.to = email
-                                message.subject = 'Flight-Fight Update - New Flight Added'
-                                message.body = 'Flight Fight Flight Tracking:\n\nYou are now monitoring a new flight on Volaris and AeroMexico!!\n\n Flight details:\n' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '\nYour Target Price: ' + str(fw.targetPrice) + '\nCurrent Price: ' + str(lowestPrice) + ' on ' + fw.airline
-                                message.html = message.body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
-                                message.body = message.body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
-                                message.send()
-                            finally:
-                                SendPush().send(fw.author, 'update')
+                        message = Email().getNewEmail(fw, email, lowestPrice)
+                        try:
+                            message.send()
+                        finally:
+                            SendPush().send(fw.author, 'update')
                     
                     if newEntry or fw.currentPrice != lowestPrice:
                         if newEntry:
@@ -905,6 +882,82 @@ class FlightWatchUpdate:
                         fw.dateModified = datetime.now()
                         fw.put()
 
+class Email(webapp.RequestHandler):
+    def getEmail(self, fw, email, lowestPrice):                      
+        message = mail.EmailMessage()
+        message.sender = "kc@recroomrecords.com"
+        message.to = email
+        if lowestPrice < fw.currentPrice:
+            message.subject = 'Flight-Fight Update - Price Decrease'
+            message.html = self.getHTML('The price of a monitored flight has gone DOWN!!', fw, lowestPrice)
+            #message.body = body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+            return message
+        elif lowestPrice > fw.currentPrice:
+            message.subject = 'Flight-Fight Update - Price Increase'
+            message.html = self.getHTML('The price of a monitored flight has gone UP!!', fw, lowestPrice)
+            #body = 'Flight Fight Price Update:\n\nThe price of a monitored flight has gone UP!!\n\n Flight details:\n' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '\nYour Target Price: ' + str(fw.targetPrice) + '\Previous Price: ' + str(fw.currentPrice) + '\nCurrent Price: ' + str(lowestPrice) + ' on ' + fw.airline
+            #message.html = body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+            #message.body = body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+            return message
+        else:
+            return None
+    
+    def getNewEmail(self, fw, email, lowestPrice):
+        message = mail.EmailMessage()
+        message.sender = "kc@recroomrecords.com"
+        message.to = email
+        message.subject = 'Flight-Fight Update - New Flight Added'
+        body = 'Flight Fight Flight Tracking:\n\nYou are now monitoring a new flight on Volaris and AeroMexico!!\n\n Flight details:\n' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '\nYour Target Price: ' + str(fw.targetPrice) + '\nCurrent Price: ' + str(lowestPrice) + ' on ' + fw.airline
+        message.html = body + '<br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+        #message.body = body + '\n\n Thank You,\n\n\n\nFlight-Fight Team'
+        return message
+    
+    def getHTML(self, notice, fw, lowestPrice):
+        result ='<!DOCTYPE html>\n\
+                    <html lang="en">\n\
+                        <head>\n\
+                            <title>FlightFight Update</title>\n\
+                        </head>\n\
+                        <style>\n\
+                            .arefButton {\n\
+                                background: -moz-linear-gradient(center top , #79BBFF 5%, #378DE5 100%) repeat scroll 0 0 #1C94C4;\n\
+                                border: 1px solid #84BBF3;\n\
+                                border-radius: 4px 4px 4px 4px;\n\
+                                box-shadow: 0 1px 0 0 #BBDAF7;\n\
+                                color: #FFFFFF;\n\
+                                display: inline-block;\n\
+                                font-family: arial;\n\
+                                font-size: 10px;\n\
+                                font-weight: bold;\n\
+                                padding: 3px 8px;\n\
+                                text-decoration: none;\n\
+                                text-shadow: 1px 1px 0 #528ECC;\n\
+                            }\n\
+                            .linkButton {\n\
+                                background: -moz-linear-gradient(center top , #79BBFF 5%, #378DE5 100%) repeat scroll 0 0 #1C94C4;\n\
+                                border: 1px solid #84BBF3;\n\
+                                border-radius: 4px 4px 4px 4px;\n\
+                                box-shadow: 0 1px 0 0 #BBDAF7;\n\
+                                color: #FFFFFF;\n\
+                                display: inline-block;\n\
+                                font-family: arial;\n\
+                                font-size: 10px;\n\
+                                font-weight: bold;\n\
+                                padding: 2px 5px;\n\
+                                text-decoration: none;\n\
+                                text-shadow: 1px 1px 0 #528ECC;\n\
+                            }\n\
+                        </style>\
+                        <body>\
+                            <label>Flight Fight Price Update:</label>\n\
+                            <br><p>' + notice + '<br><p> Flight details:<br>' + fw.departCity + ' to ' + fw.returnCity + ' on ' + str(fw.departDate) + '<br>Your Target Price: ' + str(fw.targetPrice) + 'Previous Price: ' + str(fw.currentPrice) + '<br>Current Price: ' + str(lowestPrice) + ' on ' + fw.airline + '\n\
+                            <br><p>' + fw.getPurchaseLink() + 'This Flight<br><p>To deactivate this Flight Watch and no longer receive these notices, ' + fw.getRemoveLink('just click here.', 'http://flight-fight.appspot.com') + '<br><p> Thank You,<br><p><br><p>Flight-Fight Team\n\
+                        </body>\n\
+                    </html>'
+                    
+        return result;
+                    
+    
 class CronJob(webapp.RequestHandler):
     def get(self):    
         curLocale = 'en'        
